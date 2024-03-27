@@ -5,6 +5,128 @@
 <body>
     <header th:replace="~{fragments/commons::header}"></header>
 
-    <div th:replace="~{fragments/commons::tab-content}"></div>
+    <div class="container-fluid tab-content pt-5" id="tab-content">
+        <div class="tab-pane active" id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
+            <div class="row">
+                <div class="col-4 text-center">
+                    <div>Income</div>
+                    <div>1000$</div>
+                </div>
+
+                <div class="col-4 text-center">
+                    <div>Balance</div>
+                    <div>3000$</div>
+                </div>
+
+                <div class="col-4 text-center">
+                    <div>Expenses</div>
+                    <div>500$</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tabpanel-2" role="tabpanel" aria-labelledby="tab-2">
+            <div class="add-expenses m-auto">
+                <div class="mb-3"><h4>Add Expenses</h4></div>
+
+                <div class="add-expenses__inner">
+                    <div class="mb-3">
+                        <label for="expenses" class="form-label" hidden>Add expenses</label>
+
+                        <input type="text" class="form-control add-expenses__control" id="expenses" placeholder="500$">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="category" class="form-label" hidden>Category</label>
+
+                        <select id="category" class="form-select add-expenses__control" aria-label="Category select">
+                            <option selected>Category</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 add-expenses__date">
+                        <p>26.03.2024</p>
+                    </div>
+
+                    <div class="add-expenses__actions">
+                        <button class="btn btn-primary mb-3">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
+            <div class="add-category m-auto">
+                <div class="mb-3">
+                    <h4>Add Category</h4>
+                </div>
+
+                <div class="add-category__inner">
+                    <div class="mb-3">
+                        <label for="categoryName" class="form-label" hidden>Add category</label>
+
+                        <input type="text" class="form-control add-category__control" id="categoryName">
+                    </div>
+
+                    <div class="mb-3 add-category__date">
+                        <p>26.03.2024</p>
+                    </div>
+
+                    <div class="add-category__actions">
+                        <button class="btn btn-primary mb-3">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    <script>-->
+<!--		// var player;-->
+<!--		//-->
+<!--		// function onYouTubeIframeAPIReadyDelayed() {-->
+<!--		// 	setTimeout(function() {-->
+<!--		// 		onYouTubeIframeAPIReady();-->
+<!--		// 	}, 5000); // Delay execution by 2 seconds (2000 milliseconds)-->
+<!--		// }-->
+<!--		//-->
+<!--		// function onYouTubeIframeAPIReady() {-->
+<!--		//     player = new YT.Player('iframeID', {-->
+<!--		//         events: {-->
+<!--		//             'onReady': onPlayerReady-->
+<!--		//         }-->
+<!--		//     });-->
+<!--		// }-->
+<!--		//-->
+<!--		// function onPlayerReady(event) {-->
+<!--		// 	event.target.unMute(); // Unmute the player-->
+<!--		// }-->
+
+<!--		// window.addEventListener("click", function(evt) {-->
+<!--		//     // Get the target element-->
+<!--		//     var targetElement = document.getElementById("iframeID");-->
+<!--		//     console.log(targetElement);-->
+<!--		//-->
+<!--		//     // Get the bounding rectangle of the target element-->
+<!--		//     var rect = targetElement.getBoundingClientRect();-->
+<!--		//-->
+<!--		//     // Calculate the coordinates of the center of the element-->
+<!--		//     var centerX = rect.left + rect.width / 2;-->
+<!--		//     var centerY = rect.top + rect.height / 2;-->
+<!--		//-->
+<!--		//     // Create and dispatch a mouse event at the center of the element-->
+<!--		//     var clickEvent = new MouseEvent('click', {-->
+<!--		//         bubbles: true,-->
+<!--		//         cancelable: true,-->
+<!--		//         clientX: centerX,-->
+<!--		//         clientY: centerY-->
+<!--		//     });-->
+<!--		//     console.log(clickEvent);-->
+<!--		//     targetElement.dispatchEvent(clickEvent);-->
+<!--		//     console.log(targetElement);-->
+<!--		// })-->
+<!--    </script>-->
 </body>
 </html>

@@ -21,7 +21,7 @@ public class Transaction extends BaseEntity {
 
     @NotNull(message = "Should not be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(nullable = false, columnDefinition = "TIMESTAMP")
+    @Column(nullable = false)
     private LocalDate created = LocalDate.now();
 
     @ManyToOne(optional = false)

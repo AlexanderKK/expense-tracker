@@ -12,12 +12,12 @@ import java.time.LocalDate;
 public class Category extends BaseEntity {
 
     @NotBlank(message = "Should not be empty")
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @NotNull(message = "Should not be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(nullable = false, columnDefinition = "TIMESTAMP")
+    @Column(nullable = false)
     private LocalDate created = LocalDate.now();
 
     public String getName() {

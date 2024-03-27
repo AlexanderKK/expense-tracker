@@ -13,3 +13,8 @@ addExpensesControls.forEach((element) => {
 addExpensesBtn.addEventListener("click", function(evt) {
 	audioActions.play();
 });
+
+// jQuery(document).ready(function( $ ) {
+// 	console.log($('iframe')[0]);
+// 	$('iframe')[0].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+// });

@@ -50,6 +50,7 @@ server:
 logging:
   level:
     web: OFF
+    csrf: DEBUG
     org:
       hibernate:
         type:
