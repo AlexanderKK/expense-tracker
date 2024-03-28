@@ -1,7 +1,7 @@
 package me.alexander.expensetracker.service.impl;
 
-import me.alexander.expensetracker.model.dto.AddCategoryDTO;
-import me.alexander.expensetracker.model.dto.CategoryDTO;
+import me.alexander.expensetracker.model.dto.category.AddCategoryDTO;
+import me.alexander.expensetracker.model.dto.category.CategoryDTO;
 import me.alexander.expensetracker.model.entity.Category;
 import me.alexander.expensetracker.repository.CategoryRepository;
 import me.alexander.expensetracker.service.CategoryService;

@@ -4,7 +4,7 @@ const categoryName = document.querySelector(".add-category #categoryName");
 categoryAction.addEventListener("click", createCategory);
 
 categoryName.addEventListener("keypress", function(evt) {
-	if(evt.keyCode === "Enter") {
+	if(evt.key === "Enter" && evt.keyCode === 13) {
 		createCategory();
 	}
 });
@@ -21,14 +21,31 @@ function createCategory() {
 		})
 	};
 
-	let addCategoryURL = `${window.location.origin}/categories/add`;
+	const addCategoryURL = `${window.location.origin}/categories/add`;
 
 	fetch(addCategoryURL, requestOptions)
 		.then(response => {
 			if(response.ok) {
 				categoryName.value = "";
-			} else {
-				alert("Error during post request");
+
+				return;
+			}
+
+			return response.json();
+		})
+		.then(json => {
+			const inputErrors = document.querySelectorAll(".invalid-feedback");
+			inputErrors.forEach(inputError => inputError.innerText = "");
+
+			const fieldErrors = json.subErrors;
+			for (const fieldError of fieldErrors) {
+				const fieldName = fieldError.field;
+				const message = fieldError.message;
+
+				const errorDiv = document.querySelector(`.${fieldName}-error`);
+				errorDiv.innerText = message;
+
+				errorDiv.previousElementSibling.classList.add("is-invalid");
 			}
 		});
 }

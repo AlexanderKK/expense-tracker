@@ -15,9 +15,8 @@ addExpensesBtn.addEventListener("click", function(evt) {
 	audioActions.play();
 });
 
-categorySelect.addEventListener("focus", function(evt) {
-	loadCategories();
-});
+window.addEventListener("load", loadCategories);
+categorySelect.addEventListener("focus", loadCategories);
 
 function loadCategories() {
 	const requestOptions = {
@@ -27,7 +26,7 @@ function loadCategories() {
 		}
 	};
 
-	const loadCategoriesURL = `${window.location.origin}/categories`
+	const loadCategoriesURL = `${window.location.origin}/categories`;
 
 	fetch(loadCategoriesURL, requestOptions)
 		.then(response => response.json())
@@ -35,7 +34,7 @@ function loadCategories() {
 			categorySelect.innerHTML = `<option value="">Select a category</option>`;
 
 			for (const category of categories) {
-				categorySelect.innerHTML += `<option value="${category.name}">${category.name}</option>`;
+				categorySelect.innerHTML += `<option value="${category.id}">${category.name}</option>`;
 			}
 		});
 }

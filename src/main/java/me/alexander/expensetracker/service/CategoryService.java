@@ -1,7 +1,7 @@
 package me.alexander.expensetracker.service;
 
-import me.alexander.expensetracker.model.dto.AddCategoryDTO;
-import me.alexander.expensetracker.model.dto.CategoryDTO;
+import me.alexander.expensetracker.model.dto.category.AddCategoryDTO;
+import me.alexander.expensetracker.model.dto.category.CategoryDTO;
 
 import java.util.List;
 

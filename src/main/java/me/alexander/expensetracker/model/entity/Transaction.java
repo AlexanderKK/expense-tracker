@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Table(name = "transactions")
 public class Transaction extends BaseEntity {
 
-    @Positive(message = "Expenses should be positive")
+    @Positive(message = "Expense should be positive")
     @NotNull(message = "Should not be empty")
     @Column(nullable = false)
     private Integer expense;

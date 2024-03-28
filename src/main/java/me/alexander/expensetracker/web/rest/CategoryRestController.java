@@ -1,8 +1,8 @@
 package me.alexander.expensetracker.web.rest;
 
 import jakarta.validation.Valid;
-import me.alexander.expensetracker.model.dto.AddCategoryDTO;
-import me.alexander.expensetracker.model.dto.CategoryDTO;
+import me.alexander.expensetracker.model.dto.category.AddCategoryDTO;
+import me.alexander.expensetracker.model.dto.category.CategoryDTO;
 import me.alexander.expensetracker.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class CategoryRestController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<AddCategoryDTO> addCategory(@Valid @RequestBody AddCategoryDTO addCategoryDTO) {
+    public ResponseEntity<?> createCategory(@Valid @RequestBody AddCategoryDTO addCategoryDTO) {
         categoryService.createCategory(addCategoryDTO);
 
         return ResponseEntity.ok().build();
