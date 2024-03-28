@@ -7,6 +7,12 @@
 
     <div class="container-fluid tab-content pt-5" id="tab-content">
         <div class="tab-pane active" id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
+            <div class="text-center">
+                <iframe id="iframeID" class="border border-5 border-dark rounded-5 w-50" height="500" src="https://www.youtube.com/embed/PFfw5WkjyfQ?si=p0djD1GEVhgf5JCh&amp;enablejsapi=1&amp;autoplay=1&amp;start=26" title="Шоуто на Слави: Компилации от скечове и импровизации на Краси Радков" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                <script src="https://www.youtube.com/iframe_api"></script>
+            </div>
+
             <div class="row">
                 <div class="col-4 text-center">
                     <div>Income</div>
@@ -40,10 +46,7 @@
                         <label for="category" class="form-label" hidden>Category</label>
 
                         <select id="category" class="form-select add-expenses__control" aria-label="Category select">
-                            <option selected>Category</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="">Select a category</option>
                         </select>
                     </div>
 

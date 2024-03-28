@@ -3,7 +3,6 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: TRUE
     hibernate:
       ddl-auto: update

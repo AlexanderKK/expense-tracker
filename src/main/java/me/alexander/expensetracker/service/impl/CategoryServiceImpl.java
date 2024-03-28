@@ -1,12 +1,15 @@
 package me.alexander.expensetracker.service.impl;
 
 import me.alexander.expensetracker.model.dto.AddCategoryDTO;
+import me.alexander.expensetracker.model.dto.CategoryDTO;
 import me.alexander.expensetracker.model.entity.Category;
 import me.alexander.expensetracker.repository.CategoryRepository;
 import me.alexander.expensetracker.service.CategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -26,6 +29,13 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = mapper.map(addCategoryDTO, Category.class);
 
         categoryRepository.save(category);
+    }
+
+    @Override
+    public List<CategoryDTO> getAllCategories() {
+        return categoryRepository.findAll().stream()
+                .map(category -> mapper.map(category, CategoryDTO.class))
+                .toList();
     }
 
 }

@@ -1,17 +1,13 @@
 const categoryAction = document.querySelector(".add-category .add-category__actions button");
 const categoryName = document.querySelector(".add-category #categoryName");
 
-if(categoryAction != null) {
-	categoryAction.addEventListener("click", createCategory);
-}
+categoryAction.addEventListener("click", createCategory);
 
-if(categoryName != null) {
-	categoryName.addEventListener("keypress", function(evt) {
-		if(evt.keyCode === "Enter") {
-			createCategory();
-		}
-	});
-}
+categoryName.addEventListener("keypress", function(evt) {
+	if(evt.keyCode === "Enter") {
+		createCategory();
+	}
+});
 
 function createCategory() {
 	const requestOptions = {
@@ -36,4 +32,3 @@ function createCategory() {
 			}
 		});
 }
-

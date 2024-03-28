@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.header.writers.XXssProtectionHeaderWriter;
 
 @Configuration
@@ -32,6 +31,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/sounds/**").permitAll()
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/categories/**").permitAll()
+                        .requestMatchers("/transactions/**").permitAll()
                 ).build();
     }
 
