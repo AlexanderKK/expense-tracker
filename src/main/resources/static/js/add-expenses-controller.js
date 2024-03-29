@@ -2,6 +2,9 @@ const expenseInput = document.querySelector(".add-expenses #expenses");
 // const categorySelect = document.querySelector(".add-expenses #category");
 // const addExpensesBtn = document.querySelector(".add-expenses__actions button");
 
+/**
+ * Create transaction
+ */
 addExpensesBtn.addEventListener("click", createTransaction);
 
 function createTransaction() {
