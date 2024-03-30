@@ -2,16 +2,17 @@ package me.alexander.expensetracker.model.dto.transaction;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import me.alexander.expensetracker.model.dto.category.CategoryDTO;
+import me.alexander.expensetracker.validation.ExistingCategory;
 
 public class AddTransactionDTO {
 
-    @Positive(message = "Expense should be positive")
+    @Positive(message = "Please enter a positive expense amount")
     @NotNull(message = "Please enter an expense amount")
     private Integer expense;
 
-    @NotNull(message = "Please enter a category")
-    private CategoryDTO categoryDTO;
+    @NotNull(message = "Please choose a category")
+    @ExistingCategory
+    private Long category;
 
     public Integer getExpense() {
         return expense;
@@ -21,12 +22,12 @@ public class AddTransactionDTO {
         this.expense = expense;
     }
 
-    public CategoryDTO getCategoryDTO() {
-        return categoryDTO;
+    public Long getCategory() {
+        return category;
     }
 
-    public void setCategoryDTO(CategoryDTO categoryDTO) {
-        this.categoryDTO = categoryDTO;
+    public void setCategory(Long category) {
+        this.category = category;
     }
 
 }

@@ -7,11 +7,11 @@
 
     <div class="container-fluid tab-content pt-5" id="tab-content">
         <div class="tab-pane active" id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
-            <div class="text-center">
-                <iframe id="iframeID" class="border border-5 border-dark rounded-5 w-50" height="500" src="https://www.youtube.com/embed/PFfw5WkjyfQ?si=p0djD1GEVhgf5JCh&amp;enablejsapi=1&amp;autoplay=1&amp;mute=1&amp;start=26" title="Шоуто на Слави: Компилации от скечове и импровизации на Краси Радков" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!--            <div class="text-center">-->
+<!--                <iframe id="iframeID" class="border border-5 border-dark rounded-5 w-50" height="500" src="https://www.youtube.com/embed/PFfw5WkjyfQ?si=p0djD1GEVhgf5JCh&amp;enablejsapi=1&amp;autoplay=1&amp;mute=1&amp;start=26" title="Шоуто на Слави: Компилации от скечове и импровизации на Краси Радков" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
 
-                <script src="https://www.youtube.com/iframe_api"></script>
-            </div>
+<!--                <script src="https://www.youtube.com/iframe_api"></script>-->
+<!--            </div>-->
 
             <div class="row">
                 <div class="col-4 text-center">
@@ -37,23 +37,25 @@
 
                 <div class="add-expenses__inner">
                     <div class="mb-3">
-                        <label class="sr-only form-label" for="expenses">Add expenses</label>
+                        <label class="sr-only form-label" for="expense">Add expenses</label>
 
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">$</div>
                             </div>
 
-                            <input type="text" class="form-control add-expenses__control" id="expenses" placeholder="50">
+                            <input type="text" class="form-control add-expenses__control" id="expense" placeholder="50">
+
+                            <div class="invalid-feedback expense-error"></div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="category" class="sr-only form-label">Category</label>
 
-                        <select id="category" class="form-select add-expenses__control" aria-label="Category select">
-                            <option value="">Select a category</option>
-                        </select>
+                        <select id="category" class="form-select add-expenses__control" aria-label="Category select"></select>
+
+                        <div class="invalid-feedback category-error"></div>
                     </div>
 
                     <div class="mb-3 add-expenses__date">
@@ -79,7 +81,7 @@
 
                         <input type="text" class="form-control add-category__control" id="categoryName" placeholder="Gasoline">
 
-                        <div class="invalid-feedback name-error">Please choose a category</div>
+                        <div class="invalid-feedback name-error"></div>
                     </div>
 
                     <div class="mb-3 add-category__date">

@@ -1,12 +1,14 @@
 package me.alexander.expensetracker.model.dto.category;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import me.alexander.expensetracker.validation.ExistingCategory;
 
 public class CategoryDTO {
 
+    @NotNull(message = "Please choose a category")
+    @ExistingCategory
     private Long id;
 
-    @NotBlank(message = "Please choose a category")
     private String name;
 
     public Long getId() {
