@@ -196,14 +196,14 @@ p {
     max-width: 650px;
 }
 
-.add-expenses__control,
-.add-category__control {
-    transition: .5s transform cubic-bezier(0.6, -0.28, 0.74, 0.05);
-}
+/*.add-expenses__control,*/
+/*.add-category__control {*/
+/*    transition: .5s transform cubic-bezier(0.6, -0.28, 0.74, 0.05);*/
+/*}*/
 
-.add-expenses__control:focus {
-    transform: translate(30%) scale(1.25);
-}
+/*.add-expenses__control:focus {*/
+/*    transform: translate(30%) scale(1.25);*/
+/*}*/
 
 .add-expenses__date,
 .add-category__date {
