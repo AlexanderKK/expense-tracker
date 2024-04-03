@@ -13,7 +13,7 @@ const dates = document.querySelectorAll(".date");
 dates.forEach(date => {
 	const today = new Date();
 
-	const day = today.getDate();
+	const day = ("0" + today.getDate()).slice(-2);
 	const month = ("0" + (today.getMonth() + 1)).slice(-2);
 	const year = today.getFullYear();
 
@@ -48,12 +48,11 @@ function loadCategories() {
 	};
 
 	const loadCategoriesURL = `${window.location.origin}/categories`;
+	categorySelect.innerHTML = `<option value="">Select a category</option>`;
 
 	fetch(loadCategoriesURL, requestOptions)
 		.then(response => response.json())
 		.then(categories => {
-			categorySelect.innerHTML = `<option value="">Select a category</option>`;
-
 			for (const category of categories) {
 				categorySelect.innerHTML += `<option value="${category.id}">${category.name}</option>`;
 			}

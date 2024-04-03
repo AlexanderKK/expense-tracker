@@ -64,6 +64,8 @@ function createTransaction() {
 			if(response.ok) {
 				clearExpenseControls();
 
+				toastify(transactionAddSuccessOptions);
+
 				return;
 			}
 

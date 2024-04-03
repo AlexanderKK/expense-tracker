@@ -55,12 +55,18 @@ function createCategory() {
 			if(response.ok) {
 				categoryName.value = "";
 
+				toastify(categoryAddSuccessOptions);
+
 				return;
 			}
 
 			return response.json();
 		})
 		.then(json => {
+			if(json === undefined) {
+				return;
+			}
+
 			const inputErrors = document.querySelectorAll(".invalid-feedback");
 			inputErrors.forEach(inputError => inputError.innerText = "");
 

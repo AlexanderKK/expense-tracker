@@ -41,10 +41,10 @@
 
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">$</div>
+                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💰</div>
                             </div>
 
-                            <input type="text" class="form-control add-expenses__control" id="expense" placeholder="50">
+                            <input type="text" class="form-control add-expenses__control rounded-end-2" id="expense" placeholder="50">
 
                             <div class="invalid-feedback expense-error"></div>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="invalid-feedback category-error"></div>
                     </div>
 
-                    <div class="mb-3 add-expenses__date">
+                    <div class="mb-4 form-date">
                         <p class="date">26.03.2024</p>
                     </div>
 
@@ -84,7 +84,7 @@
                         <div class="invalid-feedback name-error"></div>
                     </div>
 
-                    <div class="mb-3 add-category__date">
+                    <div class="mb-4 form-date">
                         <p class="date">26.03.2024</p>
                     </div>
 
@@ -94,52 +94,60 @@
                 </div>
             </div>
         </div>
+
+        <div class="tab-pane" id="tabpanel-4" role="tabpanel" aria-labelledby="tab-3">
+            <div class="add-category m-auto">
+                <div class="mb-3">
+                    <h4>Add Income</h4>
+                </div>
+
+                <div class="add-income__inner">
+                    <div class="mb-3">
+                        <label class="sr-only form-label" for="incomeAmount">Add income</label>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💰</div>
+                            </div>
+
+                            <input type="text" class="form-control add-income__control rounded-end-2" id="incomeAmount" placeholder="50">
+
+                            <div class="invalid-feedback income-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="sr-only form-label" for="incomeSource">Source</label>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💵</div>
+                            </div>
+
+                            <input type="text" class="form-control add-income__control rounded-end-2" id="incomeSource" placeholder="Paycheck">
+
+                            <div class="invalid-feedback income-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label sr-only" for="incomeDate">Date</label>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">📅</div>
+                            </div>
+
+                            <input type="text" id="incomeDate" class="form-control date-select">
+                        </div>
+                    </div>
+
+                    <div class="add-income__actions">
+                        <button class="btn btn-primary mb-3">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-<!--    <script>-->
-<!--		// var player;-->
-<!--		//-->
-<!--		// function onYouTubeIframeAPIReadyDelayed() {-->
-<!--		// 	setTimeout(function() {-->
-<!--		// 		onYouTubeIframeAPIReady();-->
-<!--		// 	}, 5000); // Delay execution by 2 seconds (2000 milliseconds)-->
-<!--		// }-->
-<!--		//-->
-<!--		// function onYouTubeIframeAPIReady() {-->
-<!--		//     player = new YT.Player('iframeID', {-->
-<!--		//         events: {-->
-<!--		//             'onReady': onPlayerReady-->
-<!--		//         }-->
-<!--		//     });-->
-<!--		// }-->
-<!--		//-->
-<!--		// function onPlayerReady(event) {-->
-<!--		// 	event.target.unMute(); // Unmute the player-->
-<!--		// }-->
-
-<!--		// window.addEventListener("click", function(evt) {-->
-<!--		//     // Get the target element-->
-<!--		//     var targetElement = document.getElementById("iframeID");-->
-<!--		//     console.log(targetElement);-->
-<!--		//-->
-<!--		//     // Get the bounding rectangle of the target element-->
-<!--		//     var rect = targetElement.getBoundingClientRect();-->
-<!--		//-->
-<!--		//     // Calculate the coordinates of the center of the element-->
-<!--		//     var centerX = rect.left + rect.width / 2;-->
-<!--		//     var centerY = rect.top + rect.height / 2;-->
-<!--		//-->
-<!--		//     // Create and dispatch a mouse event at the center of the element-->
-<!--		//     var clickEvent = new MouseEvent('click', {-->
-<!--		//         bubbles: true,-->
-<!--		//         cancelable: true,-->
-<!--		//         clientX: centerX,-->
-<!--		//         clientY: centerY-->
-<!--		//     });-->
-<!--		//     console.log(clickEvent);-->
-<!--		//     targetElement.dispatchEvent(clickEvent);-->
-<!--		//     console.log(targetElement);-->
-<!--		// })-->
-<!--    </script>-->
 </body>
 </html>
