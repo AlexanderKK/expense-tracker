@@ -1,5 +1,6 @@
 const categoryAction = document.querySelector(".add-category .add-category__actions button");
 const categoryName = document.querySelector(".add-category #categoryName");
+const categoryDate = document.querySelector(".add-category #categoryDate");
 let isCreateCategoryCancelled = false;
 
 categoryAction.addEventListener("click", createCategory);
@@ -64,22 +65,6 @@ function createCategory() {
 			return response.json();
 		})
 		.then(json => {
-			if(json === undefined) {
-				return;
-			}
-
-			const inputErrors = document.querySelectorAll(".invalid-feedback");
-			inputErrors.forEach(inputError => inputError.innerText = "");
-
-			const fieldErrors = json.subErrors;
-			for (const fieldError of fieldErrors) {
-				const fieldName = fieldError.field;
-				const message = fieldError.message;
-
-				const errorDiv = document.querySelector(`.${fieldName}-error`);
-				errorDiv.innerText = message;
-
-				errorDiv.previousElementSibling.classList.add("is-invalid");
-			}
+			handleValidationErrors(json);
 		});
 }

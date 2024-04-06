@@ -10,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 import static me.alexander.expensetracker.constants.Messages.ENTITY_NOT_FOUND;
 
 @Service
@@ -34,7 +36,7 @@ public class TransactionServiceImpl implements TransactionService {
         transaction.setCategory(
                 categoryRepository.findById(addTransactionDTO.getCategory())
                         .orElseThrow(() -> new EntityNotFoundException(String.format(ENTITY_NOT_FOUND, "Category")))
-        );
+        ).setDate(LocalDate.parse(addTransactionDTO.getDate()));
 
         transactionRepository.save(transaction);
     }

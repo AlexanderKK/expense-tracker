@@ -22,7 +22,7 @@ public class Transaction extends BaseEntity {
     @NotNull(message = "Should not be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
-    private LocalDate created = LocalDate.now();
+    private LocalDate date;
 
     @ManyToOne(optional = false)
     private Category category;
@@ -31,24 +31,30 @@ public class Transaction extends BaseEntity {
         return expense;
     }
 
-    public void setExpense(Integer expense) {
+    public Transaction setExpense(Integer expense) {
         this.expense = expense;
+
+        return this;
     }
 
-    public LocalDate getCreated() {
-        return created;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setCreated(LocalDate created) {
-        this.created = created;
+    public Transaction setDate(LocalDate date) {
+        this.date = date;
+
+        return this;
     }
 
     public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public Transaction setCategory(Category category) {
         this.category = category;
+
+        return this;
     }
 
 }

@@ -50,7 +50,7 @@
 				// $.inArray doesn't work with Dates
 				var val = d && d.valueOf();
 				for (var i=0, l=this.length; i < l; i++)
-          // Use date arithmetic to allow dates with different times to match
+          // Use date arithmetic to allow dat with different times to match
           if (0 <= this[i].valueOf() - val && this[i].valueOf() - val < 1000*60*60*24)
 						return i;
 				return -1;

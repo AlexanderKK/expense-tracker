@@ -1,4 +1,4 @@
-package me.alexander.expensetracker.validation;
+package me.alexander.expensetracker.validation.date;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -10,10 +10,14 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueCategoryNameValidator.class)
-public @interface UniqueCategoryName {
+@Constraint(validatedBy = DateRangeValidator.class)
+public @interface DateRange {
 
-    String message() default "Category with this name already exists";
+    String startDate();
+
+    String endDate();
+
+    String message() default "Date should be between {startDate} and {endDate}";
 
     Class<?>[] groups() default {};
 

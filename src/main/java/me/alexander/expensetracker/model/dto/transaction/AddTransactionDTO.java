@@ -1,8 +1,10 @@
 package me.alexander.expensetracker.model.dto.transaction;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import me.alexander.expensetracker.validation.ExistingCategory;
+import me.alexander.expensetracker.validation.category.ExistingCategory;
+import me.alexander.expensetracker.validation.date.DateRange;
 
 public class AddTransactionDTO {
 
@@ -13,6 +15,10 @@ public class AddTransactionDTO {
     @NotNull(message = "Please choose a category")
     @ExistingCategory
     private Long category;
+
+    @DateRange(startDate = "2000-01-01", endDate = "2050-12-31")
+    @NotBlank(message = "Please pick a date")
+    private String date;
 
     public Integer getExpense() {
         return expense;
@@ -28,6 +34,14 @@ public class AddTransactionDTO {
 
     public void setCategory(Long category) {
         this.category = category;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
 }

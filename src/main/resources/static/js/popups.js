@@ -26,7 +26,3 @@ function toastify(toastOptions) {
 
 	Toastify(toast).showToast();
 }
-
-$('.date-select').datepicker({
-	format: 'dd.mm.yyyy'
-}).datepicker("setDate", new Date());

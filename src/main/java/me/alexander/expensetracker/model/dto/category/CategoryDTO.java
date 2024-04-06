@@ -1,7 +1,7 @@
 package me.alexander.expensetracker.model.dto.category;
 
 import jakarta.validation.constraints.NotNull;
-import me.alexander.expensetracker.validation.ExistingCategory;
+import me.alexander.expensetracker.validation.category.ExistingCategory;
 
 public class CategoryDTO {
 

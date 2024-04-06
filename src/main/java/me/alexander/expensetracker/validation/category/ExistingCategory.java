@@ -1,4 +1,4 @@
-package me.alexander.expensetracker.validation;
+package me.alexander.expensetracker.validation.category;
 
 
 import jakarta.validation.Constraint;

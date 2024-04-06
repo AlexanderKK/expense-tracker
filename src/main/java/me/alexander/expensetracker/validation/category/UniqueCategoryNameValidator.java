@@ -1,26 +1,26 @@
-package me.alexander.expensetracker.validation;
+package me.alexander.expensetracker.validation.category;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import me.alexander.expensetracker.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ExistingCategoryValidator implements ConstraintValidator<ExistingCategory, Long> {
+public class UniqueCategoryNameValidator implements ConstraintValidator<UniqueCategoryName, String> {
 
     private final CategoryRepository categoryRepository;
 
     @Autowired
-    public ExistingCategoryValidator(CategoryRepository categoryRepository) {
+    public UniqueCategoryNameValidator(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
     @Override
-    public boolean isValid(Long value, ConstraintValidatorContext context) {
+    public boolean isValid(String value, ConstraintValidatorContext context) {
         if(value == null) {
             return true;
         }
 
-        return categoryRepository.findById(value).isPresent();
+        return this.categoryRepository.findByName(value).isEmpty();
     }
 
 }
