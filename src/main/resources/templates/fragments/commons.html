@@ -11,7 +11,11 @@
 
     <!-- Toastify-->
     <link rel="stylesheet" type="text/css" th:href="@{https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css}">
-    <script type="text/javascript" th:src="@{/js/toastify/toastify.js}"></script>
+    <script defer th:src="@{/js/toastify/toastify.js}"></script>
+
+    <!-- Sound Manager -->
+    <script defer th:src="@{/js/soundmanager/lowLag.js}"></script>
+    <script defer th:src="@{/js/soundmanager/soundmanager2.js}"></script>
 
     <!-- jQuery-->
     <script defer th:src="@{/js/jquery/jquery-3.7.1.min.js}"></script>
@@ -25,8 +29,8 @@
     <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css}">
 
     <!-- Additional Scripts-->
-    <script defer th:src="@{/js/popups.js}"></script>
     <script defer th:src="@{/js/navbar.js}"></script>
+    <script defer th:src="@{/js/popups.js}"></script>
     <script defer th:src="@{/js/add-expenses.js}"></script>
     <script defer th:src="@{/js/add-expenses-controller.js}"></script>
     <script defer th:src="@{/js/add-category-controller.js}"></script>

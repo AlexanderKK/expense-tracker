@@ -56,6 +56,7 @@ function createCategory() {
 				categoryName.value = "";
 
 				toastify(categoryAddSuccessOptions);
+				lowLag.play("success");
 
 				return;
 			}

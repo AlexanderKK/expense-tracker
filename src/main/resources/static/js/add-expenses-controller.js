@@ -65,6 +65,7 @@ function createTransaction() {
 				clearExpenseControls();
 
 				toastify(transactionAddSuccessOptions);
+				lowLag.play("success");
 
 				return;
 			}
