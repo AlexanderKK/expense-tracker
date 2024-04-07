@@ -12,7 +12,7 @@ dates.forEach(d => {
 });
 
 /**
- * Load current datepicker dates
+ * Set current datepicker dates
  */
 const dateInput = $('.date-select');
 
@@ -61,6 +61,9 @@ function destructDate(date) {
 
 function transformDate(dateString) {
 	const dateParts = dateString.split(".");
+	if(dateParts.length !== 3) {
+		return null;
+	}
 
 	return `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
 }

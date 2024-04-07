@@ -1,6 +1,5 @@
 const categoryAction = document.querySelector(".add-category .add-category__actions button");
 const categoryName = document.querySelector(".add-category #categoryName");
-const categoryDate = document.querySelector(".add-category #categoryDate");
 let isCreateCategoryCancelled = false;
 
 categoryAction.addEventListener("click", createCategory);

@@ -11,11 +11,11 @@ import java.time.LocalDate;
 @Table(name = "categories")
 public class Category extends BaseEntity {
 
-    @NotBlank(message = "Should not be empty")
+    @NotBlank(message = "Category name should not be empty")
     @Column(nullable = false, unique = true)
     private String name;
 
-    @NotNull(message = "Should not be empty")
+    @NotNull(message = "Category date should not be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate created = LocalDate.now();

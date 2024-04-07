@@ -69,6 +69,8 @@ function createTransaction() {
 				toastify(transactionAddSuccessOptions);
 				lowLag.play("success");
 
+				loadBalance();
+
 				return;
 			}
 

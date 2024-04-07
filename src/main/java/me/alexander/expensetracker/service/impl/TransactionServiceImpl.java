@@ -41,4 +41,12 @@ public class TransactionServiceImpl implements TransactionService {
         transactionRepository.save(transaction);
     }
 
+    @Override
+    public double getTotalExpenses() {
+        return transactionRepository.findAll()
+                .stream()
+                .mapToInt(Transaction::getExpense)
+                .sum();
+    }
+
 }

@@ -6,4 +6,6 @@ public interface TransactionService {
 
     void createTransaction(AddTransactionDTO addTransactionDTO);
 
+    double getTotalExpenses();
+
 }

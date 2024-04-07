@@ -22,7 +22,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @SuppressWarnings("NullableProblems")
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, "Validation errors", ex);
+        String objectName = ex.getObjectName();
+        String cutObjectName = objectName.substring(0, objectName.indexOf("DTO"));
+
+        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, cutObjectName, ex);
 
         List<ApiSubError> apiSubErrors = new ArrayList<>();
 

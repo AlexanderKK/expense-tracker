@@ -14,12 +14,12 @@ import java.time.LocalDate;
 @Table(name = "transactions")
 public class Transaction extends BaseEntity {
 
-    @Positive(message = "Expense should be positive")
-    @NotNull(message = "Should not be empty")
+    @Positive(message = "Expense amount should be positive")
+    @NotNull(message = "Expense amount should not be empty")
     @Column(nullable = false)
     private Integer expense;
 
-    @NotNull(message = "Should not be empty")
+    @NotNull(message = "Transaction date should not be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate date;
