@@ -23,7 +23,7 @@ public class Transaction extends BaseEntity {
     @ManyToOne(optional = false)
     private Category category;
 
-    @Size(message = "Description length should not exceed 100")
+    @Size(max = 100, message = "Description length should not exceed 100")
     private String description;
 
     @NotNull(message = "Transaction date should not be empty")

@@ -17,7 +17,7 @@ public class AddTransactionDTO {
     @ExistingCategory
     private Long category;
 
-    @Size(message = "Description length should not exceed 100")
+    @Size(max = 100, message = "Description length should not exceed 100")
     private String description;
 
     @DateRange(startDate = "2000-01-01", endDate = "2050-12-31")
