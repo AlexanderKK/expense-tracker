@@ -7,11 +7,11 @@ let isCreateTransactionCancelled = false;
 
 expenseInput.addEventListener("keyup", function(evt) {
 	const expenseError = expenseInput.nextElementSibling;
-	const expenseRegex = /^[1-9]\d{0,6}$/;
+	const expenseRegex = /^(?!0\.00|0\.0$)(?!0\d)(?:[1-9]\d{0,6}(?:\.\d{0,2})?|\d\.\d{1,2})$/;
 
 	if(!expenseRegex.test(expenseInput.value)) {
 		expenseInput.classList.add("is-invalid");
-		expenseError.innerText = "Please enter a positive expense amount.\nMaximum length is considered to be 7 digits.";
+		expenseError.innerText = "Please enter a valid positive expense amount (i.e. 15.99)\nMaximum length is considered to be 7 digits";
 
 		isCreateTransactionCancelled = true;
 	} else {
@@ -46,6 +46,7 @@ function createTransaction() {
 	}
 
 	expenseInput.value = expenseInput.value.trim();
+	expenseDescription.value = expenseDescription.value.trim();
 
 	const requestOptions = {
 		method: "POST",

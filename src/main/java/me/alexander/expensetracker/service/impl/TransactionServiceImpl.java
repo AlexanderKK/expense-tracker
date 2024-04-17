@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 import static me.alexander.expensetracker.constants.Messages.ENTITY_NOT_FOUND;
@@ -43,10 +44,14 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public double getTotalExpenses() {
-        return transactionRepository.findAll()
+        double totalExpenses = transactionRepository.findAll()
                 .stream()
-                .mapToInt(Transaction::getExpense)
+                .mapToDouble(Transaction::getExpense)
                 .sum();
+
+        DecimalFormat expensesFormat = new DecimalFormat("#.##");
+
+        return Double.parseDouble(expensesFormat.format(totalExpenses));
     }
 
 }

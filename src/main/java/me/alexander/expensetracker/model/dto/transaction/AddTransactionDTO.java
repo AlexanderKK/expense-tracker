@@ -11,7 +11,7 @@ public class AddTransactionDTO {
 
     @Positive(message = "Please enter a positive expense amount")
     @NotNull(message = "Please enter an expense amount")
-    private Integer expense;
+    private Double expense;
 
     @NotNull(message = "Please choose a category")
     @ExistingCategory
@@ -24,11 +24,11 @@ public class AddTransactionDTO {
     @NotBlank(message = "Please pick a date")
     private String date;
 
-    public Integer getExpense() {
+    public Double getExpense() {
         return expense;
     }
 
-    public void setExpense(Integer expense) {
+    public void setExpense(Double expense) {
         this.expense = expense;
     }
 

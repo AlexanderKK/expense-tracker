@@ -17,7 +17,7 @@ public class Income extends BaseEntity {
     @Positive(message = "Income amount should be positive")
     @NotNull(message = "Income amount should not be empty")
     @Column(nullable = false)
-    private Integer amount;
+    private Double amount;
 
     @NotBlank(message = "Income source should not be empty")
     @Column(nullable = false)
@@ -28,11 +28,11 @@ public class Income extends BaseEntity {
     @Column(nullable = false)
     private LocalDate date;
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 @Service
@@ -34,10 +35,14 @@ public class IncomeServiceImpl implements IncomeService {
 
     @Override
     public double getTotalIncome() {
-        return incomeRepository.findAll()
+        double totalIncome = incomeRepository.findAll()
                 .stream()
-                .mapToInt(Income::getAmount)
+                .mapToDouble(Income::getAmount)
                 .sum();
+
+        DecimalFormat incomeFormat = new DecimalFormat("#.##");
+
+        return Double.parseDouble(incomeFormat.format(totalIncome));
     }
 
 }

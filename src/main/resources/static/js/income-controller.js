@@ -7,7 +7,7 @@ let isCreateIncomeCancelled = false;
 
 incomeAmount.addEventListener("keyup", function(evt) {
 	const incomeError = incomeAmount.nextElementSibling;
-	const incomeRegex = /^[1-9]\d{0,6}$/;
+	const incomeRegex = /^(?!0\.00|0\.0$)(?!0\d)(?:[1-9]\d{0,6}(?:\.\d{0,2})?|\d\.\d{1,2})$/;
 
 	if(!incomeRegex.test(incomeAmount.value)) {
 		incomeAmount.classList.add("is-invalid");

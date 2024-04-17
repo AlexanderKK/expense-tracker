@@ -18,7 +18,7 @@ public class Transaction extends BaseEntity {
     @Positive(message = "Expense amount should be positive")
     @NotNull(message = "Expense amount should not be empty")
     @Column(nullable = false)
-    private Integer expense;
+    private Double expense;
 
     @ManyToOne(optional = false)
     private Category category;
@@ -31,11 +31,11 @@ public class Transaction extends BaseEntity {
     @Column(nullable = false)
     private LocalDate date;
 
-    public Integer getExpense() {
+    public Double getExpense() {
         return expense;
     }
 
-    public Transaction setExpense(Integer expense) {
+    public Transaction setExpense(Double expense) {
         this.expense = expense;
 
         return this;

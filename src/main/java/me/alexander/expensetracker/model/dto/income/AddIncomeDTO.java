@@ -9,7 +9,7 @@ public class AddIncomeDTO {
 
     @Positive(message = "Please enter a positive income amount")
     @NotNull(message = "Please enter an income amount")
-    private Integer amount;
+    private Double amount;
 
     @NotBlank(message = "Please enter a source")
     private String source;
@@ -18,11 +18,11 @@ public class AddIncomeDTO {
     @NotBlank(message = "Please pick a date")
     private String date;
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
