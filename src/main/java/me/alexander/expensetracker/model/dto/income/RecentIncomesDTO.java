@@ -7,6 +7,11 @@ public class RecentIncomesDTO {
     private double totalIncome;
     private List<Double> lastIncomes;
 
+    public RecentIncomesDTO(double totalIncome, List<Double> lastIncomes) {
+        this.totalIncome = totalIncome;
+        this.lastIncomes = lastIncomes;
+    }
+
     public double getTotalIncome() {
         return totalIncome;
     }

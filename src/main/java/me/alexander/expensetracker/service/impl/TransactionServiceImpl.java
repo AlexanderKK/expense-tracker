@@ -58,13 +58,13 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Double> getLastExpenses() {
-        Comparator<Transaction> dateComparator = Comparator
-                .comparing(Transaction::getDate)
+        Comparator<Transaction> creationDateComparator = Comparator
+                .comparing(Transaction::getCreated)
                 .reversed();
 
         return transactionRepository.findAll()
                 .stream()
-                .sorted(dateComparator)
+                .sorted(creationDateComparator)
                 .map(Transaction::getExpense)
                 .limit(3)
                 .toList();

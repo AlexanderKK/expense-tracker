@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Positive;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "incomes")
@@ -27,6 +28,11 @@ public class Income extends BaseEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate date;
+
+    @NotNull(message = "Creation date should not be empty")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP")
+    private LocalDateTime created = LocalDateTime.now();
 
     public Double getAmount() {
         return amount;
@@ -50,6 +56,14 @@ public class Income extends BaseEntity {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
 }

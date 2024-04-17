@@ -1,28 +1,28 @@
 package me.alexander.expensetracker.model.dto;
 
 import me.alexander.expensetracker.model.dto.income.RecentIncomesDTO;
-import me.alexander.expensetracker.model.dto.transaction.RecentExpensesDTO;
+import me.alexander.expensetracker.model.dto.transaction.RecentTransactionsDTO;
 
 public class BalanceDTO {
 
-    private RecentIncomesDTO income;
+    private RecentIncomesDTO incomeDTO;
     private double balance;
-    private RecentExpensesDTO expenses;
+    private RecentTransactionsDTO transactionDTO;
 
     public BalanceDTO() {}
 
-    public BalanceDTO(RecentIncomesDTO income, double balance, RecentExpensesDTO expenses) {
-        this.income = income;
+    public BalanceDTO(RecentIncomesDTO incomeDTO, double balance, RecentTransactionsDTO transactionDTO) {
+        this.incomeDTO = incomeDTO;
         this.balance = balance;
-        this.expenses = expenses;
+        this.transactionDTO = transactionDTO;
     }
 
-    public RecentIncomesDTO getIncome() {
-        return income;
+    public RecentIncomesDTO getIncomeDTO() {
+        return incomeDTO;
     }
 
-    public void setIncome(RecentIncomesDTO income) {
-        this.income = income;
+    public void setIncomeDTO(RecentIncomesDTO incomeDTO) {
+        this.incomeDTO = incomeDTO;
     }
 
     public double getBalance() {
@@ -33,12 +33,12 @@ public class BalanceDTO {
         this.balance = balance;
     }
 
-    public RecentExpensesDTO getExpenses() {
-        return expenses;
+    public RecentTransactionsDTO getTransactionDTO() {
+        return transactionDTO;
     }
 
-    public void setExpenses(RecentExpensesDTO expenses) {
-        this.expenses = expenses;
+    public void setTransactionDTO(RecentTransactionsDTO transactionDTO) {
+        this.transactionDTO = transactionDTO;
     }
 
 }

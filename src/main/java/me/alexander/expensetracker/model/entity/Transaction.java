@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transactions")
@@ -30,6 +31,11 @@ public class Transaction extends BaseEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate date;
+
+    @NotNull(message = "Creation date should not be empty")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP")
+    private LocalDateTime created = LocalDateTime.now();
 
     public Double getExpense() {
         return expense;
@@ -69,6 +75,14 @@ public class Transaction extends BaseEntity {
         this.date = date;
 
         return this;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
 }

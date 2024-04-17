@@ -29,8 +29,11 @@ function loadBalance() {
 				balanceTotal.style.color = "inherit";
 			}
 
-			incomeTotal.innerText = json.income + "$";
+			const totalIncome = json.incomeDTO.totalIncome;
+			const totalExpenses = json.transactionDTO.totalExpenses;
+
+			incomeTotal.innerText = totalIncome + "$";
 			balanceTotal.innerText = json.balance + "$";
-			expensesTotal.innerText = json.expenses + "$";
+			expensesTotal.innerText = totalExpenses + "$";
 		});
 }

@@ -2,6 +2,7 @@ package me.alexander.expensetracker.service.impl;
 
 import me.alexander.expensetracker.model.dto.income.AddIncomeDTO;
 import me.alexander.expensetracker.model.entity.Income;
+import me.alexander.expensetracker.model.entity.Transaction;
 import me.alexander.expensetracker.repository.IncomeRepository;
 import me.alexander.expensetracker.service.IncomeService;
 import org.modelmapper.ModelMapper;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class IncomeServiceImpl implements IncomeService {
@@ -43,6 +46,20 @@ public class IncomeServiceImpl implements IncomeService {
         DecimalFormat incomeFormat = new DecimalFormat("#.##");
 
         return Double.parseDouble(incomeFormat.format(totalIncome));
+    }
+
+    @Override
+    public List<Double> getLastIncomes() {
+        Comparator<Income> creationDateComparator = Comparator
+                .comparing(Income::getCreated)
+                .reversed();
+
+        return incomeRepository.findAll()
+                .stream()
+                .sorted(creationDateComparator)
+                .map(Income::getAmount)
+                .limit(3)
+                .toList();
     }
 
 }

@@ -2,10 +2,15 @@ package me.alexander.expensetracker.model.dto.transaction;
 
 import java.util.List;
 
-public class RecentExpensesDTO {
+public class RecentTransactionsDTO {
 
     private double totalExpenses;
     private List<Double> lastExpenses;
+
+    public RecentTransactionsDTO(double totalExpenses, List<Double> lastExpenses) {
+        this.totalExpenses = totalExpenses;
+        this.lastExpenses = lastExpenses;
+    }
 
     public double getTotalExpenses() {
         return totalExpenses;

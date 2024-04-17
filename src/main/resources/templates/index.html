@@ -4,49 +4,49 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Expense Tracker</title>
-    <link th:href="@{/favicon.ico}" rel="icon">
+    <link href="/favicon.ico" rel="icon">
 
     <!-- Font Awesome-->
-    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
 
     <!-- Toastify-->
-    <link rel="stylesheet" type="text/css" th:href="@{https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css}">
-    <script defer th:src="@{/js/toastify/toastify.js}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script defer src="/js/toastify/toastify.js"></script>
 
     <!-- Sound Manager -->
-    <script defer th:src="@{/js/soundmanager/lowLag.js}"></script>
-    <script defer th:src="@{/js/soundmanager/soundmanager2.js}"></script>
+    <script defer src="/js/soundmanager/lowLag.js"></script>
+    <script defer src="/js/soundmanager/soundmanager2.js"></script>
 
     <!-- jQuery-->
-    <script defer th:src="@{/js/jquery/jquery-3.7.1.min.js}"></script>
+    <script defer src="/js/jquery/jquery-3.7.1.min.js"></script>
 
     <!-- Date Picker -->
-    <script defer th:src="@{/js/bootstrap/datepicker.js}"></script>
+    <script defer src="/js/bootstrap/datepicker.js"></script>
 
     <!-- Bootstrap -->
-    <link th:href="@{/css/bootstrap/bootstrap.min.css}" type="text/css" rel="stylesheet">
-    <script defer th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
-    <link rel='stylesheet' th:href="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css}">
+    <link href="/css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <script defer src="/js/bootstrap/bootstrap.min.js"></script>
+    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
 
     <!-- Scripts -->
-    <script defer th:src="@{/js/common.js}"></script>
-    <script defer th:src="@{/js/dates.js}"></script>
-    <script defer th:src="@{/js/navbar.js}"></script>
-    <script defer th:src="@{/js/popups.js}"></script>
-    <script defer th:src="@{/js/expenses.js}"></script>
-    <script defer th:src="@{/js/expenses-controller.js}"></script>
-    <script defer th:src="@{/js/category-controller.js}"></script>
-    <script defer th:src="@{/js/income-controller.js}"></script>
-    <script defer th:src="@{/js/balance-controller.js}"></script>
+    <script defer src="/js/common.js"></script>
+    <script defer src="/js/dates.js"></script>
+    <script defer src="/js/navbar.js"></script>
+    <script defer src="/js/popups.js"></script>
+    <script defer src="/js/expenses.js"></script>
+    <script defer src="/js/expenses-controller.js"></script>
+    <script defer src="/js/category-controller.js"></script>
+    <script defer src="/js/income-controller.js"></script>
+    <script defer src="/js/balance-controller.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-    <header th:fragment="header">
+    <header>
         <nav class="navbar navbar-expand-custom navbar-mainbg">
-            <a class="navbar-brand navbar-logo" th:href="@{/}">Expense Tracker</a>
+            <a class="navbar-brand navbar-logo" href="/}">ExpenseTracker</a>
 
             <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars text-white"></i>
@@ -61,19 +61,19 @@
                     </div>
 
                     <li class="nav-item active" role="presentation">
-                        <a class="nav-link active" id="tab-1" data-bs-toggle="tab" th:href="@{#tabpanel-1}" role="tab" aria-controls="tabpanel-1" aria-selected="true"><i class="fas fa-tachometer-alt"></i>Home</a>
+                        <a class="nav-link active" id="tab-1" data-bs-toggle="tab" href="#tabpanel-1" role="tab" aria-controls="tabpanel-1" aria-selected="true"><i class="fas fa-tachometer-alt"></i>Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" id="tab-2" data-bs-toggle="tab" th:href="@{#tabpanel-2}" role="tab" aria-controls="tabpanel-2" aria-selected="false"><i class="far fa-address-book"></i>Add Expenses</a>
+                        <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#tabpanel-2" role="tab" aria-controls="tabpanel-2" aria-selected="false"><i class="far fa-address-book"></i>Add Expenses</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" id="tab-3" data-bs-toggle="tab" th:href="@{#tabpanel-3}" role="tab" aria-controls="tabpanel-3" aria-selected="false"><i class="far fa-clone"></i>Categories</a>
+                        <a class="nav-link" id="tab-3" data-bs-toggle="tab" href="#tabpanel-3" role="tab" aria-controls="tabpanel-3" aria-selected="false"><i class="far fa-clone"></i>Categories</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" id="tab-4" data-bs-toggle="tab" th:href="@{#tabpanel-4}"><i class="far fa-calendar-alt"></i>Income</a>
+                        <a class="nav-link" id="tab-4" data-bs-toggle="tab" href="#tabpanel-4"><i class="far fa-calendar-alt"></i>Income</a>
                     </li>
 
                     <li class="nav-item">
