@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -19,13 +20,16 @@ public class Transaction extends BaseEntity {
     @Column(nullable = false)
     private Integer expense;
 
+    @ManyToOne(optional = false)
+    private Category category;
+
+    @Size(message = "Description length should not exceed 100")
+    private String description;
+
     @NotNull(message = "Transaction date should not be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate date;
-
-    @ManyToOne(optional = false)
-    private Category category;
 
     public Integer getExpense() {
         return expense;
@@ -37,22 +41,32 @@ public class Transaction extends BaseEntity {
         return this;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public Transaction setDate(LocalDate date) {
-        this.date = date;
-
-        return this;
-    }
-
     public Category getCategory() {
         return category;
     }
 
     public Transaction setCategory(Category category) {
         this.category = category;
+
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Transaction setDescription(String description) {
+        this.description = description;
+
+        return this;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public Transaction setDate(LocalDate date) {
+        this.date = date;
 
         return this;
     }

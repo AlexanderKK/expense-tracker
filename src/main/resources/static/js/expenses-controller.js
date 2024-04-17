@@ -1,5 +1,6 @@
 const expenseInput = document.querySelector(".add-expenses #expense");
 const expenseCategory = document.querySelector(".add-expenses #category");
+const expenseDescription = document.querySelector(".add-expenses #expenseDescription");
 const expenseDate = document.querySelector(".add-expenses #transactionDate");
 const expenseControls = document.querySelectorAll(".add-expenses__control");
 let isCreateTransactionCancelled = false;
@@ -55,6 +56,7 @@ function createTransaction() {
 		body: JSON.stringify({
 			expense: expenseInput.value,
 			category: categorySelect.value,
+			description: expenseDescription.value,
 			date: transformDate(expenseDate.value)
 		})
 	};
@@ -85,6 +87,7 @@ function clearExpenseControls() {
 	expenseInput.value = "";
 	categorySelect.selectIndex = 0;
 	categorySelect.options[0].selected = true;
+	expenseDescription.value = "";
 	setCurrentDatePickerDate();
 
 	expenseControls.forEach(expenseControl => expenseControl.classList.remove("is-invalid"));
