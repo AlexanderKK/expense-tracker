@@ -57,7 +57,3 @@ logging:
         SQL: OFF
       nodeValue: OFF
     blog: OFF
-
-#techstore:
-#  rememberme:
-#    key: ${REMEMBER_ME_KEY:chamber-of-secrets}
