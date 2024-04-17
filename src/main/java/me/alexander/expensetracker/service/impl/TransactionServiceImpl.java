@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.List;
 
 import static me.alexander.expensetracker.constants.Messages.ENTITY_NOT_FOUND;
 
@@ -52,6 +54,20 @@ public class TransactionServiceImpl implements TransactionService {
         DecimalFormat expensesFormat = new DecimalFormat("#.##");
 
         return Double.parseDouble(expensesFormat.format(totalExpenses));
+    }
+
+    @Override
+    public List<Double> getLastExpenses() {
+        Comparator<Transaction> dateComparator = Comparator
+                .comparing(Transaction::getDate)
+                .reversed();
+
+        return transactionRepository.findAll()
+                .stream()
+                .sorted(dateComparator)
+                .map(Transaction::getExpense)
+                .limit(3)
+                .toList();
     }
 
 }

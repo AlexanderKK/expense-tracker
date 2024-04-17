@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 @Service
 public class BalanceServiceImpl implements BalanceService {
@@ -24,15 +25,19 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     public BalanceDTO getTotalBalance() {
-        double expenses = transactionService.getTotalExpenses();
-        double income = incomeService.getTotalIncome();
+        double totalExpenses = transactionService.getTotalExpenses();
+        List<Double> lastExpenses = transactionService.getLastExpenses();
+        System.out.println(totalExpenses);
+        System.out.println(lastExpenses);
 
-        double balance = income - expenses;
+//        double income = incomeService.getTotalIncome();
+//
+//        double balance = income - expenses;
+//
+//        DecimalFormat balanceFormat = new DecimalFormat("#.##");
+//        double formattedBalance = Double.parseDouble(balanceFormat.format(balance));
 
-        DecimalFormat balanceFormat = new DecimalFormat("#.##");
-        double formattedBalance = Double.parseDouble(balanceFormat.format(balance));
-
-        return new BalanceDTO(income, formattedBalance, expenses);
+        return new BalanceDTO();
     }
 
 }

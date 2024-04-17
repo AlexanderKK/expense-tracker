@@ -1,24 +1,27 @@
 package me.alexander.expensetracker.model.dto;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
+import me.alexander.expensetracker.model.dto.income.RecentIncomesDTO;
+import me.alexander.expensetracker.model.dto.transaction.RecentExpensesDTO;
 
 public class BalanceDTO {
 
-    private double income;
+    private RecentIncomesDTO income;
     private double balance;
-    private double expenses;
+    private RecentExpensesDTO expenses;
 
-    public BalanceDTO(double income, double balance, double expenses) {
+    public BalanceDTO() {}
+
+    public BalanceDTO(RecentIncomesDTO income, double balance, RecentExpensesDTO expenses) {
         this.income = income;
         this.balance = balance;
         this.expenses = expenses;
     }
 
-    public double getIncome() {
+    public RecentIncomesDTO getIncome() {
         return income;
     }
 
-    public void setIncome(double income) {
+    public void setIncome(RecentIncomesDTO income) {
         this.income = income;
     }
 
@@ -30,11 +33,11 @@ public class BalanceDTO {
         this.balance = balance;
     }
 
-    public double getExpenses() {
+    public RecentExpensesDTO getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(double expenses) {
+    public void setExpenses(RecentExpensesDTO expenses) {
         this.expenses = expenses;
     }
 
