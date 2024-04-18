@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Comparator;
 import java.util.List;
 
@@ -68,6 +69,15 @@ public class TransactionServiceImpl implements TransactionService {
                 .map(Transaction::getExpense)
                 .limit(3)
                 .toList();
+    }
+
+    @Override
+    public double getMonthlyExpensesByDate(LocalDate firstDayOfPreviousMonth, LocalDate lastDayOfPreviousMonth) {
+        return transactionRepository.findAll()
+                .stream()
+                .filter(transaction -> !transaction.getDate().isBefore(firstDayOfPreviousMonth) && !transaction.getDate().isAfter(lastDayOfPreviousMonth))
+                .mapToDouble(Transaction::getExpense)
+                .sum();
     }
 
 }

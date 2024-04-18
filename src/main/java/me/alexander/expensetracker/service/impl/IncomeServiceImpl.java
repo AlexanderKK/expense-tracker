@@ -2,7 +2,6 @@ package me.alexander.expensetracker.service.impl;
 
 import me.alexander.expensetracker.model.dto.income.AddIncomeDTO;
 import me.alexander.expensetracker.model.entity.Income;
-import me.alexander.expensetracker.model.entity.Transaction;
 import me.alexander.expensetracker.repository.IncomeRepository;
 import me.alexander.expensetracker.service.IncomeService;
 import org.modelmapper.ModelMapper;
@@ -60,6 +59,15 @@ public class IncomeServiceImpl implements IncomeService {
                 .map(Income::getAmount)
                 .limit(3)
                 .toList();
+    }
+
+    @Override
+    public double getMonthlyIncomeByDate(LocalDate firstDayOfPreviousMonth, LocalDate lastDayOfPreviousMonth) {
+        return incomeRepository.findAll()
+                .stream()
+                .filter(income -> !income.getDate().isBefore(firstDayOfPreviousMonth) && !income.getDate().isAfter(lastDayOfPreviousMonth))
+                .mapToDouble(Income::getAmount)
+                .sum();
     }
 
 }
