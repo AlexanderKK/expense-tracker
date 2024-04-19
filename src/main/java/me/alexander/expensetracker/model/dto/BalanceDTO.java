@@ -5,24 +5,24 @@ import me.alexander.expensetracker.model.dto.transaction.RecentTransactionsDTO;
 
 public class BalanceDTO {
 
-    private RecentIncomesDTO incomeDTO;
+    private RecentIncomesDTO incomesDTO;
     private double balance;
-    private RecentTransactionsDTO transactionDTO;
+    private RecentTransactionsDTO transactionsDTO;
 
     public BalanceDTO() {}
 
-    public BalanceDTO(RecentIncomesDTO incomeDTO, double balance, RecentTransactionsDTO transactionDTO) {
-        this.incomeDTO = incomeDTO;
+    public BalanceDTO(RecentIncomesDTO incomesDTO, double balance, RecentTransactionsDTO transactionsDTO) {
+        this.incomesDTO = incomesDTO;
         this.balance = balance;
-        this.transactionDTO = transactionDTO;
+        this.transactionsDTO = transactionsDTO;
     }
 
-    public RecentIncomesDTO getIncomeDTO() {
-        return incomeDTO;
+    public RecentIncomesDTO getIncomesDTO() {
+        return incomesDTO;
     }
 
-    public void setIncomeDTO(RecentIncomesDTO incomeDTO) {
-        this.incomeDTO = incomeDTO;
+    public void setIncomesDTO(RecentIncomesDTO incomesDTO) {
+        this.incomesDTO = incomesDTO;
     }
 
     public double getBalance() {
@@ -33,12 +33,12 @@ public class BalanceDTO {
         this.balance = balance;
     }
 
-    public RecentTransactionsDTO getTransactionDTO() {
-        return transactionDTO;
+    public RecentTransactionsDTO getTransactionsDTO() {
+        return transactionsDTO;
     }
 
-    public void setTransactionDTO(RecentTransactionsDTO transactionDTO) {
-        this.transactionDTO = transactionDTO;
+    public void setTransactionsDTO(RecentTransactionsDTO transactionsDTO) {
+        this.transactionsDTO = transactionsDTO;
     }
 
 }

@@ -2,8 +2,8 @@ package me.alexander.expensetracker.service;
 
 public interface RateGrowthService {
 
-    void saveMonthlyIncomeRate();
+    double getMonthlyIncomeRate();
 
-    void saveMonthlyExpenseRate();
+    double getMonthlyExpenseRate();
 
 }

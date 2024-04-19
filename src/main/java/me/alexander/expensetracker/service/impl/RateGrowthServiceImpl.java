@@ -1,95 +1,57 @@
 package me.alexander.expensetracker.service.impl;
 
-import me.alexander.expensetracker.model.entity.ExpenseRate;
-import me.alexander.expensetracker.model.entity.IncomeRate;
-import me.alexander.expensetracker.repository.ExpenseRateRepository;
-import me.alexander.expensetracker.repository.IncomeRateRepository;
-import me.alexander.expensetracker.service.RateGrowthService;
 import me.alexander.expensetracker.service.IncomeService;
+import me.alexander.expensetracker.service.RateGrowthService;
 import me.alexander.expensetracker.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
+
+import static me.alexander.expensetracker.util.DateRange.*;
 
 @Service
 public class RateGrowthServiceImpl implements RateGrowthService {
 
     private final IncomeService incomeService;
     private final TransactionService transactionService;
-    private final IncomeRateRepository incomeRateRepository;
-    private final ExpenseRateRepository expenseRateRepository;
 
     @Autowired
     public RateGrowthServiceImpl(IncomeService incomeService,
-                                 TransactionService transactionService,
-                                 IncomeRateRepository incomeRateRepository,
-                                 ExpenseRateRepository expenseRateRepository) {
+                                 TransactionService transactionService) {
         this.incomeService = incomeService;
         this.transactionService = transactionService;
-        this.incomeRateRepository = incomeRateRepository;
-        this.expenseRateRepository = expenseRateRepository;
     }
 
     @Override
-    public void saveMonthlyIncomeRate() {
-        LocalDate currentDate = LocalDate.now();
+    public double getMonthlyIncomeRate() {
+        double lastMonthlyIncome = incomeService.getMonthlyIncomeByDate(FIRST_DAY_OF_LAST_MONTH, LAST_DAY_OF_LAST_MONTH);
+        double previousMonthlyIncome = incomeService.getMonthlyIncomeByDate(FIRST_DAY_OF_PREVIOUS_MONTH, LAST_DAY_OF_PREVIOUS_MONTH);
 
-        LocalDate firstDayOfLastMonth = currentDate.minusMonths(1).withDayOfMonth(1);
-        LocalDate lastDayOfLastMonth = currentDate.minusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
-
-        double currentMonthlyIncome = incomeService.getMonthlyIncomeByDate(firstDayOfLastMonth, lastDayOfLastMonth);
-
-        LocalDate firstDayOfPreviousMonth = currentDate.minusMonths(2).withDayOfMonth(1);
-        LocalDate lastDayOfPreviousMonth = currentDate.minusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
-
-        double previousMonthlyIncome = incomeService.getMonthlyIncomeByDate(firstDayOfPreviousMonth, lastDayOfPreviousMonth);
-
-        // Calculate income rate
-        double incomeRate = getRateGrowth(currentMonthlyIncome, previousMonthlyIncome);
-
-        IncomeRate incomeRateEntity = new IncomeRate(
-                incomeRate, firstDayOfLastMonth, lastDayOfLastMonth, firstDayOfPreviousMonth, lastDayOfPreviousMonth
-        );
-
-        incomeRateRepository.save(incomeRateEntity);
+        double rateGrowth = calculateRateGrowth(lastMonthlyIncome, previousMonthlyIncome);
+        System.out.println(rateGrowth);
+        return rateGrowth;
     }
 
     @Override
-    public void saveMonthlyExpenseRate() {
-        LocalDate currentDate = LocalDate.now();
+    public double getMonthlyExpenseRate() {
+        double lastMonthlyExpenses = transactionService.getMonthlyExpensesByDate(FIRST_DAY_OF_LAST_MONTH, LAST_DAY_OF_LAST_MONTH);
+        double previousMonthlyExpenses = transactionService.getMonthlyExpensesByDate(FIRST_DAY_OF_PREVIOUS_MONTH, LAST_DAY_OF_PREVIOUS_MONTH);
 
-        LocalDate firstDayOfLastMonth = currentDate.minusMonths(1).withDayOfMonth(1);
-        LocalDate lastDayOfLastMonth = currentDate.minusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
-
-        double currentMonthlyExpenses = transactionService.getMonthlyExpensesByDate(firstDayOfLastMonth, lastDayOfLastMonth);
-
-        LocalDate firstDayOfPreviousMonth = currentDate.minusMonths(2).withDayOfMonth(1);
-        LocalDate lastDayOfPreviousMonth = currentDate.minusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
-
-        double previousMonthlyExpenses = transactionService.getMonthlyExpensesByDate(firstDayOfPreviousMonth, lastDayOfPreviousMonth);
-
-        // Calculate expense rate
-        double expenseRate = getRateGrowth(currentMonthlyExpenses, previousMonthlyExpenses);
-
-        ExpenseRate expenseRateEntity = new ExpenseRate(
-                expenseRate, firstDayOfLastMonth, lastDayOfLastMonth, firstDayOfPreviousMonth, lastDayOfPreviousMonth
-        );
-
-        expenseRateRepository.save(expenseRateEntity);
+        double rateGrowth = calculateRateGrowth(lastMonthlyExpenses, previousMonthlyExpenses);
+        System.out.println(rateGrowth);
+        return rateGrowth;
     }
 
-    private static double getRateGrowth(double currentMonthlyAmount, double previousMonthlyAmount) {
+    private static double calculateRateGrowth(double lastMonthlyAmount, double previousMonthlyAmount) {
         double rateGrowth;
 
-        if(currentMonthlyAmount <= previousMonthlyAmount) {
-            rateGrowth = 0;
+        if(lastMonthlyAmount <= previousMonthlyAmount) {
+            rateGrowth = 0.00;
         } else if(previousMonthlyAmount == 0) {
-            rateGrowth = 100;
+            rateGrowth = 100.00;
         } else {
-            double monthlyRateGrowth = (currentMonthlyAmount - previousMonthlyAmount) / previousMonthlyAmount * 100;
+            double monthlyRateGrowth = (lastMonthlyAmount - previousMonthlyAmount) / previousMonthlyAmount * 100;
 
             DecimalFormat rateGrowthFormat = new DecimalFormat("#.##");
             rateGrowth = Double.parseDouble(

@@ -21,7 +21,7 @@ public class BalanceRestController {
 
     @GetMapping
     public ResponseEntity<BalanceDTO> balance() {
-        BalanceDTO balanceDTO = balanceService.getTotalBalance();
+        BalanceDTO balanceDTO = balanceService.getBalance();
 
         return ResponseEntity.ok(balanceDTO);
     }
