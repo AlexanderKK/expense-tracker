@@ -24,13 +24,25 @@ public class RateGrowthServiceImpl implements RateGrowthService {
     }
 
     @Override
+    public double getMonthlyBalanceRate() {
+        double lastMonthlyIncome = incomeService.getMonthlyIncomeByDate(FIRST_DAY_OF_LAST_MONTH, LAST_DAY_OF_LAST_MONTH);
+        double lastMonthlyExpenses = transactionService.getMonthlyExpensesByDate(FIRST_DAY_OF_LAST_MONTH, LAST_DAY_OF_LAST_MONTH);
+
+        double previousMonthlyIncome = incomeService.getMonthlyIncomeByDate(FIRST_DAY_OF_PREVIOUS_MONTH, LAST_DAY_OF_PREVIOUS_MONTH);
+        double previousMonthlyExpenses = transactionService.getMonthlyExpensesByDate(FIRST_DAY_OF_PREVIOUS_MONTH, LAST_DAY_OF_PREVIOUS_MONTH);
+
+        double lastMonthlyBalance = lastMonthlyIncome - lastMonthlyExpenses;
+        double previousMonthlyBalance = previousMonthlyIncome - previousMonthlyExpenses;
+
+        return calculateRateGrowth(lastMonthlyBalance, previousMonthlyBalance);
+    }
+
+    @Override
     public double getMonthlyIncomeRate() {
         double lastMonthlyIncome = incomeService.getMonthlyIncomeByDate(FIRST_DAY_OF_LAST_MONTH, LAST_DAY_OF_LAST_MONTH);
         double previousMonthlyIncome = incomeService.getMonthlyIncomeByDate(FIRST_DAY_OF_PREVIOUS_MONTH, LAST_DAY_OF_PREVIOUS_MONTH);
 
-        double rateGrowth = calculateRateGrowth(lastMonthlyIncome, previousMonthlyIncome);
-        System.out.println(rateGrowth);
-        return rateGrowth;
+        return calculateRateGrowth(lastMonthlyIncome, previousMonthlyIncome);
     }
 
     @Override
@@ -38,9 +50,7 @@ public class RateGrowthServiceImpl implements RateGrowthService {
         double lastMonthlyExpenses = transactionService.getMonthlyExpensesByDate(FIRST_DAY_OF_LAST_MONTH, LAST_DAY_OF_LAST_MONTH);
         double previousMonthlyExpenses = transactionService.getMonthlyExpensesByDate(FIRST_DAY_OF_PREVIOUS_MONTH, LAST_DAY_OF_PREVIOUS_MONTH);
 
-        double rateGrowth = calculateRateGrowth(lastMonthlyExpenses, previousMonthlyExpenses);
-        System.out.println(rateGrowth);
-        return rateGrowth;
+        return calculateRateGrowth(lastMonthlyExpenses, previousMonthlyExpenses);
     }
 
     private static double calculateRateGrowth(double lastMonthlyAmount, double previousMonthlyAmount) {

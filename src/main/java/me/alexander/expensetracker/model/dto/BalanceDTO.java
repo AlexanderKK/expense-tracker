@@ -7,13 +7,15 @@ public class BalanceDTO {
 
     private RecentIncomesDTO incomesDTO;
     private double balance;
+    private double balanceRate;
     private RecentTransactionsDTO transactionsDTO;
 
     public BalanceDTO() {}
 
-    public BalanceDTO(RecentIncomesDTO incomesDTO, double balance, RecentTransactionsDTO transactionsDTO) {
+    public BalanceDTO(RecentIncomesDTO incomesDTO, double balance, double balanceRate, RecentTransactionsDTO transactionsDTO) {
         this.incomesDTO = incomesDTO;
         this.balance = balance;
+        this.balanceRate = balanceRate;
         this.transactionsDTO = transactionsDTO;
     }
 
@@ -31,6 +33,14 @@ public class BalanceDTO {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public double getBalanceRate() {
+        return balanceRate;
+    }
+
+    public void setBalanceRate(double balanceRate) {
+        this.balanceRate = balanceRate;
     }
 
     public RecentTransactionsDTO getTransactionsDTO() {

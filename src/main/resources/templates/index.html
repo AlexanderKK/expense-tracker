@@ -14,50 +14,45 @@
 
     <!-- Toastify-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script defer src="../static/js/toastify/toastify.js"></script>
+    <script defer src="/js/toastify/toastify.js"></script>
 
     <!-- Sound Manager -->
-    <script defer src="../static/js/soundmanager/lowLag.js"></script>
-    <script defer src="../static/js/soundmanager/soundmanager2.js"></script>
+    <script defer src="/js/soundmanager/lowLag.js"></script>
+    <script defer src="/js/soundmanager/soundmanager2.js"></script>
 
     <!-- jQuery-->
-    <script defer src="../static/js/jquery/jquery-3.7.1.min.js"></script>
+    <script defer src="/js/jquery/jquery-3.7.1.min.js"></script>
 
     <!-- Date Picker -->
-    <script defer src="../static/js/bootstrap/datepicker.js"></script>
+    <script defer src="/js/bootstrap/datepicker.js"></script>
 
     <!-- Bootstrap -->
-    <link href="../static/css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet">
-    <script defer src="../static/js/bootstrap/bootstrap.min.js"></script>
+    <link href="/css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <script defer src="/js/bootstrap/bootstrap.min.js"></script>
     <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
 
     <!-- Scripts -->
-    <script defer src="../static/js/common.js"></script>
-    <script defer src="../static/js/dates.js"></script>
-    <script defer src="../static/js/navbar.js"></script>
-    <script defer src="../static/js/popups.js"></script>
-    <script defer src="../static/js/expenses.js"></script>
-    <script defer src="../static/js/expenses-controller.js"></script>
-    <script defer src="../static/js/category-controller.js"></script>
-    <script defer src="../static/js/income-controller.js"></script>
-    <script defer src="../static/js/balance-controller.js"></script>
-    <script defer src="../static/js/icon-picker.js"></script>
-    <script defer src="../static/js/vendors/chart.js/Chart.min.js"></script>
-    <script defer src="../static/js/dashboard.js"></script>
+    <script defer src="/js/common.js"></script>
+    <script defer src="/js/dates.js"></script>
+    <script defer src="/js/navbar.js"></script>
+    <script defer src="/js/popups.js"></script>
+    <script defer src="/js/expenses.js"></script>
+    <script defer src="/js/expenses-controller.js"></script>
+    <script defer src="/js/category-controller.js"></script>
+    <script defer src="/js/income-controller.js"></script>
+    <script defer src="/js/balance-controller.js"></script>
+    <script defer src="/js/icon-picker.js"></script>
+    <script defer src="/js/vendors/chart.js/Chart.min.js"></script>
+    <script defer src="/js/dashboard.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../static/css/style.css">
-
-    <style>
-    
-    
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-custom navbar-mainbg">
-            <a class="navbar-brand navbar-logo" href="/}">ExpenseTracker</a>
+            <a class="navbar-brand navbar-logo" href="/">ExpenseTracker</a>
 
             <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars text-white"></i>
@@ -104,58 +99,66 @@
             <div class="row mb-4">
                 <div class="col-md-4 stretch-card grid-margin">
                     <div class="card bg-gradient-primary card-img-holder text-white">
-                      <div class="card-body">
-                        <div class="row">
-                      <div class="col-8">
-                        <h3 class="font-weight-bold mb-3">Income<i class="mdi mdi-currency-usd mdi-24px float-right"></i>
-                        </h3>
-                        <h4>+ 19,99$</h4>
-                        <h4>+ 8,99$</h4>
-                        <h4>+ 7,23$</h4>
-                        <h6 class="card-text mt-3">Increased by 7%</h6>
-                        <img src="../static/assets/cirlce.svg" class="card-img-absolute" alt="circle-image" />
-                      </div>
-                      <div class="col-4">
-                        <h3 class="font-weight-bold mb-3">Total:</i>
-                        <h3>36,21$</h3>
-                      </div>
-                      </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h3 class="font-weight-bold mb-3">Income<i class="mdi mdi-currency-usd mdi-24px float-right"></i></h3>
+
+                                    <div class="income__last"></div>
+
+                                    <h6 class="income__rate card-text mt-3">Increased by 7%</h6>
+
+                                    <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image">
+                                </div>
+
+                                <div class="col-4">
+                                    <h3 class="font-weight-bold mb-3">Total:</h3>
+
+                                    <h3 class="income__total"></h3>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                  </div>
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-success card-img-holder text-white">
-                  <div class="card-body">
-                    <img src="../static/assets/cirlce.svg" class="card-img-absolute" alt="circle-image" />
-                    <h3 class="font-weight-bold mb-3">Balance <i class="mdi mdi-chart-line mdi-24px float-right"></i>
-                    </h3>
-                    <h1 class="mb-5">$ 13,99</h1>
-                    <h6 class="card-text mt-3">Increased by 12%</h6>
-                  </div>
-                </div>
               </div>
+
+              <div class="col-md-4 stretch-card grid-margin">
+                  <div class="card bg-gradient-success card-img-holder text-white">
+                      <div class="card-body">
+                          <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image" />
+
+                          <h3 class="font-weight-bold mb-3">Balance <i class="mdi mdi-chart-line mdi-24px float-right"></i></h3>
+
+                          <h1 class="balance__total mb-5"></h1>
+
+                          <h6 class="balance__rate card-text mt-3"></h6>
+                      </div>
+                  </div>
+              </div>
+
               <div class="col-md-4 stretch-card grid-margin">
                 <div class="card bg-gradient-danger card-img-holder text-white">
                   <div class="card-body">
                     <div class="row">   
                   <div class="col-8">
-                    <h3 class="font-weight-bold mb-3">Expenses<i class="mdi mdi-currency-usd-off mdi-24px float-right"></i>
-                    </h3>
-                    <h4>- 19,99$</h4>
-                    <h4>- 8,99$</h4>
-                    <h4>- 7,23$</h4>
-                    <h6 class="card-text mt-3">Increased by 5%</h6>
-                    <img src="../static/assets/cirlce.svg" class="card-img-absolute" alt="circle-image" />
+                    <h3 class="font-weight-bold mb-3">Expenses<i class="mdi mdi-currency-usd-off mdi-24px float-right"></i></h3>
+
+                    <div class="expenses__last"></div>
+
+                    <h6 class="expenses__rate card-text mt-3"></h6>
+
+                    <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image" />
                   </div>
                   <div class="col-4">
-                    <h3 class="font-weight-bold mb-3">Total:</i>
-                    <h3>36,21$</h3>
+                    <h3 class="font-weight-bold mb-3">Total:</h3>
+
+                    <h3 class="expenses__total"></h3>
                   </div>
                   </div>
                 </div>
                 </div>
               </div>
             </div>
+
             <div class="row">
                 <div class="col-md-5 grid-margin stretch-card">
                   <div class="card bg-light">
@@ -246,7 +249,7 @@
                       <div class="card-body border border-muted">
                         <!-- <h4 class="card-title mb-5"><span class="btn btn-primary fw-bold">Download Stats: </span><select class="ms-3 p-1"> -->
                             <option value="pdf">PDF</option>
-                        </select></h4>
+<!--                        </select></h4>-->
                       </div>
                     </div>
                   </div>
@@ -310,7 +313,7 @@
                 </div>
             </div>
         </div>
-<!-- Category -->
+
         <div class="tab-pane" id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
             <div class="add-category m-auto">
                 <div>
@@ -331,40 +334,34 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="categoryIcon" class="form-label" hidden>Add category</label>
+                        <label for="iconSelect" class="form-label" hidden>Add category</label>
 
                         <div class="dropdown mb-5">
-                            <!-- input has "readonly" attribute to prevent typing interaction -->
-                                  <input type="text" placeholder="Pick an icon" id="iconSelect" readonly />
-                            
-                            <!-- options list -->
-                                  <ul class="options">
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0);"><i class="ms-2 mdi mdi-home mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);"><i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0)"><i class="ms-2 mdi mdi-home mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);"><i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                    <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                                  </ul>
-                            
-                                </div>
-                        <!-- <input type="text" class="form-control add-category__control" id="categoryName" placeholder="Gasoline">
+                            <input type="text" placeholder="Pick an icon" id="iconSelect" readonly>
 
-                        <div class="invalid-feedback addCategory-name-error"></div> -->
+                            <ul class="options">
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0);"><i class="ms-2 mdi mdi-home mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);"><i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0)"><i class="ms-2 mdi mdi-home mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);"><i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="mb-4">
@@ -443,7 +440,4 @@
         </div>
     </div>
 </body>
-<script>
- 
-</script>
 </html>

@@ -48,7 +48,10 @@ public class BalanceServiceImpl implements BalanceService {
         DecimalFormat balanceFormat = new DecimalFormat("#.##");
         double formattedBalance = Double.parseDouble(balanceFormat.format(balance));
 
-        return new BalanceDTO(recentIncomesDTO, formattedBalance, recentTransactionsDTO);
+        double balanceRate = rateGrowthService.getMonthlyBalanceRate();
+        double formattedBalanceRate = Double.parseDouble(balanceFormat.format(balanceRate));
+
+        return new BalanceDTO(recentIncomesDTO, formattedBalance, formattedBalanceRate, recentTransactionsDTO);
     }
 
 }

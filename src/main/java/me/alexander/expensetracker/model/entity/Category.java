@@ -13,8 +13,8 @@ import java.time.LocalDate;
 @Table(name = "categories")
 public class Category extends BaseEntity {
 
-    @Column(name = "icon_class")
-    private String iconClass;
+    @Column
+    private String icon;
 
     @NotBlank(message = "Category name should not be empty")
     @Column(nullable = false, unique = true)
@@ -25,12 +25,12 @@ public class Category extends BaseEntity {
     @Column(nullable = false)
     private LocalDate created = LocalDate.now();
 
-    public String getIconClass() {
-        return iconClass;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setIconClass(String iconClass) {
-        this.iconClass = iconClass;
+    public void setIcon(String iconClass) {
+        this.icon = iconClass;
     }
 
     public String getName() {

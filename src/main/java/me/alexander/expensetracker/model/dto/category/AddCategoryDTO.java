@@ -5,18 +5,18 @@ import me.alexander.expensetracker.validation.category.UniqueCategoryName;
 
 public class AddCategoryDTO {
 
-    private String iconClass;
+    private String icon;
 
     @NotBlank(message = "Please choose a category")
     @UniqueCategoryName
     private String name;
 
-    public String getIconClass() {
-        return iconClass;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setIconClass(String iconClass) {
-        this.iconClass = iconClass;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getName() {

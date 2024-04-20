@@ -1,5 +1,7 @@
 const categoryAction = document.querySelector(".add-category .add-category__actions button");
 const categoryName = document.querySelector(".add-category #categoryName");
+const categoryIcon = document.querySelector(".add-category #iconSelect");
+
 let isCreateCategoryCancelled = false;
 
 categoryAction.addEventListener("click", createCategory);
@@ -44,7 +46,8 @@ function createCategory() {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			name: categoryName.value
+			name: categoryName.value,
+			icon: categoryIcon.placeholder
 		})
 	};
 
@@ -53,7 +56,7 @@ function createCategory() {
 	fetch(addCategoryURL, requestOptions)
 		.then(response => {
 			if(response.ok) {
-				categoryName.value = "";
+				clearCategoryControls();
 
 				toastify(categoryAddSuccessOptions);
 				lowLag.play("success");
@@ -66,4 +69,10 @@ function createCategory() {
 		.then(json => {
 			handleValidationErrors(json);
 		});
+}
+
+function clearCategoryControls() {
+	categoryName.value = "";
+	categoryIcon.placeholder = "Pick an icon";
+	document.getElementById("iconPicked").innerHTML = "Selected Icon:";
 }

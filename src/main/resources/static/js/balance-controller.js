@@ -1,12 +1,13 @@
 const incomeTotal = document.querySelector(".income__total");
-const lastIncomesDiv = document.querySelector(".income__last");
-const incomeRateDiv = document.querySelector(".income__rate");
+const lastIncomesElement = document.querySelector(".income__last");
+const incomeRateElement = document.querySelector(".income__rate");
 
 const balanceTotal = document.querySelector(".balance__total");
+const balanceRateElement = document.querySelector(".balance__rate");
 
 const expensesTotal = document.querySelector(".expenses__total");
-const lastExpensesDiv = document.querySelector(".expenses__last");
-const expenseRateDiv = document.querySelector(".expenses__rate");
+const lastExpensesElement = document.querySelector(".expenses__last");
+const expenseRateElement = document.querySelector(".expenses__rate");
 
 const tab1 = document.getElementById("tab-1");
 
@@ -28,47 +29,43 @@ function loadBalance() {
 			return response.json();
 		})
 		.then(json => {
-			if(json.balance > 0) {
-				balanceTotal.style.color = "#27ba04";
-			} else if(json.balance < 0) {
-				balanceTotal.style.color = "#b60606";
-			} else {
-				balanceTotal.style.color = "inherit";
-			}
-
 			// Incomes
 			const incomesDTO = json.incomesDTO;
 
 			const totalIncome = incomesDTO.totalIncome;
-			incomeTotal.innerText = totalIncome + "$";
+			incomeTotal.innerText = "$ " + totalIncome;
 
 			const lastIncomes = incomesDTO.lastIncomes;
-			lastIncomesDiv.innerHTML = "";
+			lastIncomesElement.innerHTML = "";
 
 			lastIncomes.forEach(income => {
-				lastIncomesDiv.innerHTML += `<p class="text-success fs-4">+${income}$</p>`;
+				lastIncomesElement.innerHTML += `<h4>+ $${income}</h4>`;
 			});
 
 			const incomeRate = incomesDTO.incomeRate;
-			incomeRateDiv.innerText = incomeRate + "% increase rate";
+			incomeRateElement.innerText = `Increased by ${incomeRate}%`;
 
 			// Balance
-			balanceTotal.innerText = json.balance + "$";
+			const balance = json.balance.toString();
+			balanceTotal.innerText = balance < 0 ? balance.replace("-", "-$ ") : "$ " + balance;
+
+			const balanceRate = json.balanceRate;
+			balanceRateElement.innerText = `Increased by ${balanceRate}%`;
 
 			// Expenses
 			const transactionsDTO = json.transactionsDTO;
 
 			const totalExpenses = transactionsDTO.totalExpenses;
-			expensesTotal.innerText = totalExpenses + "$";
+			expensesTotal.innerText = "$ " + totalExpenses;
 
 			const lastExpenses = transactionsDTO.lastExpenses;
-			lastExpensesDiv.innerHTML = "";
+			lastExpensesElement.innerHTML = "";
 
 			lastExpenses.forEach(expense => {
-				lastExpensesDiv.innerHTML += `<p class="text-danger fs-4">-${expense}$</p>`;
+				lastExpensesElement.innerHTML += `<h4>- $${expense}</h4>`;
 			});
 
 			const expenseRate = transactionsDTO.expenseRate;
-			expenseRateDiv.innerText = expenseRate + "% increase rate";
+			expenseRateElement.innerText = `Increased by ${expenseRate}%`;
 		});
 }
