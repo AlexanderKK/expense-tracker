@@ -45,32 +45,36 @@ let myBarChart = new Chart(ctxB, {
   
 })
 
-let monthlyTable = document.getElementById("monthly-table")
-let monthlyTableLen = monthlyTable.rows.length
-let monthlyData = {labels: [], population: []}
+function monthlyExpensesLoad() {
+  setTimeout(() => {
+    let monthlyTable = document.getElementById("monthly-table")
+    let monthlyTableLen = monthlyTable.rows.length
+    let monthlyData = {labels: [], population: []}
 
-for (let i = 1; i < monthlyTableLen; i++) {
+    for (let i = 1; i < monthlyTableLen; i++) {
 
-  monthlyData.labels.push(monthlyTable.rows[i].cells[0].innerText)
-  monthlyData.population.push(monthlyTable.rows[i].cells[1].innerText)
-}
-let montlyTableFinished = document.getElementById("monthly-expenses-diagram")
-let ctxP = montlyTableFinished.getContext('2d')
-let myPieChart = new Chart(ctxP, {
-  type: 'pie',
-  data: {
-    labels: monthlyData.labels,
-    datasets: [{
-      data: monthlyData.population,
-      backgroundColor: ["#64B5F6", "#FFD54F", "#2196F3", "#FFC107", "#1976D2", "#FFA000", "#0D47A1"],
-      hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4", "#FF5722", "#0097A7"]
-    }]
-  },
-  options: {
-    aspectRatio: 1.5,
-    legend: {
-      display: true,
-      position: "right"
+      monthlyData.labels.push(monthlyTable.rows[i].cells[0].innerText)
+      monthlyData.population.push(monthlyTable.rows[i].cells[1].innerText)
     }
-  }
-})
+    let montlyTableFinished = document.getElementById("monthly-expenses-diagram")
+    let ctxP = montlyTableFinished.getContext('2d')
+    let myPieChart = new Chart(ctxP, {
+      type: 'pie',
+      data: {
+        labels: monthlyData.labels,
+        datasets: [{
+          data: monthlyData.population,
+          backgroundColor: ["#64B5F6", "#FFD54F", "#2196F3", "#FFC107", "#1976D2", "#FFA000", "#0D47A1"],
+          hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4", "#FF5722", "#0097A7"]
+        }]
+      },
+      options: {
+        aspectRatio: 1.5,
+        legend: {
+          display: true,
+          position: "right"
+        }
+      }
+    });
+  }, 1000);
+}

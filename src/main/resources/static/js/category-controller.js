@@ -23,6 +23,8 @@ function loadCategoriesExpenses() {
 		.then(json => {
 			const tableHead = monthlyExpensesTable.firstElementChild.firstElementChild;
 			const tableBody = monthlyExpensesTable.children[1];
+			tableHead.innerHTML = "";
+			tableBody.innerHTML = "";
 
 			json.forEach(categoryDTO => {
 				const categoryName = categoryDTO.categoryName;
@@ -35,6 +37,8 @@ function loadCategoriesExpenses() {
 						<td>${totalExpenses}</td>
 					</tr>`
 			});
+
+			monthlyExpensesLoad();
 		});
 }
 
