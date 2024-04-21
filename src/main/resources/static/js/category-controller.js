@@ -1,8 +1,42 @@
 const categoryAction = document.querySelector(".add-category .add-category__actions button");
 const categoryName = document.querySelector(".add-category #categoryName");
 const categoryIcon = document.querySelector(".add-category #iconSelect");
+const monthlyExpensesTable = document.querySelector("#monthly-table");
 
 let isCreateCategoryCancelled = false;
+
+window.addEventListener("load", loadCategoriesExpenses);
+tab1.addEventListener("click", loadCategoriesExpenses);
+
+function loadCategoriesExpenses() {
+	const requestOptions = {
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	};
+
+	const categoriesExpensesURL = `${window.location.origin}/categories/expenses`;
+
+	fetch(categoriesExpensesURL, requestOptions)
+		.then(response => response.json())
+		.then(json => {
+			const tableHead = monthlyExpensesTable.firstElementChild.firstElementChild;
+			const tableBody = monthlyExpensesTable.children[1];
+
+			json.forEach(categoryDTO => {
+				const categoryName = categoryDTO.categoryName;
+				const totalExpenses = categoryDTO.totalExpenses;
+
+				tableHead.innerHTML += `<th scope="col">${categoryName}</th>`;
+				tableBody.innerHTML +=
+					`<tr>
+						<th scope="row">${categoryName}</th>
+						<td>${totalExpenses}</td>
+					</tr>`
+			});
+		});
+}
 
 categoryAction.addEventListener("click", createCategory);
 

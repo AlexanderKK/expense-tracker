@@ -3,6 +3,7 @@ package me.alexander.expensetracker.web.rest;
 import jakarta.validation.Valid;
 import me.alexander.expensetracker.model.dto.category.AddCategoryDTO;
 import me.alexander.expensetracker.model.dto.category.CategoryDTO;
+import me.alexander.expensetracker.model.dto.category.CategoryTransactionsDTO;
 import me.alexander.expensetracker.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,13 @@ public class CategoryRestController {
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> categories() {
         List<CategoryDTO> categories = categoryService.getAllCategories();
+
+        return ResponseEntity.ok(categories);
+    }
+
+    @GetMapping("/expenses")
+    public ResponseEntity<List<CategoryTransactionsDTO>> categoriesExpenses() {
+        List<CategoryTransactionsDTO> categories = categoryService.getCategoriesExpenses();
 
         return ResponseEntity.ok(categories);
     }

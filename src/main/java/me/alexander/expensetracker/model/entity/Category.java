@@ -1,13 +1,12 @@
 package me.alexander.expensetracker.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -24,6 +23,9 @@ public class Category extends BaseEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate created = LocalDate.now();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    private Set<Transaction> transactions;
 
     public String getIcon() {
         return icon;
@@ -47,6 +49,14 @@ public class Category extends BaseEntity {
 
     public void setCreated(LocalDate created) {
         this.created = created;
+    }
+
+    public Set<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
 }

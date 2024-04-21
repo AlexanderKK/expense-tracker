@@ -47,13 +47,12 @@ let myBarChart = new Chart(ctxB, {
 
 let monthlyTable = document.getElementById("monthly-table")
 let monthlyTableLen = monthlyTable.rows.length
-let monthlyData = {labels: [], population: [], area: [] }
+let monthlyData = {labels: [], population: []}
 
 for (let i = 1; i < monthlyTableLen; i++) {
 
   monthlyData.labels.push(monthlyTable.rows[i].cells[0].innerText)
   monthlyData.population.push(monthlyTable.rows[i].cells[1].innerText)
-  monthlyData.area.push(monthlyTable.rows[i].cells[2].innerText)
 }
 let montlyTableFinished = document.getElementById("monthly-expenses-diagram")
 let ctxP = montlyTableFinished.getContext('2d')
