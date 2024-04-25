@@ -15,4 +15,6 @@ public interface TransactionService {
 
     double getMonthlyExpensesByDate(LocalDate firstDayOfPreviousMonth, LocalDate lastDayOfPreviousMonth);
 
+    List<Double> getYearlyExpenses();
+
 }

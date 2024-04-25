@@ -15,4 +15,6 @@ public interface IncomeService {
 
     double getMonthlyIncomeByDate(LocalDate firstDayOfPreviousMonth, LocalDate lastDayOfPreviousMonth);
 
+    List<Double> getYearlyIncome();
+
 }

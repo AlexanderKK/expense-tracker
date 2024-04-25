@@ -41,6 +41,7 @@
     <script defer src="/js/income-controller.js"></script>
     <script defer src="/js/balance-controller.js"></script>
     <script defer src="/js/category-controller.js"></script>
+    <script defer src="/js/home-controller.js"></script>
     <script defer src="/js/icon-picker.js"></script>
     <script defer src="/js/vendors/chart.js/Chart.min.js"></script>
     <script defer src="/js/dashboard.js"></script>
@@ -165,35 +166,8 @@
                     <div class="card-body border border-muted">
                       <div class="clearfix">
                         <h4 class="card-title float-left mb-5"><span class="fw-bold">Yearly Stats: </span><span class="ms-3">2024</span></h4>
-                        <div id="yearly-incomes" hidden>
-                            <span class="yearly-income income-jan"></span>
-                            <span class="yearly-income income-feb"></span>
-                            <span class="yearly-income income-mar"></span>
-                            <span class="yearly-income income-apr"></span>
-                            <span class="yearly-income income-may"></span>
-                            <span class="yearly-income income-jun"></span>
-                            <span class="yearly-income income-jul"></span>
-                            <span class="yearly-income income-aug"></span>
-                            <span class="yearly-income income-sep"></span>
-                            <span class="yearly-income income-oct"></span>
-                            <span class="yearly-income income-nov"></span>
-                            <span class="yearly-income income-dec"></span>
-                        </div>
-                        <div id="yearly-expenses" hidden>
-                            <span class="yearly-expense expense-jan"></span>
-                            <span class="yearly-expense expense-feb"></span>
-                            <span class="yearly-expense expense-mar"></span>
-                            <span class="yearly-expense expense-apr"></span>
-                            <span class="yearly-expense expense-may"></span>
-                            <span class="yearly-expense expense-jun"></span>
-                            <span class="yearly-expense expense-jul"></span>
-                            <span class="yearly-expense expense-aug"></span>
-                            <span class="yearly-expense expense-sep"></span>
-                            <span class="yearly-expense expense-oct"></span>
-                            <span class="yearly-expense expense-nov"></span>
-                            <span class="yearly-expense expense-dec"></span>
-                        </div>
-                    <canvas id="yearly-expenses-diagram"></canvas>
+
+                        <canvas id="yearly-expenses-diagram"></canvas>
                       </div>
                     </div>
                   </div>
@@ -202,14 +176,8 @@
                   <div class="card bg-light">
                     <div class="card-body border border-muted">
                       <h4 class="card-title mb-5"><span class="fw-bold">Monthly Stats: </span><span class="ms-3">April</span></h4>
-                            <table id="monthly-table" hidden>
-                                <thead>
-                                    <tr></tr>
-                                </thead>
 
-                                <tbody></tbody>
-                            </table>
-                        <canvas id="monthly-expenses-diagram"></canvas>
+                      <canvas id="monthly-expenses-diagram"></canvas>
                     </div>
                   </div>
                 </div>

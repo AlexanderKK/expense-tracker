@@ -34,6 +34,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/transactions/**").permitAll()
                         .requestMatchers("/incomes/**").permitAll()
                         .requestMatchers("/balance/**").permitAll()
+                        .requestMatchers("/home/**").permitAll()
                 ).build();
     }
 

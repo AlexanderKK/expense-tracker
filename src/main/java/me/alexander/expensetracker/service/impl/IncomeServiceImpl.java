@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Service
 public class IncomeServiceImpl implements IncomeService {
@@ -68,6 +70,35 @@ public class IncomeServiceImpl implements IncomeService {
                 .filter(income -> !income.getDate().isBefore(firstDayOfPreviousMonth) && !income.getDate().isAfter(lastDayOfPreviousMonth))
                 .mapToDouble(Income::getAmount)
                 .sum();
+    }
+
+    @Override
+    public List<Double> getYearlyIncome() {
+        int currentYear = LocalDate.now().getYear();
+
+        List<Double> yearlyIncome = incomeRepository.findAll()
+                .stream()
+                .filter(transaction -> transaction.getDate().getYear() == currentYear)
+                .map(transaction -> {
+                    IntStream intStream = IntStream.range(1, 13);
+
+                    return intStream
+                        .mapToObj(month -> {
+                            LocalDate firstDayOfMonth = LocalDate.now().withMonth(month).withDayOfMonth(1);
+                            LocalDate lastDayOfMonth = LocalDate.now().withMonth(month).with(TemporalAdjusters.lastDayOfMonth());
+
+                            double monthlyIncome = this.getMonthlyIncomeByDate(firstDayOfMonth, lastDayOfMonth);
+                            DecimalFormat incomeFormatter = new DecimalFormat("#.##");
+                            double formattedMonthlyIncome = Double.parseDouble(incomeFormatter.format(monthlyIncome));
+
+                            return formattedMonthlyIncome;
+                        })
+                        .toList();
+                })
+                .findFirst()
+                .orElse(null);
+
+        return yearlyIncome;
     }
 
 }

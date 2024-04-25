@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static me.alexander.expensetracker.constants.Messages.ENTITY_NOT_FOUND;
 
@@ -72,12 +73,41 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public double getMonthlyExpensesByDate(LocalDate firstDayOfPreviousMonth, LocalDate lastDayOfPreviousMonth) {
+    public double getMonthlyExpensesByDate(LocalDate firstDayOfMonth, LocalDate lastDayOfMonth) {
         return transactionRepository.findAll()
                 .stream()
-                .filter(transaction -> !transaction.getDate().isBefore(firstDayOfPreviousMonth) && !transaction.getDate().isAfter(lastDayOfPreviousMonth))
+                .filter(transaction -> !transaction.getDate().isBefore(firstDayOfMonth) && !transaction.getDate().isAfter(lastDayOfMonth))
                 .mapToDouble(Transaction::getExpense)
                 .sum();
+    }
+
+    @Override
+    public List<Double> getYearlyExpenses() {
+        int currentYear = LocalDate.now().getYear();
+
+        List<Double> yearlyExpenses = transactionRepository.findAll()
+                .stream()
+                .filter(transaction -> transaction.getDate().getYear() == currentYear)
+                .map(transaction -> {
+                    IntStream intStream = IntStream.range(1, 13);
+
+                    return intStream
+                        .mapToObj(month -> {
+                            LocalDate firstDayOfMonth = LocalDate.now().withMonth(month).withDayOfMonth(1);
+                            LocalDate lastDayOfMonth = LocalDate.now().withMonth(month).with(TemporalAdjusters.lastDayOfMonth());
+
+                            double monthlyExpenses = this.getMonthlyExpensesByDate(firstDayOfMonth, lastDayOfMonth);
+                            DecimalFormat expensesFormatter = new DecimalFormat("#.##");
+                            double formattedMonthlyExpenses = Double.parseDouble(expensesFormatter.format(monthlyExpenses));
+
+                            return formattedMonthlyExpenses;
+                        })
+                        .toList();
+                })
+                .findFirst()
+                .orElse(null);
+
+        return yearlyExpenses;
     }
 
 }
