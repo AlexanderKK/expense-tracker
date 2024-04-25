@@ -1,5 +1,4 @@
 const monthlyTableFinished = document.getElementById("monthly-expenses-diagram");
-
 const yearlyTableFinished = document.getElementById("yearly-expenses-diagram");
 
 const yearlyStats = {
@@ -7,12 +6,16 @@ const yearlyStats = {
   expenses: []
 };
 
+let chart1;
+let chart2;
+
 function loadYearlyStats(incomeArray, expensesArray) {
-  setTimeout(() => {
+    if(chart1 !== undefined) {
+        chart1.destroy();
+    }
+
     yearlyStats.income.length = 0;
     yearlyStats.expenses.length = 0;
-
-    console.log(yearlyStats.income, yearlyStats.expenses);
 
     incomeArray.forEach(income => {
       yearlyStats.income.push(income);
@@ -22,9 +25,9 @@ function loadYearlyStats(incomeArray, expensesArray) {
       yearlyStats.expenses.push(expense);
     });
 
-    console.log(yearlyStats.income, yearlyStats.expenses);
-
-    const ctxB = yearlyTableFinished.getContext('2d')
+    // Clear canvas
+    const ctxB = yearlyTableFinished.getContext('2d');
+    ctxB.clearRect(0, 0, yearlyTableFinished.width, yearlyTableFinished.height);
 
     const expenseGradient = ctxB.createLinearGradient(0, 0, 0, 170);
     expenseGradient.addColorStop(0.5, "red");
@@ -34,7 +37,7 @@ function loadYearlyStats(incomeArray, expensesArray) {
     incomeGradient.addColorStop(0.5, "limegreen");
     incomeGradient.addColorStop(1, "green");
 
-    const myBarChart = new Chart(ctxB, {
+    chart1 = new Chart(ctxB, {
       type: 'bar',
 
       data: {
@@ -43,12 +46,12 @@ function loadYearlyStats(incomeArray, expensesArray) {
           {
             label: "Income",
             data: yearlyStats.income,
-            backgroundColor: expenseGradient
+            backgroundColor: incomeGradient
           },
           {
             label: "Expenses",
             data: yearlyStats.expenses,
-            backgroundColor: incomeGradient
+            backgroundColor: expenseGradient
           }
         ]
       },
@@ -56,7 +59,6 @@ function loadYearlyStats(incomeArray, expensesArray) {
         aspectRatio: 2
       }
     });
-  }, 1000);
 }
 
 const monthlyData = {
@@ -64,11 +66,12 @@ const monthlyData = {
 };
 
 function loadMonthlyExpenses(categoryExpensesArray) {
-  setTimeout(() => {
+    if(chart2 !== undefined) {
+        chart2.destroy();
+    }
+
     monthlyData.labels.length = 0;
     monthlyData.population.length = 0;
-
-    console.log(monthlyData.labels, monthlyData.population);
 
     categoryExpensesArray.forEach(categoryExpense => {
       const categoryName = categoryExpense.categoryName;
@@ -78,12 +81,12 @@ function loadMonthlyExpenses(categoryExpensesArray) {
       monthlyData.population.push(totalExpenses);
     });
 
-    console.log(monthlyData.labels, monthlyData.population);
+    // Clear canvas
+    const ctxP = monthlyTableFinished.getContext('2d');
+    ctxP.clearRect(0, 0, monthlyTableFinished.width, monthlyTableFinished.height);
 
-    const ctxP = monthlyTableFinished.getContext('2d')
-
-    const myPieChart = new Chart(ctxP, {
-      type: 'pie',
+    chart2 = new Chart(ctxP, {
+      type: 'doughnut',
       data: {
         labels: monthlyData.labels,
         datasets: [{
@@ -100,5 +103,4 @@ function loadMonthlyExpenses(categoryExpensesArray) {
         }
       }
     });
-  }, 1000);
 }

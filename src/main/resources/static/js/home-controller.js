@@ -1,5 +1,3 @@
-const monthlyExpensesTable = document.querySelector("#monthly-table");
-
 window.addEventListener("load", loadData);
 tab1.addEventListener("click", loadData);
 
