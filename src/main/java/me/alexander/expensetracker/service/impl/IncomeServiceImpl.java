@@ -38,9 +38,10 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public double getTotalIncome() {
+    public double getMonthlyTotalIncome() {
         double totalIncome = incomeRepository.findAll()
                 .stream()
+                .filter(IncomeServiceImpl::isForCurrentMonth)
                 .mapToDouble(Income::getAmount)
                 .sum();
 
@@ -50,13 +51,14 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public List<Double> getLastIncomes() {
+    public List<Double> getMonthlyLastIncomes() {
         Comparator<Income> creationDateComparator = Comparator
                 .comparing(Income::getCreated)
                 .reversed();
 
         return incomeRepository.findAll()
                 .stream()
+                .filter(IncomeServiceImpl::isForCurrentMonth)
                 .sorted(creationDateComparator)
                 .map(Income::getAmount)
                 .limit(3)
@@ -99,6 +101,11 @@ public class IncomeServiceImpl implements IncomeService {
                 .orElse(null);
 
         return yearlyIncome;
+    }
+
+    private static boolean isForCurrentMonth(Income income) {
+        return income.getDate().getYear() == LocalDate.now().getYear() &&
+                income.getDate().getMonthValue() == LocalDate.now().getMonthValue();
     }
 
 }

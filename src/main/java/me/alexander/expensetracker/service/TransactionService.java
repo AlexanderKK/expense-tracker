@@ -9,9 +9,9 @@ public interface TransactionService {
 
     void createTransaction(AddTransactionDTO addTransactionDTO);
 
-    double getTotalExpenses();
+    double getMonthlyTotalExpenses();
 
-    List<Double> getLastExpenses();
+    List<Double> getMonthlyLastExpenses();
 
     double getMonthlyExpensesByDate(LocalDate firstDayOfPreviousMonth, LocalDate lastDayOfPreviousMonth);
 

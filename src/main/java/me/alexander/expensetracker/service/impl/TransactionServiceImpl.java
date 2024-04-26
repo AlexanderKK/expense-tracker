@@ -2,6 +2,7 @@ package me.alexander.expensetracker.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import me.alexander.expensetracker.model.dto.transaction.AddTransactionDTO;
+import me.alexander.expensetracker.model.entity.Income;
 import me.alexander.expensetracker.model.entity.Transaction;
 import me.alexander.expensetracker.repository.CategoryRepository;
 import me.alexander.expensetracker.repository.TransactionRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -47,9 +49,10 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public double getTotalExpenses() {
+    public double getMonthlyTotalExpenses() {
         double totalExpenses = transactionRepository.findAll()
                 .stream()
+                .filter(TransactionServiceImpl::isForCurrentMonth)
                 .mapToDouble(Transaction::getExpense)
                 .sum();
 
@@ -59,13 +62,14 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Double> getLastExpenses() {
+    public List<Double> getMonthlyLastExpenses() {
         Comparator<Transaction> creationDateComparator = Comparator
                 .comparing(Transaction::getCreated)
                 .reversed();
 
         return transactionRepository.findAll()
                 .stream()
+                .filter(TransactionServiceImpl::isForCurrentMonth)
                 .sorted(creationDateComparator)
                 .map(Transaction::getExpense)
                 .limit(3)
@@ -108,6 +112,11 @@ public class TransactionServiceImpl implements TransactionService {
                 .orElse(null);
 
         return yearlyExpenses;
+    }
+
+    static boolean isForCurrentMonth(Transaction transaction) {
+        return transaction.getDate().getYear() == LocalDate.now().getYear() &&
+                transaction.getDate().getMonthValue() == LocalDate.now().getMonthValue();
     }
 
 }

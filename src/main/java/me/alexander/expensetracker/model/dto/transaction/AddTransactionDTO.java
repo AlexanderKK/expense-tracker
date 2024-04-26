@@ -1,9 +1,6 @@
 package me.alexander.expensetracker.model.dto.transaction;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import me.alexander.expensetracker.validation.category.ExistingCategory;
 import me.alexander.expensetracker.validation.date.DateRange;
 
@@ -20,7 +17,7 @@ public class AddTransactionDTO {
     @Size(max = 100, message = "Description length should not exceed 100")
     private String description;
 
-    @DateRange(startDate = "2000-01-01", endDate = "2050-12-31")
+    @DateRange(startDate = "2000-01-01")
     @NotBlank(message = "Please pick a date")
     private String date;
 

@@ -31,14 +31,14 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     public BalanceDTO getBalance() {
-        double totalIncome = incomeService.getTotalIncome();
-        List<Double> lastIncomes = incomeService.getLastIncomes();
+        double totalIncome = incomeService.getMonthlyTotalIncome();
+        List<Double> lastIncomes = incomeService.getMonthlyLastIncomes();
         double incomeRate = rateGrowthService.getMonthlyIncomeRate();
 
         RecentIncomesDTO recentIncomesDTO = new RecentIncomesDTO(totalIncome, lastIncomes, incomeRate);
 
-        double totalExpenses = transactionService.getTotalExpenses();
-        List<Double> lastExpenses = transactionService.getLastExpenses();
+        double totalExpenses = transactionService.getMonthlyTotalExpenses();
+        List<Double> lastExpenses = transactionService.getMonthlyLastExpenses();
         double expenseRate = rateGrowthService.getMonthlyExpenseRate();
 
         RecentTransactionsDTO recentTransactionsDTO = new RecentTransactionsDTO(totalExpenses, lastExpenses, expenseRate);

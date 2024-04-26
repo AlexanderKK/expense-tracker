@@ -9,9 +9,9 @@ public interface IncomeService {
 
     void createIncome(AddIncomeDTO addIncomeDTO);
 
-    double getTotalIncome();
+    double getMonthlyTotalIncome();
 
-    List<Double> getLastIncomes();
+    List<Double> getMonthlyLastIncomes();
 
     double getMonthlyIncomeByDate(LocalDate firstDayOfPreviousMonth, LocalDate lastDayOfPreviousMonth);
 

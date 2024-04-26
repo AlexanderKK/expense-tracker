@@ -64,9 +64,9 @@ public class RateGrowthServiceImpl implements RateGrowthService {
             double monthlyRateGrowth = (lastMonthlyAmount - previousMonthlyAmount) / previousMonthlyAmount * 100;
 
             DecimalFormat rateGrowthFormat = new DecimalFormat("#.##");
-            rateGrowth = Double.parseDouble(
-                    rateGrowthFormat.format(monthlyRateGrowth)
-            );
+            rateGrowth = Math.abs(
+                    Double.parseDouble(
+                            rateGrowthFormat.format(monthlyRateGrowth)));
         }
 
         return rateGrowth;

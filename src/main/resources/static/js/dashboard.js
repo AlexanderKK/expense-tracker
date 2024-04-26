@@ -2,105 +2,109 @@ const monthlyTableFinished = document.getElementById("monthly-expenses-diagram")
 const yearlyTableFinished = document.getElementById("yearly-expenses-diagram");
 
 const yearlyStats = {
-  income: [],
-  expenses: []
+	income: [],
+	expenses: []
 };
 
 let chart1;
 let chart2;
 
 function loadYearlyStats(incomeArray, expensesArray) {
-    if(chart1 !== undefined) {
-        chart1.destroy();
-    }
+	if (incomeArray === null && expensesArray === null) {
+		return;
+	}
 
-    yearlyStats.income.length = 0;
-    yearlyStats.expenses.length = 0;
+	if (chart1 !== undefined) {
+		chart1.destroy();
+	}
 
-    incomeArray.forEach(income => {
-      yearlyStats.income.push(income);
-    });
+	yearlyStats.income.length = 0;
+	yearlyStats.expenses.length = 0;
 
-    expensesArray.forEach(expense => {
-      yearlyStats.expenses.push(expense);
-    });
+	if (incomeArray !== null) {
+		incomeArray.forEach(income => {
+			yearlyStats.income.push(income);
+		});
+	}
 
-    // Clear canvas
-    const ctxB = yearlyTableFinished.getContext('2d');
-    ctxB.clearRect(0, 0, yearlyTableFinished.width, yearlyTableFinished.height);
+	if (expensesArray !== null) {
+		expensesArray.forEach(expense => {
+			yearlyStats.expenses.push(expense);
+		});
+	}
 
-    const expenseGradient = ctxB.createLinearGradient(0, 0, 0, 170);
-    expenseGradient.addColorStop(0.5, "red");
-    expenseGradient.addColorStop(1, "orange");
+	const ctxB = yearlyTableFinished.getContext('2d');
 
-    const incomeGradient = ctxB.createLinearGradient(0, 0, 0, 170);
-    incomeGradient.addColorStop(0.5, "limegreen");
-    incomeGradient.addColorStop(1, "green");
+	const expenseGradient = ctxB.createLinearGradient(0, 0, 0, 170);
+	expenseGradient.addColorStop(0.5, "red");
+	expenseGradient.addColorStop(1, "orange");
 
-    chart1 = new Chart(ctxB, {
-      type: 'bar',
+	const incomeGradient = ctxB.createLinearGradient(0, 0, 0, 170);
+	incomeGradient.addColorStop(0.5, "limegreen");
+	incomeGradient.addColorStop(1, "green");
 
-      data: {
-        labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-        datasets: [
-          {
-            label: "Income",
-            data: yearlyStats.income,
-            backgroundColor: incomeGradient
-          },
-          {
-            label: "Expenses",
-            data: yearlyStats.expenses,
-            backgroundColor: expenseGradient
-          }
-        ]
-      },
-      options: {
-        aspectRatio: 2
-      }
-    });
+	chart1 = new Chart(ctxB, {
+		type: 'bar',
+
+		data: {
+			labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+			datasets: [
+				{
+					label: "Income",
+					data: yearlyStats.income,
+					backgroundColor: incomeGradient
+				},
+				{
+					label: "Expenses",
+					data: yearlyStats.expenses,
+					backgroundColor: expenseGradient
+				}
+			]
+		},
+		options: {
+			aspectRatio: 2
+		}
+	});
 }
 
 const monthlyData = {
-  labels: [], population: []
+	labels: [], population: []
 };
 
 function loadMonthlyExpenses(categoryExpensesArray) {
-    if(chart2 !== undefined) {
-        chart2.destroy();
-    }
+	if (chart2 !== undefined) {
+		chart2.destroy();
+	}
 
-    monthlyData.labels.length = 0;
-    monthlyData.population.length = 0;
+	monthlyData.labels.length = 0;
+	monthlyData.population.length = 0;
 
-    categoryExpensesArray.forEach(categoryExpense => {
-      const categoryName = categoryExpense.categoryName;
-      const totalExpenses = categoryExpense.totalExpenses;
+	categoryExpensesArray.forEach(categoryExpense => {
+		const categoryName = categoryExpense.categoryName;
+		const totalExpenses = categoryExpense.totalExpenses;
 
-      monthlyData.labels.push(categoryName);
-      monthlyData.population.push(totalExpenses);
-    });
+		monthlyData.labels.push(categoryName);
+		monthlyData.population.push(totalExpenses);
+	});
 
-    // Clear canvas
-    const ctxP = monthlyTableFinished.getContext('2d');
-    ctxP.clearRect(0, 0, monthlyTableFinished.width, monthlyTableFinished.height);
+	const ctxP = monthlyTableFinished.getContext('2d');
 
-    chart2 = new Chart(ctxP, {
-      type: 'doughnut',
-      data: {
-        labels: monthlyData.labels,
-        datasets: [{
-          data: monthlyData.population,
-          backgroundColor: ["#64B5F6", "#FFD54F", "#2196F3", "#FFC107", "#1976D2", "#FFA000", "#0D47A1"],
-          hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4", "#FF5722", "#0097A7"]
-        }]
-      },
-      options: {
-        aspectRatio: 1.5,
-        legend: {
-          display: true,
-          position: "right"
-        }
-      }
-    });
+	chart2 = new Chart(ctxP, {
+		type: 'doughnut',
+		data: {
+			labels: monthlyData.labels,
+			datasets: [{
+				data: monthlyData.population,
+				backgroundColor: ["#64B5F6", "#FFD54F", "#2196F3", "#FFC107", "#1976D2", "#FFA000", "#0D47A1"],
+				hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4", "#FF5722", "#0097A7"]
+			}]
+		},
+		options: {
+			aspectRatio: 1.5,
+			legend: {
+				display: true,
+				position: "right"
+			}
+		}
+	});
 }

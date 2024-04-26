@@ -53,7 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
 
             double totalExpenses = category.getTransactions()
                     .stream()
-                    .filter(transaction -> transaction.getDate().getMonthValue() == LocalDate.now().getMonthValue())
+                    .filter(TransactionServiceImpl::isForCurrentMonth)
                     .mapToDouble(Transaction::getExpense)
                     .sum();
 

@@ -14,7 +14,7 @@ public class AddIncomeDTO {
     @NotBlank(message = "Please enter a source")
     private String source;
 
-    @DateRange(startDate = "2000-01-01", endDate = "2050-12-31")
+    @DateRange(startDate = "2000-01-01")
     @NotBlank(message = "Please pick a date")
     private String date;
 

@@ -15,7 +15,7 @@ public @interface DateRange {
 
     String startDate();
 
-    String endDate();
+    String endDate() default "";
 
     String message() default "Date should be between {startDate} and {endDate}";
 

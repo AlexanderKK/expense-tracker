@@ -7,7 +7,10 @@
     <link href="/favicon.ico" rel="icon">
 
     <!-- MDI Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css" integrity="sha512-/k658G6UsCvbkGRB3vPXpsPHgWeduJwiWGPCGS14IQw3xpr63AEMdA8nMYG2gmYkXitQxDTn6iiK/2fD4T87qA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css"
+          integrity="sha512-/k658G6UsCvbkGRB3vPXpsPHgWeduJwiWGPCGS14IQw3xpr63AEMdA8nMYG2gmYkXitQxDTn6iiK/2fD4T87qA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
@@ -29,7 +32,8 @@
     <!-- Bootstrap -->
     <link href="/css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet">
     <script defer src="/js/bootstrap/bootstrap.min.js"></script>
-    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+    <link rel='stylesheet'
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
 
     <!-- Scripts -->
     <script defer src="/js/common.js"></script>
@@ -51,330 +55,368 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-custom navbar-mainbg">
-            <a class="navbar-brand navbar-logo" href="/">ExpenseTracker</a>
+<header>
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+        <a class="navbar-brand navbar-logo" href="/">ExpenseTracker</a>
 
-            <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars text-white"></i>
-            </button>
+        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto" role="tablist">
-                    <div class="hori-selector">
-                        <div class="left"></div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto" role="tablist">
+                <div class="hori-selector">
+                    <div class="left"></div>
 
-                        <div class="right"></div>
-                    </div>
+                    <div class="right"></div>
+                </div>
 
-                    <li class="nav-item active" role="presentation">
-                        <a class="nav-link active" id="tab-1" data-bs-toggle="tab" href="#tabpanel-1" role="tab" aria-controls="tabpanel-1" aria-selected="true"><i class="fas fa-tachometer-alt"></i>Home</a>
-                    </li>
+                <li class="nav-item active" role="presentation">
+                    <a class="nav-link active" id="tab-1" data-bs-toggle="tab" href="#tabpanel-1" role="tab"
+                       aria-controls="tabpanel-1" aria-selected="true"><i class="fas fa-tachometer-alt"></i>Home</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#tabpanel-2" role="tab" aria-controls="tabpanel-2" aria-selected="false"><i class="far fa-address-book"></i>Add Expenses</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#tabpanel-2" role="tab"
+                       aria-controls="tabpanel-2" aria-selected="false"><i class="far fa-address-book"></i>Add Expenses</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab-3" data-bs-toggle="tab" href="#tabpanel-3" role="tab" aria-controls="tabpanel-3" aria-selected="false"><i class="far fa-clone"></i>Categories</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab-3" data-bs-toggle="tab" href="#tabpanel-3" role="tab"
+                       aria-controls="tabpanel-3" aria-selected="false"><i class="far fa-clone"></i>Categories</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab-4" data-bs-toggle="tab" href="#tabpanel-4"><i class="far fa-calendar-alt"></i>Income</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab-4" data-bs-toggle="tab" href="#tabpanel-4"><i
+                            class="far fa-calendar-alt"></i>Income</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-    <div class="container-fluid tab-content p-5" id="tab-content">
-        <div class="tab-pane active" id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
-            <div class="row mb-4">
-                <div class="col-md-4 stretch-card grid-margin">
-                    <div class="card bg-gradient-primary card-img-holder text-white">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h3 class="font-weight-bold mb-3">Income<i class="mdi mdi-currency-usd mdi-24px float-right"></i></h3>
+<div class="container-fluid tab-content p-5" id="tab-content">
+    <div class="tab-pane active" id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
+        <div class="row mb-4">
+            <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-primary card-img-holder text-white">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="font-weight-bold mb-3">Income<i
+                                        class="mdi mdi-currency-usd mdi-24px float-right"></i></h3>
 
-                                    <div class="income__last"></div>
+                                <div class="income__last"></div>
 
-                                    <h6 class="income__rate card-text mt-3">Increased by 7%</h6>
+                                <h6 class="income__rate card-text mt-3">Increased by 7%</h6>
 
-                                    <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image">
-                                </div>
+                                <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image">
+                            </div>
 
-                                <div class="col-4">
-                                    <h3 class="font-weight-bold mb-3">Total:</h3>
+                            <div class="col-4">
+                                <h3 class="font-weight-bold mb-3">Total:</h3>
 
-                                    <h3 class="income__total"></h3>
-                                </div>
+                                <h3 class="income__total"></h3>
                             </div>
                         </div>
                     </div>
-              </div>
+                </div>
+            </div>
 
-              <div class="col-md-4 stretch-card grid-margin">
-                  <div class="card bg-gradient-success card-img-holder text-white">
-                      <div class="card-body">
-                          <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image" />
+            <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-success card-img-holder text-white">
+                    <div class="card-body">
+                        <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image"/>
 
-                          <h3 class="font-weight-bold mb-3">Balance <i class="mdi mdi-chart-line mdi-24px float-right"></i></h3>
+                        <h3 class="font-weight-bold mb-3">Balance <i
+                                class="mdi mdi-chart-line mdi-24px float-right"></i></h3>
 
-                          <h1 class="balance__total mb-5"></h1>
+                        <h1 class="balance__total mb-5"></h1>
 
-                          <h6 class="balance__rate card-text mt-3"></h6>
-                      </div>
-                  </div>
-              </div>
+                        <h6 class="balance__rate card-text mt-3"></h6>
+                    </div>
+                </div>
+            </div>
 
-              <div class="col-md-4 stretch-card grid-margin">
+            <div class="col-md-4 stretch-card grid-margin">
                 <div class="card bg-gradient-danger card-img-holder text-white">
-                  <div class="card-body">
-                    <div class="row">   
-                  <div class="col-8">
-                    <h3 class="font-weight-bold mb-3">Expenses<i class="mdi mdi-currency-usd-off mdi-24px float-right"></i></h3>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="font-weight-bold mb-3">Expenses<i
+                                        class="mdi mdi-currency-usd-off mdi-24px float-right"></i></h3>
 
-                    <div class="expenses__last"></div>
+                                <div class="expenses__last"></div>
 
-                    <h6 class="expenses__rate card-text mt-3"></h6>
+                                <h6 class="expenses__rate card-text mt-3"></h6>
 
-                    <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image" />
-                  </div>
-                  <div class="col-4">
-                    <h3 class="font-weight-bold mb-3">Total:</h3>
+                                <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image"/>
+                            </div>
 
-                    <h3 class="expenses__total"></h3>
-                  </div>
-                  </div>
+                            <div class="col-4">
+                                <h3 class="font-weight-bold mb-3">Total:</h3>
+
+                                <h3 class="expenses__total"></h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-              </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-md-5 grid-margin stretch-card">
-                  <div class="card bg-light">
+        <div class="row">
+            <div class="col-md-5 grid-margin stretch-card">
+                <div class="card bg-light">
                     <div class="card-body border border-muted">
-                      <div class="clearfix">
-                        <h4 class="card-title float-left mb-5"><span class="fw-bold">Yearly Stats: </span><span class="ms-3">2024</span></h4>
+                        <div class="clearfix">
+                            <h4 class="card-title float-left mb-5"><span class="fw-bold">Yearly Stats: </span><span
+                                    class="ms-3">2024</span></h4>
 
-                        <canvas id="yearly-expenses-diagram"></canvas>
-                      </div>
+                            <canvas id="yearly-expenses-diagram"></canvas>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col-md-4 grid-margin stretch-card">
-                  <div class="card bg-light">
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card bg-light">
                     <div class="card-body border border-muted">
-                      <h4 class="card-title mb-5"><span class="fw-bold">Monthly Stats: </span><span class="ms-3">April</span></h4>
+                        <h4 class="card-title mb-5"><span class="fw-bold">Monthly Stats: </span><span
+                                class="ms-3">April</span></h4>
 
-                      <canvas id="monthly-expenses-diagram"></canvas>
+                        <canvas id="monthly-expenses-diagram"></canvas>
                     </div>
-                  </div>
                 </div>
-                <div class="col-md-3 grid-margin stretch-card">
-                    <div class="card bg-light">
-                      <div class="card-body border border-muted">
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+                <div class="card bg-light">
+                    <div class="card-body border border-muted">
                         <!-- <h4 class="card-title mb-5"><span class="btn btn-primary fw-bold">Download Stats: </span><select class="ms-3 p-1"> -->
-                            <option value="pdf">PDF</option>
-<!--                        </select></h4>-->
-                      </div>
-                    </div>
-                  </div>
-              </div>
-        </div>
-
-        <div class="tab-pane" id="tabpanel-2" role="tabpanel" aria-labelledby="tab-2">
-            <div class="add-expenses m-auto">
-                <div class="mb-3"><h4>Add Expenses</h4></div>
-
-                <div class="add-expenses__inner">
-                    <div class="mb-3">
-                        <label class="sr-only form-label" for="expense">Add expenses</label>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💰</div>
-                            </div>
-
-                            <input type="text" class="form-control add-expenses__control rounded-end-2" id="expense" placeholder="50">
-
-                            <div class="invalid-feedback addTransaction-expense-error"></div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="category" class="sr-only form-label">Category</label>
-
-                        <select id="category" class="form-select add-expenses__control" aria-label="Category select"></select>
-
-                        <div class="invalid-feedback addTransaction-category-error"></div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="sr-only form-label" for="expenseDescription">Description</label>
-
-                        <div class="input-group">
-                            <input type="text" class="form-control add-expenses__control" id="expenseDescription" placeholder="Description">
-
-                            <div class="invalid-feedback addTransaction-description-error"></div>
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label sr-only" for="transactionDate">Date</label>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">📅</div>
-                            </div>
-
-                            <input type="text" id="transactionDate" class="form-control add-expenses__control date-select">
-
-                            <div class="invalid-feedback addTransaction-date-error"></div>
-                        </div>
-                    </div>
-
-                    <div class="add-expenses__actions">
-                        <button class="btn btn-primary mb-3">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane" id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
-            <div class="add-category m-auto">
-                <div>
-                    <h4>Add Category</h4>
-                </div> 
-
-                <div class="add-category__inner">
-                    <div class="mb-3" id="iconPicked">
-                        Selected Icon: <li class="mx-1 option badge rounded-pill text-bg-muted"><i class="mdi mdi-home mdi-24px"></i></li>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="categoryName" class="form-label" hidden>Add category</label>
-
-                        <input type="text" class="form-control add-category__control" id="categoryName" placeholder="Gasoline">
-
-                        <div class="invalid-feedback addCategory-name-error"></div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="iconSelect" class="form-label" hidden>Add category</label>
-
-                        <div class="dropdown mb-5">
-                            <input type="text" placeholder="Pick an icon" id="iconSelect" readonly>
-
-                            <ul class="options">
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0);"><i class="ms-2 mdi mdi-home mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);"><i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0)"><i class="ms-2 mdi mdi-home mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);"><i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);"><i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                                <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);"><i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label sr-only" for="categoryDate">Date</label>
-
-                        <div class="input-group" style="margin-top: 58px;">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">📅</div>
-                            </div>
-
-                            <input type="text" id="categoryDate" class="form-control add-expenses__control date">
-                        </div>
-                    </div>
-
-                    <div class="add-category__actions">
-                        <button class="btn btn-primary mb-3">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane" id="tabpanel-4" role="tabpanel" aria-labelledby="tab-4">
-            <div class="add-income m-auto">
-                <div class="mb-3">
-                    <h4>Add Income</h4>
-                </div>
-
-                <div class="add-income__inner">
-                    <div class="mb-3">
-                        <label class="sr-only form-label" for="incomeAmount">Add income</label>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💰</div>
-                            </div>
-
-                            <input type="text" class="form-control add-income__control rounded-end-2" id="incomeAmount" placeholder="50">
-
-                            <div class="invalid-feedback addIncome-amount-error"></div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="sr-only form-label" for="incomeSource">Source</label>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💵</div>
-                            </div>
-
-                            <input type="text" class="form-control add-income__control rounded-end-2" id="incomeSource" placeholder="Paycheck">
-
-                            <div class="invalid-feedback addIncome-source-error"></div>
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label sr-only" for="incomeDate">Date</label>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">📅</div>
-                            </div>
-
-                            <input type="text" id="incomeDate" class="form-control add-income__control date-select">
-
-                            <div class="invalid-feedback addIncome-date-error"></div>
-                        </div>
-                    </div>
-
-                    <div class="add-income__actions">
-                        <button class="btn btn-primary mb-3">Save</button>
+                        <option value="pdf">PDF</option>
+                        <!--                        </select></h4>-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="tab-pane" id="tabpanel-2" role="tabpanel" aria-labelledby="tab-2">
+        <div class="add-expenses m-auto">
+            <div class="mb-3"><h4>Add Expenses</h4></div>
+
+            <div class="add-expenses__inner">
+                <div class="mb-3">
+                    <label class="sr-only form-label" for="expense">Add expenses</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💰</div>
+                        </div>
+
+                        <input type="text" class="form-control add-expenses__control rounded-end-2" id="expense"
+                               placeholder="50">
+
+                        <div class="invalid-feedback addTransaction-expense-error"></div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="sr-only form-label">Category</label>
+
+                    <select id="category" class="form-select add-expenses__control"
+                            aria-label="Category select"></select>
+
+                    <div class="invalid-feedback addTransaction-category-error"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="sr-only form-label" for="expenseDescription">Description</label>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control add-expenses__control" id="expenseDescription"
+                               placeholder="Description">
+
+                        <div class="invalid-feedback addTransaction-description-error"></div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label sr-only" for="transactionDate">Date</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">📅</div>
+                        </div>
+
+                        <input type="text" id="transactionDate" class="form-control add-expenses__control date-select">
+
+                        <div class="invalid-feedback addTransaction-date-error"></div>
+                    </div>
+                </div>
+
+                <div class="add-expenses__actions">
+                    <button class="btn btn-primary mb-3">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
+        <div class="add-category m-auto">
+            <div>
+                <h4>Add Category</h4>
+            </div>
+
+            <div class="add-category__inner">
+                <div class="mb-3" id="iconPicked">
+                    Selected Icon:
+                    <li class="mx-1 option badge rounded-pill text-bg-muted"><i class="mdi mdi-home mdi-24px"></i></li>
+                </div>
+
+                <div class="mb-3">
+                    <label for="categoryName" class="form-label" hidden>Add category</label>
+
+                    <input type="text" class="form-control add-category__control" id="categoryName"
+                           placeholder="Gasoline">
+
+                    <div class="invalid-feedback addCategory-name-error"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="iconSelect" class="form-label" hidden>Add category</label>
+
+                    <div class="dropdown mb-5">
+                        <input type="text" placeholder="Pick an icon" id="iconSelect" readonly>
+
+                        <ul class="options">
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0);"><i
+                                    class="ms-2 mdi mdi-home mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);">
+                                <i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white"
+                                style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);">
+                                <i class="ms-2 mdi mdi-store mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);">
+                                <i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);">
+                                <i class="ms-2 mdi mdi-store mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);">
+                                <i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);">
+                                <i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);">
+                                <i class="ms-2 mdi mdi-store mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);">
+                                <i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0)"><i
+                                    class="ms-2 mdi mdi-home mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);">
+                                <i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white"
+                                style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);">
+                                <i class="ms-2 mdi mdi-store mdi-24px"></i></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label sr-only" for="categoryDate">Date</label>
+
+                    <div class="input-group" style="margin-top: 58px;">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">📅</div>
+                        </div>
+
+                        <input type="text" id="categoryDate" class="form-control add-expenses__control date">
+                    </div>
+                </div>
+
+                <div class="add-category__actions">
+                    <button class="btn btn-primary mb-3">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="tabpanel-4" role="tabpanel" aria-labelledby="tab-4">
+        <div class="add-income m-auto">
+            <div class="mb-3">
+                <h4>Add Income</h4>
+            </div>
+
+            <div class="add-income__inner">
+                <div class="mb-3">
+                    <label class="sr-only form-label" for="incomeAmount">Add income</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💰</div>
+                        </div>
+
+                        <input type="text" class="form-control add-income__control rounded-end-2" id="incomeAmount"
+                               placeholder="50">
+
+                        <div class="invalid-feedback addIncome-amount-error"></div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="sr-only form-label" for="incomeSource">Source</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💵</div>
+                        </div>
+
+                        <input type="text" class="form-control add-income__control rounded-end-2" id="incomeSource"
+                               placeholder="Paycheck">
+
+                        <div class="invalid-feedback addIncome-source-error"></div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label sr-only" for="incomeDate">Date</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">📅</div>
+                        </div>
+
+                        <input type="text" id="incomeDate" class="form-control add-income__control date-select">
+
+                        <div class="invalid-feedback addIncome-date-error"></div>
+                    </div>
+                </div>
+
+                <div class="add-income__actions">
+                    <button class="btn btn-primary mb-3">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
