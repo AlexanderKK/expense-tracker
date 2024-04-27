@@ -2,7 +2,7 @@ package me.alexander.expensetracker.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import me.alexander.expensetracker.model.dto.transaction.AddTransactionDTO;
-import me.alexander.expensetracker.model.entity.Income;
+import me.alexander.expensetracker.model.dto.transaction.TransactionDTO;
 import me.alexander.expensetracker.model.entity.Transaction;
 import me.alexander.expensetracker.repository.CategoryRepository;
 import me.alexander.expensetracker.repository.TransactionRepository;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -112,6 +112,24 @@ public class TransactionServiceImpl implements TransactionService {
                 .orElse(null);
 
         return yearlyExpenses;
+    }
+
+    @Override
+    public List<TransactionDTO> getAllTransactions() {
+        return transactionRepository.findAll()
+                .stream()
+                .map(transaction -> {
+                    TransactionDTO transactionDTO = mapper.map(transaction, TransactionDTO.class);
+                    transactionDTO.setCategory(transaction.getCategory().getName());
+
+                    LocalDate date = transaction.getDate();
+                    String formattedDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                    transactionDTO.setDate(formattedDate);
+
+                    return transactionDTO;
+                })
+                .sorted((f, s) -> s.getDate().compareTo(f.getDate()))
+                .toList();
     }
 
     static boolean isForCurrentMonth(Transaction transaction) {

@@ -25,6 +25,7 @@ public class Transaction extends BaseEntity {
     private Category category;
 
     @Size(max = 100, message = "Description length should not exceed 100")
+    @Column
     private String description;
 
     @NotNull(message = "Transaction date should not be empty")

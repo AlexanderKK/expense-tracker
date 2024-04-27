@@ -3,6 +3,9 @@ const expenseCategory = document.querySelector(".add-expenses #category");
 const expenseDescription = document.querySelector(".add-expenses #expenseDescription");
 const expenseDate = document.querySelector(".add-expenses #transactionDate");
 const expenseControls = document.querySelectorAll(".add-expenses__control");
+const expensesTableBody = document.querySelector(".expenses-table-content");
+const tab3 = document.getElementById("tab-3");
+
 let isCreateTransactionCancelled = false;
 
 expenseInput.addEventListener("keyup", function(evt) {
@@ -40,6 +43,47 @@ expenseCategory.addEventListener("change", function(evt) {
  */
 addExpensesBtn.addEventListener("click", createTransaction);
 
+window.addEventListener("load", getTransactions);
+tab3.addEventListener("click", getTransactions);
+
+function getTransactions() {
+	const requestOptions = {
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+		}
+	};
+
+	const getTransactionsURL = `${location.origin}/transactions`;
+
+	fetch(getTransactionsURL, requestOptions)
+		.then(response => response.json())
+		.then(transactions => {
+			expensesTableBody.innerHTML = "";
+
+			transactions.forEach((transaction, index) => {
+				const tableRow =
+					`<tr>
+						<td>${index + 1}</td>
+						<td>${transaction.category}</td>
+						<td>${transaction.expense}</td>
+						<td>${transaction.description}</td>
+						<td>${transaction.date}</td>
+<!--						<td>May 15, 2015</td>-->
+						<td>
+							<button class="badge badge-gradient-success">Edit <i
+									class="mdi mdi-pencil mdi-32px"></i></button>
+							<button class="badge badge-gradient-danger ms-4">Delete <i
+									class="mdi mdi-delete-empty mdi-32px"></i></button>
+						</td>
+					</tr>`;
+
+				expensesTableBody.innerHTML += tableRow;
+			});
+		})
+		.catch(error => console.log(error));
+}
+
 function createTransaction() {
 	if(isCreateTransactionCancelled) {
 		return;
@@ -62,7 +106,7 @@ function createTransaction() {
 		})
 	};
 
-	const addTransactionURL = `${window.location.origin}/transactions/add`;
+	const addTransactionURL = `${location.origin}/transactions/add`;
 
 	fetch(addTransactionURL, requestOptions)
 		.then(response => {

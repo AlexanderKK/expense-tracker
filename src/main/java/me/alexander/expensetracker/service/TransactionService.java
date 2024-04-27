@@ -1,6 +1,7 @@
 package me.alexander.expensetracker.service;
 
 import me.alexander.expensetracker.model.dto.transaction.AddTransactionDTO;
+import me.alexander.expensetracker.model.dto.transaction.TransactionDTO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,5 +17,7 @@ public interface TransactionService {
     double getMonthlyExpensesByDate(LocalDate firstDayOfPreviousMonth, LocalDate lastDayOfPreviousMonth);
 
     List<Double> getYearlyExpenses();
+
+    List<TransactionDTO> getAllTransactions();
 
 }
