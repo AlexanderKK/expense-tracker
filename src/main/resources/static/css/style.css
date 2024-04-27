@@ -626,6 +626,7 @@ p {
         backdrop-filter: blur(4.5px);
         -webkit-backdrop-filter: blur(4.5px);
         border: 1px solid rgba(255, 255, 255, 0.18);
+        margin-top: 40px;
       
         /* default state of dropdown list */
         /* it is not visible */
@@ -682,4 +683,26 @@ p {
         list-style-type: none;
         padding: 0;
         margin: 0;
+      }
+
+      .badge-gradient-success {
+        font-size: 1em;
+        padding: 8px 8px 8px 16px !important;
+        background: linear-gradient(to right, #84d9d2, #07cdae);
+      }
+
+      .badge-gradient-danger {
+        font-size: 1em;
+        padding: 8px 8px 8px 16px !important;
+        background: linear-gradient(to right, #d98484, #cd0707);
+      }
+
+      .badge:hover {
+        opacity: 0.75 !important;
+      }
+
+      .selected-icon {
+        position: absolute;
+        top: 2px;
+        left: 15px;
       }

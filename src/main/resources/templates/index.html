@@ -17,41 +17,41 @@
 
     <!-- Toastify-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script defer src="/js/toastify/toastify.js"></script>
+    <script defer src="../static/js/toastify/toastify.js"></script>
 
     <!-- Sound Manager -->
-    <script defer src="/js/soundmanager/lowLag.js"></script>
-    <script defer src="/js/soundmanager/soundmanager2.js"></script>
+    <script defer src="../static/js/soundmanager/lowLag.js"></script>
+    <script defer src="../static/js/soundmanager/soundmanager2.js"></script>
 
     <!-- jQuery-->
-    <script defer src="/js/jquery/jquery-3.7.1.min.js"></script>
+    <script defer src="../static/js/jquery/jquery-3.7.1.min.js"></script>
 
     <!-- Date Picker -->
-    <script defer src="/js/bootstrap/datepicker.js"></script>
+    <script defer src="../static/js/bootstrap/datepicker.js"></script>
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet">
-    <script defer src="/js/bootstrap/bootstrap.min.js"></script>
+    <link href="../static/css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <script defer src="../static/js/bootstrap/bootstrap.min.js"></script>
     <link rel='stylesheet'
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
 
     <!-- Scripts -->
-    <script defer src="/js/common.js"></script>
-    <script defer src="/js/dates.js"></script>
-    <script defer src="/js/navbar.js"></script>
-    <script defer src="/js/popups.js"></script>
-    <script defer src="/js/expenses.js"></script>
-    <script defer src="/js/vendors/chart.js/Chart.min.js"></script>
-    <script defer src="/js/expenses-controller.js"></script>
-    <script defer src="/js/income-controller.js"></script>
-    <script defer src="/js/balance-controller.js"></script>
-    <script defer src="/js/category-controller.js"></script>
-    <script defer src="/js/home-controller.js"></script>
-    <script defer src="/js/icon-picker.js"></script>
-    <script defer src="/js/dashboard.js"></script>
+    <script defer src="../static/js/common.js"></script>
+    <script defer src="../static/js/dates.js"></script>
+    <script defer src="../static/js/navbar.js"></script>
+    <script defer src="../static/js/popups.js"></script>
+    <script defer src="../static/js/expenses.js"></script>
+    <script defer src="../static/js/vendors/chart.js/Chart.min.js"></script>
+    <script defer src="../static/js/expenses-controller.js"></script>
+    <script defer src="../static/js/income-controller.js"></script>
+    <script defer src="../static/js/balance-controller.js"></script>
+    <script defer src="../static/js/category-controller.js"></script>
+    <script defer src="../static/js/home-controller.js"></script>
+    <script defer src="../static/js/icon-picker.js"></script>
+    <script defer src="../static/js/dashboard.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
 <body>
@@ -78,18 +78,18 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#tabpanel-2"><i
-                            class="far fa-calendar-alt"></i>Income</a>
+                    <a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#tabpanel-2" role="tab"
+                       aria-controls="tabpanel-2" aria-selected="false"><i class="far fa-address-book"></i>Add Expenses</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" id="tab-3" data-bs-toggle="tab" href="#tabpanel-3" role="tab"
-                       aria-controls="tabpanel-3" aria-selected="false"><i class="far fa-address-book"></i>Expenses</a>
+                       aria-controls="tabpanel-3" aria-selected="false"><i class="far fa-clone"></i>Categories</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="tab-4" data-bs-toggle="tab" href="#tabpanel-4" role="tab"
-                       aria-controls="tabpanel-4" aria-selected="false"><i class="far fa-clone"></i>Categories</a>
+                    <a class="nav-link" id="tab-4" data-bs-toggle="tab" href="#tabpanel-4"><i
+                            class="far fa-calendar-alt"></i>Income</a>
                 </li>
 
                 <li class="nav-item">
@@ -117,9 +117,9 @@
 
                                 <div class="income__last"></div>
 
-                                <h6 class="income__rate card-text mt-3">Increased by 7%</h6>
+                                <h6 class="income__rate card-text mt-3"></h6>
 
-                                <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image">
+                                <img src="../static/images/circle.svg" class="card-img-absolute" alt="circle-image">
                             </div>
 
                             <div class="col-4">
@@ -135,7 +135,7 @@
             <div class="col-md-4 stretch-card grid-margin">
                 <div class="card bg-gradient-success card-img-holder text-white">
                     <div class="card-body">
-                        <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image"/>
+                        <img src="../static/images/circle.svg" class="card-img-absolute" alt="circle-image"/>
 
                         <h3 class="font-weight-bold mb-3">Balance <i
                                 class="mdi mdi-chart-line mdi-24px float-right"></i></h3>
@@ -159,7 +159,7 @@
 
                                 <h6 class="expenses__rate card-text mt-3"></h6>
 
-                                <img src="/images/circle.svg" class="card-img-absolute" alt="circle-image"/>
+                                <img src="../static/images/circle.svg" class="card-img-absolute" alt="circle-image"/>
                             </div>
 
                             <div class="col-4">
@@ -209,64 +209,8 @@
     </div>
 
     <div class="tab-pane" id="tabpanel-2" role="tabpanel" aria-labelledby="tab-2">
-        <div class="add-income m-auto">
-            <div class="mb-3">
-                <h4>Add Income</h4>
-            </div>
-
-            <div class="add-income__inner">
-                <div class="mb-3">
-                    <label class="sr-only form-label" for="incomeAmount">Add income</label>
-
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💰</div>
-                        </div>
-
-                        <input type="text" class="form-control add-income__control rounded-end-2" id="incomeAmount"
-                               placeholder="50">
-
-                        <div class="invalid-feedback addIncome-amount-error"></div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="sr-only form-label" for="incomeSource">Source</label>
-
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💵</div>
-                        </div>
-
-                        <input type="text" class="form-control add-income__control rounded-end-2" id="incomeSource"
-                               placeholder="Paycheck">
-
-                        <div class="invalid-feedback addIncome-source-error"></div>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <label class="form-label sr-only" for="incomeDate">Date</label>
-
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">📅</div>
-                        </div>
-
-                        <input type="text" id="incomeDate" class="form-control add-income__control date-select">
-
-                        <div class="invalid-feedback addIncome-date-error"></div>
-                    </div>
-                </div>
-
-                <div class="add-income__actions">
-                    <button class="btn btn-primary mb-3">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab-pane" id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
+        <div class="row">
+            <div class="col-md-5">
         <div class="add-expenses m-auto">
             <div class="mb-3"><h4>Add Expenses</h4></div>
 
@@ -326,18 +270,50 @@
             </div>
         </div>
     </div>
+            <div class="col-md-7 grid-margin stretch-card">
+              <div class="card">
+                <div class="">
+                  <h4 class="card-title mb-3 fw-bold">Expenses:</h4>
+                  <div class="table-responsive">
+                    <table class="table expenses-table">
+                      <thead>
+                        <tr>
+                          <th> # </th>
+                          <th> Category </th>
+                          <th> Amount </th>
+                          <th> Description </th>
+                          <th> Date created </th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody class="expenses-table-content">
+                        <tr>
+                          <td> 1 </td>
+                          <td> Gasoline </td>
+                          <td> $50,00 </td>
+                          <td> Gas </td>
+                          <td> May 15, 2015 </td>
+                          <td>
+                            <button class="badge badge-gradient-success">Edit <i class="mdi mdi-pencil mdi-32px"></i></button>
+                                        <button class="badge badge-gradient-danger ms-4">Delete <i class="mdi mdi-delete-empty mdi-32px"></i></button>
+                                        </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
 
-    <div class="tab-pane" id="tabpanel-4" role="tabpanel" aria-labelledby="tab-4">
+    <div class="tab-pane" id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
         <div class="add-category m-auto">
-            <div>
+            <div class="mb-3">
                 <h4>Add Category</h4>
             </div>
 
             <div class="add-category__inner">
-                <div class="mb-3" id="iconPicked">
-                    Selected Icon:
-                    <li class="mx-1 option badge rounded-pill text-bg-muted"><i class="mdi mdi-home mdi-24px"></i></li>
-                </div>
 
                 <div class="mb-3">
                     <label for="categoryName" class="form-label" hidden>Add category</label>
@@ -352,50 +328,54 @@
                     <label for="iconSelect" class="form-label" hidden>Add category</label>
 
                     <div class="dropdown mb-5">
-                        <input type="text" placeholder="Pick an icon" id="iconSelect" readonly>
+                        <input type="text" id="iconSelect" readonly>
 
                         <ul class="options">
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0);"><i
-                                    class="ms-2 mdi mdi-home mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);">
-                                <i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);">
-                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white"
-                                style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);">
-                                <i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);">
-                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);">
-                                <i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);">
-                                <i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);">
-                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);">
-                                <i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(255, 132, 0);">
-                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(6, 255, 251);">
-                                <i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-dark" style="background: rgb(255, 255, 0);">
-                                <i class="ms-2 mdi mdi-store mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(120, 68, 0);">
-                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(111, 223, 0);">
-                                <i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(0, 125, 0)"><i
-                                    class="ms-2 mdi mdi-home mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(11, 96, 206);">
-                                <i class="ms-2 mdi mdi-file-document-outline mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(98, 64, 232);">
-                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white"
-                                style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-24px"></i></li>
-                            <li class="mx-1 option badge rounded-pill text-white" style="background: rgb(224, 20, 20);">
-                                <i class="ms-2 mdi mdi-store mdi-24px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(0, 125, 0);"><i
+                                    class="ms-2 mdi mdi-home mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(11, 96, 206);">
+                                <i class="ms-2 mdi mdi-file-document-outline mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(98, 64, 232);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option"
+                                style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(224, 20, 20);">
+                                <i class="ms-2 mdi mdi-store mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(255, 132, 0);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(6, 255, 251);">
+                                <i class="ms-2 mdi mdi-pizza mdi-20px"></i></li>
+                                <li class="mx-1 option badge rounded-pill text-dark icon-option" style="background: rgb(255, 240, 24);">
+                                    <i class="ms-2 mdi mdi-pizza mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(120, 68, 0);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(111, 223, 0);">
+                                <i class="ms-2 mdi mdi-pizza mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(255, 132, 0);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(6, 255, 251);">
+                                <i class="ms-2 mdi mdi-pizza mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-dark icon-option" style="background: rgb(255, 240, 24);">
+                                <i class="ms-2 mdi mdi-pizza mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(120, 68, 0);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(111, 223, 0);">
+                                <i class="ms-2 mdi mdi-pizza mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(0, 125, 0)"><i
+                                    class="ms-2 mdi mdi-home mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(11, 96, 206);">
+                                <i class="ms-2 mdi mdi-file-document-outline mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(98, 64, 232);">
+                                <i class="ms-2 mdi mdi-bottle-tonic-plus mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option"
+                                style="background: rgb(194, 34, 243);"><i class="ms-2 mdi mdi-pizza mdi-20px"></i></li>
+                            <li class="mx-1 option badge rounded-pill text-white icon-option" style="background: rgb(224, 20, 20);">
+                                <i class="ms-2 mdi mdi-store mdi-20px"></i></li>
                         </ul>
+                        <div class="selected-icon" data-icon="">Selected icon:
+                        <div class="option badge rounded-pill text-white" style="background: none">
+                            <i class="ms-2 mdi mdi-store mdi-20px"></i></div>
+                        </div>
                     </div>
                 </div>
 
@@ -417,6 +397,65 @@
             </div>
         </div>
     </div>
+
+    <div class="tab-pane" id="tabpanel-4" role="tabpanel" aria-labelledby="tab-4">
+        <div class="add-income m-auto">
+            <div class="mb-3">
+                <h4>Add Income</h4>
+            </div>
+
+            <div class="add-income__inner">
+                <div class="mb-3">
+                    <label class="sr-only form-label" for="incomeAmount">Add income</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💰</div>
+                        </div>
+
+                        <input type="text" class="form-control add-income__control rounded-end-2" id="incomeAmount"
+                               placeholder="50">
+
+                        <div class="invalid-feedback addIncome-amount-error"></div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="sr-only form-label" for="incomeSource">Source</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">💵</div>
+                        </div>
+
+                        <input type="text" class="form-control add-income__control rounded-end-2" id="incomeSource"
+                               placeholder="Paycheck">
+
+                        <div class="invalid-feedback addIncome-source-error"></div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label sr-only" for="incomeDate">Date</label>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">📅</div>
+                        </div>
+
+                        <input type="text" id="incomeDate" class="form-control add-income__control date-select">
+
+                        <div class="invalid-feedback addIncome-date-error"></div>
+                    </div>
+                </div>
+
+                <div class="add-income__actions">
+                    <button class="btn btn-primary mb-3">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
+<script src="../static/js/seeder.js"></script>
 </html>
