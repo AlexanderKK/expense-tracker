@@ -1,4 +1,11 @@
 const dates = document.querySelectorAll(".date");
+const currentYearSpan = document.querySelector("#current-year");
+const currentMonthSpan = document.querySelector("#current-month");
+
+/**
+ * Load current year and current month
+ */
+loadCurrentMonthAndYear();
 
 /**
  * Load current dates
@@ -34,6 +41,13 @@ dateInput.on('changeDate', function (evt) {
 
 	this.classList.remove("is-invalid");
 });
+
+function loadCurrentMonthAndYear() {
+	const currentDate = new Date();
+
+	currentYearSpan.innerText = currentDate.getFullYear();
+	currentMonthSpan.innerText = currentDate.toLocaleString('default', { month: 'long' });
+}
 
 function setCurrentDatePickerDate() {
 	dateInput.datepicker({
