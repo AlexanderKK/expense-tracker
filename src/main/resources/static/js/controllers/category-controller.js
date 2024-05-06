@@ -51,7 +51,7 @@ function createCategory() {
 		})
 	};
 
-	const addCategoryURL = `${window.location.origin}/categories/add`;
+	const addCategoryURL = `${location.origin}/categories/add`;
 
 	fetch(addCategoryURL, requestOptions)
 		.then(response => {

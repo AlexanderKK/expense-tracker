@@ -19,7 +19,7 @@ public class Category extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @NotNull(message = "Category date should not be empty")
+    @NotNull(message = "Creation date should not be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate created = LocalDate.now();

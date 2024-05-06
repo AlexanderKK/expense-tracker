@@ -27,14 +27,17 @@ public class SecurityConfiguration {
                                 cps -> cps.policyDirectives("script-src 'self'")
                         )
                 ).authorizeHttpRequests(requests -> requests
+                        // Anonymous
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/sounds/**").permitAll()
                         .requestMatchers("/").permitAll()
-                        .requestMatchers("/categories/**").permitAll()
-                        .requestMatchers("/transactions/**").permitAll()
-                        .requestMatchers("/incomes/**").permitAll()
-                        .requestMatchers("/balance/**").permitAll()
-                        .requestMatchers("/home/**").permitAll()
+
+                        // Users
+                        .requestMatchers("/categories/**").hasRole("USER")
+                        .requestMatchers("/transactions/**").hasRole("USER")
+                        .requestMatchers("/incomes/**").hasRole("USER")
+                        .requestMatchers("/balance/**").hasRole("USER")
+                        .requestMatchers("/home/**").hasRole("USER")
                 ).build();
     }
 

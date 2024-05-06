@@ -193,13 +193,13 @@ p {
 
 .add-expenses__inner,
 .add-category__inner,
-.add-income__inner {
+.add-income__inner,
+.login__inner,
+.register__inner {
     max-width: 650px;
 }
 
-.add-expenses__actions button,
-.add-category__actions button,
-.add-income__actions button {
+.btn-actions {
     background-color: #5161ce;
     border: 1px solid #5161ce;
     padding: 10px 40px;
@@ -207,9 +207,7 @@ p {
     transition: .3s background-color, .3s color, transform 2s cubic-bezier(0.41, 0.68, 0.42, 1.23);
 }
 
-.add-expenses__actions button:hover,
-.add-category__actions button:hover,
-.add-income__actions button:hover{
+.btn-actions:hover {
     background-color: #fff;
     color: #5161ce;
     transform: translateX(15px);
