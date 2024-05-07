@@ -1,16 +1,23 @@
+const backgroundColorSuccess = "linear-gradient(to right, rgb(4, 151, 146), rgb(4 222 145))";
+
 const transactionAddSuccessOptions = {
 	message: "Expenses saved successfully",
-	backgroundColor: "linear-gradient(to right, rgb(4, 151, 146), rgb(4 222 145))"
+	backgroundColor: backgroundColorSuccess
 };
 
 const categoryAddSuccessOptions = {
 	message: "Category saved successfully",
-	backgroundColor: "linear-gradient(to right, rgb(4, 151, 146), rgb(50 222 145))"
+	backgroundColor: backgroundColorSuccess
 };
 
 const incomeAddSuccessOptions = {
 	message: "Income saved successfully",
-	backgroundColor: "linear-gradient(to right, rgb(4, 151, 146), rgb(50 222 145))"
+	backgroundColor: backgroundColorSuccess
+};
+
+const userRegisteredSuccessOptions = {
+	message: "User registered successfully",
+	backgroundColor: backgroundColorSuccess
 };
 
 function toastify(toastOptions) {

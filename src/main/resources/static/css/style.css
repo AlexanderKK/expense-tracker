@@ -527,7 +527,8 @@ p {
       .card-columns .card {
         display: inline-block;
         width: 100%;
-        margin-bottom: 0.75rem; } }
+        margin-bottom: 0.75rem; }
+  }
   
   .card-inverse-primary {
     background: rgba(182, 109, 255, 0.2);
@@ -569,138 +570,142 @@ p {
     border: 1px solid theme-color-level(#3e4b5b, 1);
     color: theme-color-level(#3e4b5b, 3); }
 
-    .dropdown {
-        width: 650px;
-        height: 40px;
-        background: white;
-        border-radius: 9px;
-        z-index: 9999;
-        margin-bottom: -40px !important;
-      }
-      
-      /* arrow CSS icon */
-      
-      .dropdown::before {
-        content: "";
-        position: absolute;
-        right: 20px;
-        top: 12px;
-        z-index: 9999;
-        width: 12px;
-        height: 12px;
-        border: 2px solid grey;
-        border-top: transparent;
-        border-right: transparent;
-        transform: rotate(-45deg);
-        pointer-events: none;
-        transition: all 0.3s linear;
-      }
-      .dropdown input {
-        width: 100%;
-        height: 100%;
-        border-radius: 5px;
-        padding: 2px 15px;
-        cursor: pointer;
-        border: none;
-        outline: none;
-        border: 1px solid #dee2e6;
-        user-select: none;
-        font-family: 'Roboto', sans-serif;
-        font-size: var(--bs-body-font-size);
-      }
-      .dropdown .options {
-        width: 100%;
-        border-radius: 9px;
-        padding: 8px;
-        cursor: pointer;
-        background: white;
-        border: none;
-        outline: none;
-        box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
-        font-size: 20px;
-        overflow: hidden;
-        transition: all 0.5s ease;  
-        background: rgba(255, 255, 255, 0.55);
-        backdrop-filter: blur(4.5px);
-        -webkit-backdrop-filter: blur(4.5px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        margin-top: 40px;
-      
-        /* default state of dropdown list */
-        /* it is not visible */
-        opacity: 0;
-        transform: translateY(-50px);
-        visibility: hidden;
-      }
-      .dropdown .options .option {
-        padding: 16px;
-        border-radius: 9px;
-        transition: all 0.2s ease;
-        color: #292d34;
-      }
-      .dropdown .options .option:not(:last-of-type) {
-        margin-bottom: 8px;
-      }
-      .dropdown .options .option:hover {
-        color: white;
-        background: #5bc5fa;
-        box-shadow: 0 10px 25px rgba(42, 179, 248, 0.4);
-      }
-      
-      .option:hover{
-        opacity: 50%;
-      }
-      
-      
-      /* opened state of dropdown list */
-      .dropdown.opened .options {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-      .dropdown.opened::before {
-        transform: rotate(-225deg);
-        top: 18px;
-      }
+.dropdown {
+    width: 650px;
+    height: 40px;
+    background: white;
+    border-radius: 9px;
+    z-index: 9999;
+    margin-bottom: -40px !important;
+  }
 
-      .badge{
-        padding: 12px 4px 12px 4px !important;
-      }
-      
-      .legend-dots {
-        width: 1rem;
-        height: 1rem;
-        border-radius: 100%;
-        display: inline-block;
-        vertical-align: text-bottom;
-        margin-right: .5rem; 
-        margin-left: .5rem;
-      }
+/* arrow CSS icon */
 
-      ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-      }
+.dropdown::before {
+content: "";
+position: absolute;
+right: 20px;
+top: 12px;
+z-index: 9999;
+width: 12px;
+height: 12px;
+border: 2px solid grey;
+border-top: transparent;
+border-right: transparent;
+transform: rotate(-45deg);
+pointer-events: none;
+transition: all 0.3s linear;
+}
+.dropdown input {
+width: 100%;
+height: 100%;
+border-radius: 5px;
+padding: 2px 15px;
+cursor: pointer;
+border: none;
+outline: none;
+border: 1px solid #dee2e6;
+user-select: none;
+font-family: 'Roboto', sans-serif;
+font-size: var(--bs-body-font-size);
+}
+.dropdown .options {
+width: 100%;
+border-radius: 9px;
+padding: 8px;
+cursor: pointer;
+background: white;
+border: none;
+outline: none;
+box-shadow: 0 10px 25px rgba(124, 130, 141, 0.2);
+font-size: 20px;
+overflow: hidden;
+transition: all 0.5s ease;
+background: rgba(255, 255, 255, 0.55);
+backdrop-filter: blur(4.5px);
+-webkit-backdrop-filter: blur(4.5px);
+border: 1px solid rgba(255, 255, 255, 0.18);
+margin-top: 40px;
 
-      .badge-gradient-success {
-        font-size: 1em;
-        padding: 8px 8px 8px 16px !important;
-        background: linear-gradient(to right, #84d9d2, #07cdae);
-      }
+/* default state of dropdown list */
+/* it is not visible */
+opacity: 0;
+transform: translateY(-50px);
+visibility: hidden;
+}
+.dropdown .options .option {
+padding: 16px;
+border-radius: 9px;
+transition: all 0.2s ease;
+color: #292d34;
+}
+.dropdown .options .option:not(:last-of-type) {
+margin-bottom: 8px;
+}
+.dropdown .options .option:hover {
+color: white;
+background: #5bc5fa;
+box-shadow: 0 10px 25px rgba(42, 179, 248, 0.4);
+}
 
-      .badge-gradient-danger {
-        font-size: 1em;
-        padding: 8px 8px 8px 16px !important;
-        background: linear-gradient(to right, #d98484, #cd0707);
-      }
+.option:hover{
+opacity: 50%;
+}
 
-      .badge:hover {
-        opacity: 0.75 !important;
-      }
 
-      .selected-icon {
-        position: absolute;
-        top: 2px;
-        left: 15px;
-      }
+/* opened state of dropdown list */
+.dropdown.opened .options {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+.dropdown.opened::before {
+transform: rotate(-225deg);
+top: 18px;
+}
+
+.badge{
+padding: 12px 4px 12px 4px !important;
+}
+
+.legend-dots {
+width: 1rem;
+height: 1rem;
+border-radius: 100%;
+display: inline-block;
+vertical-align: text-bottom;
+margin-right: .5rem;
+margin-left: .5rem;
+}
+
+ul {
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
+
+.badge-gradient-success {
+font-size: 1em;
+padding: 8px 8px 8px 16px !important;
+background: linear-gradient(to right, #84d9d2, #07cdae);
+}
+
+.badge-gradient-danger {
+font-size: 1em;
+padding: 8px 8px 8px 16px !important;
+background: linear-gradient(to right, #d98484, #cd0707);
+}
+
+.badge:hover {
+opacity: 0.75 !important;
+}
+
+.selected-icon {
+position: absolute;
+top: 2px;
+left: 15px;
+}
+
+#password-icon-container {
+    cursor: pointer;
+}

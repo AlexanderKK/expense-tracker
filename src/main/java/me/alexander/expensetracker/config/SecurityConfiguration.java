@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.header.writers.XXssProtectionHeaderWriter;
@@ -31,6 +34,7 @@ public class SecurityConfiguration {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/sounds/**").permitAll()
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/users/register").permitAll()
 
                         // Users
                         .requestMatchers("/categories/**").hasRole("USER")
@@ -39,6 +43,11 @@ public class SecurityConfiguration {
                         .requestMatchers("/balance/**").hasRole("USER")
                         .requestMatchers("/home/**").hasRole("USER")
                 ).build();
+    }
+
+    @Bean
+    public PasswordEncoder initPasswordEncoder() {
+        return Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 
 }
