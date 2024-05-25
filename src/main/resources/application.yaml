@@ -26,18 +26,18 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   # Mail
-  mail:
-    host: ${MAIL_HOST}
-    port: ${MAIL_PORT}
-    protocol: ${MAIL_PROTOCOL}
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+#  mail:
+#    host: ${MAIL_HOST}
+#    port: ${MAIL_PORT}
+#    protocol: ${MAIL_PROTOCOL}
+#    username: ${MAIL_USERNAME}
+#    password: ${MAIL_PASSWORD}
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
 
 server:
   error:
@@ -57,3 +57,7 @@ logging:
         SQL: OFF
       nodeValue: OFF
     blog: OFF
+
+security:
+  jwt:
+    secret-key: amazinglysecretkeyneobitesonix

@@ -1,4 +1,4 @@
-const categoryAction = document.querySelector(".add-category .add-category__actions button");
+const categoryAction = document.querySelector(".add-category__actions button");
 const categoryName = document.querySelector(".add-category #categoryName");
 const categoryIcon = document.querySelector(".add-category #iconSelect");
 

@@ -1,14 +1,13 @@
 package me.alexander.expensetracker.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -27,6 +26,11 @@ public class User extends BaseEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate created = LocalDate.now();
+
+    @NotNull(message = "Role should not be empty")
+    @Column(nullable = false)
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
 
     public String getEmail() {
         return email;
@@ -50,6 +54,14 @@ public class User extends BaseEntity {
 
     public void setCreated(LocalDate created) {
         this.created = created;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
 }

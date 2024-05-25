@@ -1,4 +1,4 @@
-package me.alexander.expensetracker.config.csrf;
+package me.alexander.expensetracker.config.security;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.util.matcher.RequestMatcher;
