@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,12 +27,15 @@ public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomUserDetailsService customUserDetailsService;
+    private final CustomLogoutHandler customLogoutHandler;
 
     @Autowired
     public SecurityConfiguration(JwtAuthenticationFilter jwtAuthenticationFilter,
-                                 CustomUserDetailsService customUserDetailsService) {
+                                 CustomUserDetailsService customUserDetailsService,
+                                 CustomLogoutHandler customLogoutHandler) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.customUserDetailsService = customUserDetailsService;
+        this.customLogoutHandler = customLogoutHandler;
     }
 
     @Bean
@@ -42,19 +46,22 @@ public class SecurityConfiguration {
 //                        .requireCsrfProtectionMatcher(matcher -> new CsrfRequestMatcher().buildMatcher(matcher))
 //                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                                 .disable()
-                )
-                .headers(headers -> headers
+                ).headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
                         .xssProtection(
                                 xss -> xss.headerValue(XXssProtectionHeaderWriter.HeaderValue.ENABLED_MODE_BLOCK)
-                        )
-                        .contentSecurityPolicy(
+                        ).contentSecurityPolicy(
                                 cps -> cps.policyDirectives("script-src 'self'")
                         )
                 ).sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 ).formLogin(AbstractHttpConfigurer::disable)
-                .securityMatcher("/**")
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .addLogoutHandler(customLogoutHandler)
+                        .logoutSuccessHandler(
+                                (request, response, authentication) -> SecurityContextHolder.clearContext())
+                ).securityMatcher("/**")
                 .authorizeHttpRequests(registry -> registry
                         // Anonymous
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()

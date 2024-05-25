@@ -37,8 +37,6 @@ public class AuthRestController {
 
     @GetMapping("/current-user")
     public String getCurrentUser(@AuthenticationPrincipal UserPrincipal userPrincipal) {
-        System.out.println(userPrincipal);
-
         return String.format("Logged in user with email %s and id %d", userPrincipal.getEmail(), userPrincipal.getUserId());
     }
 
