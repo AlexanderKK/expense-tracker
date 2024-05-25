@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -46,11 +45,11 @@ public class SecurityConfiguration {
                                 cps -> cps.policyDirectives("script-src 'self'")
                         )
                 )
-                .csrf(csrf -> csrf
+//                .csrf(csrf -> csrf
 //                        .requireCsrfProtectionMatcher(matcher -> new CsrfRequestMatcher().buildMatcher(matcher))
 //                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                                .disable()
-                )
+//                )
+                .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
@@ -64,7 +63,7 @@ public class SecurityConfiguration {
 
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/users/register").permitAll()
-                        .requestMatchers("/users/login").permitAll()
+                        .requestMatchers("/auth/login").permitAll()
 
                         // Users
 //                        .requestMatchers("/categories/**").hasRole("USER")
@@ -72,6 +71,9 @@ public class SecurityConfiguration {
 //                        .requestMatchers("/incomes/**").hasRole("USER")
 //                        .requestMatchers("/balance/**").hasRole("USER")
 //                        .requestMatchers("/home/**").hasRole("USER")
+
+                        // Admin
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )
