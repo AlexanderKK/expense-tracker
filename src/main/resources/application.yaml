@@ -60,4 +60,4 @@ logging:
 
 security:
   jwt:
-    secret-key: amazinglysecretkeyneobitesonix
+    secret-key: ${JWT_KEY}

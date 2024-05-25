@@ -1,15 +1,18 @@
 package me.alexander.expensetracker.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import me.alexander.expensetracker.config.security.JwtIssuer;
 import me.alexander.expensetracker.config.security.UserPrincipal;
 import me.alexander.expensetracker.model.dto.user.LoginDTO;
 import me.alexander.expensetracker.model.entity.Token;
 import me.alexander.expensetracker.model.entity.User;
 import me.alexander.expensetracker.model.session.LoginResponse;
+import me.alexander.expensetracker.model.session.LogoutResponse;
 import me.alexander.expensetracker.repository.TokenRepository;
 import me.alexander.expensetracker.repository.UserRepository;
 import me.alexander.expensetracker.service.AuthService;
+import me.alexander.expensetracker.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -60,6 +63,32 @@ public class AuthServiceImpl implements AuthService {
         this.saveUserToken(principal, jwtToken);
 
         return new LoginResponse(jwtToken);
+    }
+
+    @Override
+    public LogoutResponse attemptLogout(HttpServletRequest request, UserPrincipal userPrincipal) {
+        String authHeader = request.getHeader("Authorization");
+
+        if(StringUtils.isNullOrEmpty(authHeader) || !authHeader.startsWith("Bearer ")) {
+            throw new IllegalStateException("Invalid bearer token");
+        }
+
+        String token = authHeader.substring(7);
+        Token existingToken = tokenRepository.findByToken(token).orElse(null);
+
+        if(existingToken != null) {
+            if(existingToken.isLoggedOut()) {
+                throw new IllegalStateException("Token already revoked");
+            }
+
+            SecurityContextHolder.clearContext();
+            existingToken.setLoggedOut(true);
+            tokenRepository.save(existingToken);
+        }
+
+        return new LogoutResponse(
+                String.format("User %s has been logged out", userPrincipal.getEmail())
+        );
     }
 
     private void saveUserToken(UserPrincipal principal, String jwtToken) {

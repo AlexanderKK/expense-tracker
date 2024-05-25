@@ -27,41 +27,36 @@ public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomUserDetailsService customUserDetailsService;
-    private final CustomLogoutHandler customLogoutHandler;
 
     @Autowired
     public SecurityConfiguration(JwtAuthenticationFilter jwtAuthenticationFilter,
-                                 CustomUserDetailsService customUserDetailsService,
-                                 CustomLogoutHandler customLogoutHandler) {
+                                 CustomUserDetailsService customUserDetailsService) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.customUserDetailsService = customUserDetailsService;
-        this.customLogoutHandler = customLogoutHandler;
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .csrf(csrf -> csrf
-//                        .requireCsrfProtectionMatcher(matcher -> new CsrfRequestMatcher().buildMatcher(matcher))
-//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                                .disable()
-                ).headers(headers -> headers
+                .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
                         .xssProtection(
                                 xss -> xss.headerValue(XXssProtectionHeaderWriter.HeaderValue.ENABLED_MODE_BLOCK)
                         ).contentSecurityPolicy(
                                 cps -> cps.policyDirectives("script-src 'self'")
                         )
-                ).sessionManagement(sessionManagement -> sessionManagement
+                )
+                .csrf(csrf -> csrf
+//                        .requireCsrfProtectionMatcher(matcher -> new CsrfRequestMatcher().buildMatcher(matcher))
+//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                                .disable()
+                )
+                .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                ).formLogin(AbstractHttpConfigurer::disable)
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .addLogoutHandler(customLogoutHandler)
-                        .logoutSuccessHandler(
-                                (request, response, authentication) -> SecurityContextHolder.clearContext())
-                ).securityMatcher("/**")
+                )
+                .formLogin(AbstractHttpConfigurer::disable)
+                .logout(AbstractHttpConfigurer::disable)
+                .securityMatcher("/**")
                 .authorizeHttpRequests(registry -> registry
                         // Anonymous
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
@@ -80,6 +75,7 @@ public class SecurityConfiguration {
 
                         .anyRequest().authenticated()
                 )
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(customizer -> customizer
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 )

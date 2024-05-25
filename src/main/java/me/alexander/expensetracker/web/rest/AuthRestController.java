@@ -1,14 +1,12 @@
 package me.alexander.expensetracker.web.rest;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import me.alexander.expensetracker.config.security.UserPrincipal;
 import me.alexander.expensetracker.model.dto.user.LoginDTO;
 import me.alexander.expensetracker.model.session.LoginResponse;
+import me.alexander.expensetracker.model.session.LogoutResponse;
 import me.alexander.expensetracker.service.AuthService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class AuthRestController {
 
-    private static final Logger logger = LoggerFactory.getLogger(AuthRestController.class);
     private final AuthService authService;
 
     @Autowired
@@ -30,14 +27,14 @@ public class AuthRestController {
         return authService.attemptLogin(loginDTO);
     }
 
-    @PostMapping("/logout")
-    public void logout(@AuthenticationPrincipal UserPrincipal user) {
-        logger.info("User {} logged out.", user.getUsername());
-    }
-
     @GetMapping("/current-user")
     public String getCurrentUser(@AuthenticationPrincipal UserPrincipal userPrincipal) {
-        return String.format("Logged in user with email %s and id %d", userPrincipal.getEmail(), userPrincipal.getUserId());
+        return String.format("Logged in user with email %s", userPrincipal.getEmail());
+    }
+
+    @PostMapping("/logout")
+    public LogoutResponse logout(HttpServletRequest request, @AuthenticationPrincipal UserPrincipal userPrincipal) {
+        return authService.attemptLogout(request, userPrincipal);
     }
 
 }
