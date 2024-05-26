@@ -36,10 +36,7 @@ function createIncome () {
 
 	const requestOptions = {
 		method: "POST",
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-		},
+		headers: jsonHeaders,
 		body: JSON.stringify({
 			amount: incomeAmount.value,
 			source: incomeSource.value,

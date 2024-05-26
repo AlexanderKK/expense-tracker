@@ -20,6 +20,11 @@ const userRegisteredSuccessOptions = {
 	backgroundColor: backgroundColorSuccess
 };
 
+const loginSuccessOptions = {
+	message: "You have been logged into your account",
+	backgroundColor: backgroundColorSuccess
+};
+
 function toastify(toastOptions) {
 	const toast = {
 		text: toastOptions.message,

@@ -48,10 +48,7 @@ tab3.addEventListener("click", getTransactions);
 
 function getTransactions() {
 	const requestOptions = {
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-		}
+		headers: jsonHeaders
 	};
 
 	const getTransactionsURL = `${location.origin}/transactions`;
@@ -94,10 +91,7 @@ function createTransaction() {
 
 	const requestOptions = {
 		method: "POST",
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-		},
+		headers: jsonHeaders,
 		body: JSON.stringify({
 			expense: expenseInput.value,
 			category: categorySelect.value,

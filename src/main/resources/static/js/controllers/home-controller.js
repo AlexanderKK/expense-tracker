@@ -8,10 +8,7 @@ function loadData() {
 
 function loadYearlyIncomeExpenses() {
 	const requestOptions = {
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		}
+		headers: jsonHeaders
 	};
 
 	const yearlyIncomeExpensesURL = `${window.location.origin}/home/yearly-income-expenses`;
@@ -29,10 +26,7 @@ function loadYearlyIncomeExpenses() {
 
 function loadCategoriesExpenses() {
 	const requestOptions = {
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		}
+		headers: jsonHeaders
 	};
 
 	const categoriesExpensesURL = `${window.location.origin}/home/expenses-by-categories`;

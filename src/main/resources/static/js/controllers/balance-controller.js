@@ -16,10 +16,7 @@ tab1.addEventListener("click", loadBalance);
 
 function loadBalance() {
 	const requestOptions = {
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-		}
+		headers: jsonHeaders
 	};
 
 	const getBalanceURL = `${window.location.origin}/balance`;

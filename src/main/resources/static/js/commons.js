@@ -1,3 +1,8 @@
+const jsonHeaders = {
+	'Accept': 'application/json',
+	'Content-Type': 'application/json'
+};
+
 function handleValidationErrors(json) {
 	if(json === undefined) {
 		return;
