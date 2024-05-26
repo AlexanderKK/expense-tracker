@@ -182,13 +182,17 @@ function attemptLogin() {
 
 				toastify(loginSuccessOptions);
 				lowLag.play("success");
-
-				return;
 			}
 
 			return response.json();
 		})
 		.then(json => {
+			if(json.hasOwnProperty("accessToken")) {
+				localStorage.setItem("accessToken", json.accessToken);
+
+				return;
+			}
+
 			handleAuthenticationErrors(json);
 		});
 }
@@ -210,3 +214,26 @@ const handleAuthenticationErrors = (json) => {
 	loginEmail.classList.add("is-invalid");
 	loginPassword.classList.add("is-invalid");
 };
+
+/**
+ * Get current user
+ */
+getCurrentUser();
+
+function getCurrentUser() {
+	const accessToken = localStorage.getItem("accessToken");
+
+	const requestOptions = {
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${accessToken}`
+		}
+	};
+
+	const getCurrentUserURL = `${location.origin}/auth/current-user`;
+
+	fetch(getCurrentUserURL, requestOptions)
+		.then(response => response.json())
+		.then(json => console.log(json));
+}

@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JwtDecoder {
+public class CustomJwtDecoder {
 
     private final JwtProperties properties;
 
     @Autowired
-    public JwtDecoder(JwtProperties properties) {
+    public CustomJwtDecoder(JwtProperties properties) {
         this.properties = properties;
     }
 

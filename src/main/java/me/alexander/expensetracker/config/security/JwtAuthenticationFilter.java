@@ -17,21 +17,22 @@ import java.util.Optional;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtDecoder jwtDecoder;
+    private final CustomJwtDecoder customJwtDecoder;
     private final JwtToPrincipalConverter jwtToPrincipalConverter;
     private final TokenRepository tokenRepository;
 
     @Autowired
-    public JwtAuthenticationFilter(JwtDecoder jwtDecoder, JwtToPrincipalConverter jwtToPrincipalConverter, TokenRepository tokenRepository) {
-        this.jwtDecoder = jwtDecoder;
+    public JwtAuthenticationFilter(CustomJwtDecoder customJwtDecoder, JwtToPrincipalConverter jwtToPrincipalConverter, TokenRepository tokenRepository) {
+        this.customJwtDecoder = customJwtDecoder;
         this.jwtToPrincipalConverter = jwtToPrincipalConverter;
         this.tokenRepository = tokenRepository;
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         extractTokenFromRequest(request)
-                .map(jwtDecoder::decode)
+                .map(customJwtDecoder::decode)
                 .map(jwtToPrincipalConverter::convert)
                 .map(UserPrincipalAuthenticationToken::new)
                 .ifPresent(authentication -> SecurityContextHolder.getContext().setAuthentication(authentication));

@@ -2,6 +2,7 @@ package me.alexander.expensetracker.config.security;
 
 import me.alexander.expensetracker.service.impl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +16,16 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.XXssProtectionHeaderWriter;
+
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
 @EnableWebSecurity
@@ -26,12 +33,24 @@ public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomUserDetailsService customUserDetailsService;
+    private final CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint;
+    private final CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint;
+    private final CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler;
+    private final String key;
 
     @Autowired
     public SecurityConfiguration(JwtAuthenticationFilter jwtAuthenticationFilter,
-                                 CustomUserDetailsService customUserDetailsService) {
+                                 CustomUserDetailsService customUserDetailsService,
+                                 CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint,
+                                 CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint,
+                                 CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler,
+                                 @Value("${security.jwt.secret-key}") String key) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.customUserDetailsService = customUserDetailsService;
+        this.customBasicAuthenticationEntryPoint = customBasicAuthenticationEntryPoint;
+        this.customBearerTokenAuthenticationEntryPoint = customBearerTokenAuthenticationEntryPoint;
+        this.customBearerTokenAccessDeniedHandler = customBearerTokenAccessDeniedHandler;
+        this.key = key;
     }
 
     @Bean
@@ -45,14 +64,10 @@ public class SecurityConfiguration {
                                 cps -> cps.policyDirectives("script-src 'self'")
                         )
                 )
-//                .csrf(csrf -> csrf
-//                        .requireCsrfProtectionMatcher(matcher -> new CsrfRequestMatcher().buildMatcher(matcher))
-//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//                )
-                .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable)
                 .securityMatcher("/**")
@@ -77,6 +92,18 @@ public class SecurityConfiguration {
 
                         .anyRequest().authenticated()
                 )
+                .httpBasic(httpBasic -> httpBasic
+                        .authenticationEntryPoint(customBasicAuthenticationEntryPoint)
+                )
+//                .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer
+//                        .jwt()
+//                        .and()
+//                        .authenticationEntryPoint(customBearerTokenAuthenticationEntryPoint)
+//                        .accessDeniedHandler(customBearerTokenAccessDeniedHandler)
+//                )
+                .exceptionHandling(customizer -> customizer
+                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
@@ -92,6 +119,13 @@ public class SecurityConfiguration {
                 .userDetailsService(customUserDetailsService)
                 .passwordEncoder(this.passwordEncoder())
                 .and().build();
+    }
+
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        SecretKey secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+
+        return NimbusJwtDecoder.withSecretKey(secretKey).build();
     }
 
 }

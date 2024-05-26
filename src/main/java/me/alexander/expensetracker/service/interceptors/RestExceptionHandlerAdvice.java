@@ -6,6 +6,7 @@ import me.alexander.expensetracker.model.api.ApiSubError;
 import me.alexander.expensetracker.model.api.ApiValidationError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -47,7 +48,7 @@ public class RestExceptionHandlerAdvice {
     @ExceptionHandler({UsernameNotFoundException.class, BadCredentialsException.class})
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ResponseEntity<Object> handleAuthenticationException(Exception ex) {
-        ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED, "Wrong email or password", ex);
+        ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED, "Wrong email or password.", ex);
 
         return buildResponseEntity(apiError);
     }
@@ -55,15 +56,37 @@ public class RestExceptionHandlerAdvice {
     @ExceptionHandler(AccountStatusException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ResponseEntity<Object> handleAccountStatusException(AccountStatusException ex) {
-        ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED, "User account is abnormal", ex);
+        ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED, "User account is abnormal.", ex);
 
         return buildResponseEntity(apiError);
     }
 
     @ExceptionHandler(JWTVerificationException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    ResponseEntity<Object> handleTokenVerificationException(JWTVerificationException ex) {
+    public ResponseEntity<Object> handleTokenVerificationException(JWTVerificationException ex) {
         ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED, "The access token provided is expired, revoked, malformed, or invalid for other reasons.", ex);
+
+        return buildResponseEntity(apiError);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex) {
+        ApiError apiError = new ApiError(HttpStatus.FORBIDDEN, "No permission.", ex);
+
+        return buildResponseEntity(apiError);
+    }
+
+    /**
+     * Fallback handles any unhandled exceptions.
+     *
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<Object> handleOtherException(Exception ex) {
+        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "A server internal error occurs.", ex);
 
         return buildResponseEntity(apiError);
     }

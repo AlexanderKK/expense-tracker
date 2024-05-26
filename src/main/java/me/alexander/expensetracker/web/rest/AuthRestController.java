@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import me.alexander.expensetracker.config.security.UserPrincipal;
 import me.alexander.expensetracker.model.dto.user.LoginDTO;
+import me.alexander.expensetracker.model.session.CurrentUserResponse;
 import me.alexander.expensetracker.model.session.LoginResponse;
 import me.alexander.expensetracker.model.session.LogoutResponse;
 import me.alexander.expensetracker.service.AuthService;
@@ -28,8 +29,10 @@ public class AuthRestController {
     }
 
     @GetMapping("/current-user")
-    public String getCurrentUser(@AuthenticationPrincipal UserPrincipal userPrincipal) {
-        return String.format("Logged in user with email %s", userPrincipal.getEmail());
+    public CurrentUserResponse getCurrentUser(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+        return new CurrentUserResponse(
+                String.format("Logged in user with email %s", userPrincipal.getEmail())
+        );
     }
 
     @PostMapping("/logout")
