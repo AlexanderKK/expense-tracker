@@ -66,7 +66,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav" role="tablist">
+                <ul class="navbar-nav" role="tablist" id="tabsContainer">
                     <div class="hori-selector">
                         <div class="left"></div>
 
@@ -91,16 +91,6 @@
                     <li class="nav-item">
                         <a class="nav-link" id="tab-4" data-bs-toggle="tab" href="#tabpanel-4" role="tab"
                            aria-controls="tabpanel-4" aria-selected="false"><i class="far fa-clone"></i>Categories</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab-5" data-bs-toggle="tab" href="#tabpanel-5" role="tab"
-                           aria-controls="tabpanel-5" aria-selected="false"><i class="fas fa-sign-in-alt"></i>Sign In</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab-6" data-bs-toggle="tab" href="#tabpanel-6" role="tab"
-                           aria-controls="tabpanel-6" aria-selected="false"><i class="fas fa-user-plus"></i>Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -466,97 +456,6 @@
 
                     <div class="add-category__actions">
                         <button class="btn btn-primary mb-3 btn-actions">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane" id="tabpanel-5" role="tabpanel" aria-labelledby="tab-5">
-            <div class="login m-auto">
-                <div class="mb-3">
-                    <h4>Login</h4>
-                </div>
-
-                <div class="login__inner">
-                    <div class="mb-3">
-                        <label class="form-label" for="login-email">Email</label>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">@</div>
-                            </div>
-
-                            <input type="text" class="form-control login-email__control rounded-end-2" id="login-email"
-                                   placeholder="johndoe@gmail.com">
-
-                            <div class="invalid-feedback login-email-error"></div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="login-password" class="form-label">Password</label>
-
-                        <input type="password" class="form-control login-password__control" id="login-password">
-
-                        <div class="invalid-feedback login-error"></div>
-                    </div>
-
-                    <div class="login__actions">
-                        <button class="btn btn-primary mb-3 btn-actions">Proceed</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane" id="tabpanel-6" role="tabpanel" aria-labelledby="tab-6">
-            <div class="register m-auto">
-                <div class="mb-4">
-                    <h4>Register</h4>
-                </div>
-
-                <div class="register__inner">
-                    <div class="mb-3">
-                        <label class="form-label" for="register-email">Email</label>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text text-secondary" style="border-radius: 6px 0 0 6px">@</div>
-                            </div>
-
-                            <input type="text" class="form-control register-email__control rounded-end-2"
-                                   id="register-email"
-                                   placeholder="johndoe@gmail.com">
-
-                            <div class="invalid-feedback register-email-error"></div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="register-password" class="form-label">Password</label>
-
-                        <div class="input-group mb-3" id="show-hide-password">
-                            <input type="password" class="form-control register-password__control" id="register-password">
-
-                            <div class="input-group-append">
-                                <div id="password-icon-container" class="input-group-text text-secondary" style="padding: 10px 2px 10px 10px; border-radius: 0 6px 6px 0;">
-                                    <i class="fa fa-eye-slash"></i>
-                                </div>
-                            </div>
-
-                            <div class="invalid-feedback register-password-error"></div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="register-password-confirm" class="form-label">Confirm Password</label>
-
-                            <input type="password" class="form-control register-password-confirm__control" id="register-password-confirm">
-
-                            <div class="invalid-feedback register-passwordConfirm-error"></div>
-                        </div>
-
-                        <div class="register__actions">
-                            <button class="btn btn-primary mb-3 btn-actions">Proceed</button>
-                        </div>
                     </div>
                 </div>
             </div>

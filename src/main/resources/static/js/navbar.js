@@ -7,20 +7,20 @@ lowLag.load("success.mp3", "success");
 
 $(document).ready(function () {
 	setTimeout(function () {
-		test();
+		navigate();
 	});
 });
 
 $(window).on('resize', function () {
 	setTimeout(function () {
-		test();
+		navigate();
 	}, 500);
 });
 
 $(".navbar-toggler").click(function () {
 	$(".navbar-collapse").slideToggle(300);
 	setTimeout(function () {
-		test();
+		navigate();
 	});
 });
 
@@ -39,7 +39,7 @@ jQuery(document).ready(function ($) {
 	target.parent().addClass('active');
 });
 
-function test() {
+function navigate() {
 	const tabsNewAnim = $('#navbarSupportedContent');
 	const selectorNewAnim = tabsNewAnim.find('li').length;
 	const activeItemNewAnim = tabsNewAnim.find('.active');

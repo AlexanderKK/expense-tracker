@@ -30,9 +30,7 @@ public class AuthRestController {
 
     @GetMapping("/current-user")
     public CurrentUserResponse getCurrentUser(@AuthenticationPrincipal UserPrincipal userPrincipal) {
-        return new CurrentUserResponse(
-                String.format("Logged in user with email %s", userPrincipal.getEmail())
-        );
+        return new CurrentUserResponse(userPrincipal.getEmail());
     }
 
     @PostMapping("/logout")
