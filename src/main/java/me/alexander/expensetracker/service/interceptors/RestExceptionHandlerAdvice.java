@@ -83,13 +83,13 @@ public class RestExceptionHandlerAdvice {
      * @param ex
      * @return
      */
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<Object> handleOtherException(Exception ex) {
-        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "A server internal error occurs.", ex);
-
-        return buildResponseEntity(apiError);
-    }
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public ResponseEntity<Object> handleOtherException(Exception ex) {
+//        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "A server internal error occurs.", ex);
+//
+//        return buildResponseEntity(apiError);
+//    }
 
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());

@@ -68,7 +68,7 @@ function navigate() {
 			"height": activeWidthNewAnimHeight + "px",
 			"width": activeWidthNewAnimWidth + "px"
 		});
-		lowLag.play("tabSwitch");
+		// lowLag.play("tabSwitch");
 	});
 }
 

@@ -1,11 +1,7 @@
-const registerEmail = document.querySelector("#register-email");
-const registerPassword = document.querySelector("#register-password");
-const registerPasswordConfirm = document.querySelector("#register-password-confirm");
-const passwordBtn = document.querySelector("#password-icon-container");
-let isRegisterPasswordValid = false;
-
 const tabsContainer = document.querySelector("#tabsContainer");
 const tabContentContainer = document.querySelector("#tab-content");
+
+let isRegisterPasswordValid = false;
 
 /**
  * Register
@@ -14,28 +10,8 @@ tabContentContainer.addEventListener("click", function(evt) {
 	if (evt.target.closest(".register__actions button")) {
 		registerUser();
 	}
-});
 
-tabContentContainer.addEventListener("keyup", function(evt) {
-	if (evt.target.closest("#register-email")) {
-		if (isEmailValid(evt.target) && evt.key === "Enter" && evt.keyCode === 13) {
-			registerUser();
-		}
-	}
-});
-
-if(registerPassword != null) {
-	registerPassword.addEventListener("keyup", isPasswordValid);
-}
-
-if(registerPassword != null && registerPasswordConfirm != null) {
-	[registerPassword, registerPasswordConfirm].forEach(element => {
-		element.addEventListener("blur", arePasswordsEqual);
-	});
-}
-
-if(passwordBtn != null) {
-	passwordBtn.addEventListener("click", function (evt) {
+	if(evt.target.closest("#password-icon-container")) {
 		evt.preventDefault();
 
 		const input = document.querySelector("#show-hide-password input");
@@ -50,8 +26,26 @@ if(passwordBtn != null) {
 			icon.classList.add("fa-eye");
 			icon.classList.remove("fa-eye-slash");
 		}
-	});
-}
+	}
+});
+
+tabContentContainer.addEventListener("keyup", function(evt) {
+	if (evt.target.closest("#register-email")) {
+		if (isEmailValid(evt.target) && evt.key === "Enter" && evt.keyCode === 13) {
+			registerUser();
+		}
+	}
+
+	if (evt.target.closest("#register-password")) {
+		isPasswordValid();
+	}
+});
+
+tabContentContainer.addEventListener("blur", function(evt) {
+	if (evt.target.closest("#register-password") || evt.target.closest("#register-password-confirm")) {
+		arePasswordsEqual();
+	}
+});
 
 function isEmailValid(emailInput) {
 	const emailError = emailInput.nextElementSibling;
@@ -71,6 +65,8 @@ function isEmailValid(emailInput) {
 }
 
 function isPasswordValid() {
+	const registerPassword = document.querySelector("#register-password");
+
 	const registerPasswordError = registerPassword.nextElementSibling.nextElementSibling;
 	const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -92,6 +88,9 @@ function isPasswordValid() {
 }
 
 function arePasswordsEqual() {
+	const registerPassword = document.querySelector("#register-password");
+	const registerPasswordConfirm = document.querySelector("#register-password-confirm");
+
 	const registerPasswordConfirmError = registerPasswordConfirm.nextElementSibling;
 
 	if (registerPassword.value !== registerPasswordConfirm.value) {
@@ -138,7 +137,9 @@ function registerUser() {
 	fetch(registerURL, requestOptions)
 		.then(response => {
 			if(response.ok) {
-				clearRegisterControls();
+				registerEmail.value = "";
+				registerPassword.value = "";
+				registerPasswordConfirm.value = "";
 
 				toastify(userRegisteredSuccessOptions);
 				lowLag.play("success");
@@ -151,12 +152,6 @@ function registerUser() {
 		.then(json => {
 			handleValidationErrors(json);
 		});
-}
-
-function clearRegisterControls() {
-	registerEmail.value = "";
-	registerPassword.value = "";
-	registerPasswordConfirm.value = "";
 }
 
 /**
@@ -179,10 +174,42 @@ tabContentContainer.addEventListener("keyup", function(evt) {
 window.addEventListener("load", async () => {
 	try {
 		const currentUser = await getCurrentUser();
+
+		addLogoutTab();
 	} catch(e) {
 		addAuthorizationTabs();
 	}
-}, false)
+});
+
+tabsContainer.addEventListener("click", async function(evt) {
+	if(evt.target.closest("#tab-7")) {
+		try {
+			const logout = await logoutUser();
+
+			removeLogoutTab();
+			addAuthorizationTabs();
+		} catch(e) {}
+	}
+});
+
+function addLogoutTab() {
+	const tab7HTML =
+		`<li class="nav-item">
+		<a class="nav-link" id="tab-7" data-bs-toggle="tab" href="#tabpanel-7" role="tab"
+		   aria-controls="tabpanel-7" aria-selected="false"><i class="fas fa-sign-in-alt"></i>Sign Out</a>
+	</li>`;
+
+	tabsContainer.appendChild(parseHTMLStringToNode(tab7HTML));
+}
+
+function removeLogoutTab() {
+	const tab7 = document.querySelector("#tab-7");
+
+	if(tab7) {
+		const tab7Wrapper = tab7.parentElement;
+		tabsContainer.removeChild(tab7Wrapper);
+	}
+}
 
 function addAuthorizationTabs() {
 	const tab5HTML =
@@ -296,6 +323,18 @@ function addAuthorizationTabs() {
 	//Add tab panels
 	tabContentContainer.appendChild(parseHTMLStringToNode(tabPanel5HTML));
 	tabContentContainer.appendChild(parseHTMLStringToNode(tabPanel6HTML));
+
+	const tabPanel1 = document.querySelector("#tabpanel-1");
+	tabPanel1.classList.add("active", "show");
+
+	const tabs = Array.from(tabsContainer.childNodes)
+		.filter(node => node.nodeType === Node.ELEMENT_NODE);
+	tabs.forEach(tab => tab.classList.remove("active"));
+
+	tab1.classList.add("active");
+	tab1.parentElement.classList.add("active");
+
+	navigate();
 }
 
 function removeAuthorizationTabs() {
@@ -363,6 +402,12 @@ function attemptLogin() {
 
 				toastify(loginSuccessOptions);
 				lowLag.play("success");
+			} else {
+				loginEmail.classList.add("is-invalid");
+				loginPassword.classList.add("is-invalid");
+
+				const authError = document.querySelector(".login-error");
+				authError.innerText = "Wrong email or password.";
 			}
 
 			return response.json();
@@ -375,8 +420,9 @@ function attemptLogin() {
 					const currentUser = await getCurrentUser();
 
 					removeAuthorizationTabs();
+					addLogoutTab();
 				} catch(e) {
-					console.log(e);
+
 				}
 
 				return;
@@ -391,12 +437,15 @@ const handleAuthenticationErrors = (json) => {
 		return;
 	}
 
+	const loginEmail = document.querySelector("#login-email");
+	const loginPassword = document.querySelector("#login-password");
 	const authError = document.querySelector(".login-error");
-	authError.innerText = "";
-	authError.innerText = json.message;
 
 	loginEmail.classList.add("is-invalid");
 	loginPassword.classList.add("is-invalid");
+
+	authError.innerText = "";
+	authError.innerText = json.message;
 };
 
 async function getCurrentUser() {
@@ -420,4 +469,23 @@ async function getCurrentUser() {
 	}
 
 	return await response.json();
+}
+
+async function logoutUser() {
+	const accessToken = localStorage.getItem("accessToken");
+
+	const requestOptions = {
+		method: "POST",
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${accessToken}`
+		}
+	};
+
+	const logoutUserURL = `${location.origin}/auth/logout`;
+
+	fetch(logoutUserURL, requestOptions)
+		.then(response => response.json())
+		.then(json => json);
 }
