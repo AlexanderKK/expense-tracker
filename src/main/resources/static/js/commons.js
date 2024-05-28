@@ -3,6 +3,14 @@ const jsonHeaders = {
 	'Content-Type': 'application/json'
 };
 
+function jsonAuthHeaders(accessToken) {
+	return {
+		'Accept': 'application/json',
+		'Content-Type': 'application/json',
+		'Authorization': `Bearer ${accessToken}`
+	};
+}
+
 function handleValidationErrors(json) {
 	if(json === undefined) {
 		return;

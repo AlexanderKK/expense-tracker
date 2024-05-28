@@ -1,14 +1,32 @@
 const categoryAction = document.querySelector(".add-category__actions button");
 const categoryName = document.querySelector(".add-category #categoryName");
 const categoryIcon = document.querySelector(".add-category #iconSelect");
+const categorySelect = document.querySelector("#category");
 
 let isCreateCategoryCancelled = false;
 
-categoryAction.addEventListener("click", createCategory);
+window.addEventListener("load", loadCategories);
+categorySelect.addEventListener("focus", loadCategories);
 
-/**
- * Front-End Validation
- */
+function loadCategories() {
+	const accessToken = localStorage.getItem("accessToken");
+
+	const requestOptions = {
+		headers: jsonAuthHeaders(accessToken)
+	};
+
+	const loadCategoriesURL = `${window.location.origin}/categories`;
+	categorySelect.innerHTML = `<option value="">Select a category</option>`;
+
+	fetch(loadCategoriesURL, requestOptions)
+		.then(response => response.json())
+		.then(categories => {
+			for (const category of categories) {
+				categorySelect.innerHTML += `<option value="${category.id}">${category.name}</option>`;
+			}
+		});
+}
+
 categoryName.addEventListener("keyup", function(evt) {
 	const categoryNameError = categoryName.nextElementSibling;
 	const categoryNameRegex = /^[A-Z](?:[a-zA-Z]\s?){1,19}$/;
@@ -29,9 +47,8 @@ categoryName.addEventListener("keyup", function(evt) {
 	}
 });
 
-/**
- * Back-End Validation
- */
+categoryAction.addEventListener("click", createCategory);
+
 function createCategory() {
 	if(isCreateCategoryCancelled) {
 		return;
@@ -39,9 +56,11 @@ function createCategory() {
 
 	categoryName.value = categoryName.value.trim();
 
+	const accessToken = localStorage.getItem("accessToken");
+
 	const requestOptions = {
 		method: "POST",
-		headers: jsonHeaders,
+		headers: jsonAuthHeaders(accessToken),
 		body: JSON.stringify({
 			name: categoryName.value,
 			icon: categoryIcon.placeholder
@@ -71,5 +90,5 @@ function createCategory() {
 function clearCategoryControls() {
 	categoryName.value = "";
 	categoryIcon.placeholder = "Pick an icon";
-	document.getElementById("iconPicked").innerHTML = "Selected Icon:";
+	document.querySelector(".selected-icon").innerHTML = "Selected Icon:";
 }

@@ -81,11 +81,11 @@ public class SecurityConfiguration {
                         .requestMatchers("/auth/login").permitAll()
 
                         // Users
-//                        .requestMatchers("/categories/**").hasRole("USER")
-//                        .requestMatchers("/transactions/**").hasRole("USER")
-//                        .requestMatchers("/incomes/**").hasRole("USER")
-//                        .requestMatchers("/balance/**").hasRole("USER")
-//                        .requestMatchers("/home/**").hasRole("USER")
+                        .requestMatchers("/categories/**").hasRole("USER")
+                        .requestMatchers("/transactions/**").hasRole("USER")
+                        .requestMatchers("/incomes/**").hasRole("USER")
+                        .requestMatchers("/balance/**").hasRole("USER")
+                        .requestMatchers("/home/**").hasRole("USER")
 
                         // Admin
                         .requestMatchers("/admin/**").hasRole("ADMIN")

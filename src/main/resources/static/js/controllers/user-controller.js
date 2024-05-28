@@ -452,11 +452,7 @@ async function getCurrentUser() {
 	const accessToken = localStorage.getItem("accessToken");
 
 	const requestOptions = {
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${accessToken}`
-		}
+		headers: jsonAuthHeaders(accessToken)
 	};
 
 	const getCurrentUserURL = `${location.origin}/auth/current-user`;
@@ -476,11 +472,7 @@ async function logoutUser() {
 
 	const requestOptions = {
 		method: "POST",
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${accessToken}`
-		}
+		headers: jsonAuthHeaders(accessToken)
 	};
 
 	const logoutUserURL = `${location.origin}/auth/logout`;

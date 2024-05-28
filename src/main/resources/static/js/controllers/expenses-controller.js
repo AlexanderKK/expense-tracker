@@ -4,6 +4,7 @@ const expenseDescription = document.querySelector(".add-expenses #expenseDescrip
 const expenseDate = document.querySelector(".add-expenses #transactionDate");
 const expenseControls = document.querySelectorAll(".add-expenses__control");
 const expensesTableBody = document.querySelector(".expenses-table-content");
+const addExpensesBtn = document.querySelector(".add-expenses__actions button");
 const tab3 = document.getElementById("tab-3");
 
 let isCreateTransactionCancelled = false;
@@ -43,12 +44,14 @@ expenseCategory.addEventListener("change", function(evt) {
  */
 addExpensesBtn.addEventListener("click", createTransaction);
 
-window.addEventListener("load", getTransactions);
-tab3.addEventListener("click", getTransactions);
+window.addEventListener("load", loadTransactions);
+tab3.addEventListener("click", loadTransactions);
 
-function getTransactions() {
+function loadTransactions() {
+	const accessToken = localStorage.getItem("accessToken");
+
 	const requestOptions = {
-		headers: jsonHeaders
+		headers: jsonAuthHeaders(accessToken)
 	};
 
 	const getTransactionsURL = `${location.origin}/transactions`;
@@ -89,9 +92,11 @@ function createTransaction() {
 	expenseInput.value = expenseInput.value.trim();
 	expenseDescription.value = expenseDescription.value.trim();
 
+	const accessToken = localStorage.getItem("accessToken");
+
 	const requestOptions = {
 		method: "POST",
-		headers: jsonHeaders,
+		headers: jsonAuthHeaders(accessToken),
 		body: JSON.stringify({
 			expense: expenseInput.value,
 			category: categorySelect.value,
@@ -111,6 +116,7 @@ function createTransaction() {
 				lowLag.play("success");
 
 				loadBalance();
+				loadTransactions();
 
 				return;
 			}

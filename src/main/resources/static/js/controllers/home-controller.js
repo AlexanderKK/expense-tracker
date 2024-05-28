@@ -7,8 +7,10 @@ function loadData() {
 }
 
 function loadYearlyIncomeExpenses() {
+	const accessToken = localStorage.getItem("accessToken");
+
 	const requestOptions = {
-		headers: jsonHeaders
+		headers: jsonAuthHeaders(accessToken)
 	};
 
 	const yearlyIncomeExpensesURL = `${window.location.origin}/home/yearly-income-expenses`;
@@ -25,8 +27,10 @@ function loadYearlyIncomeExpenses() {
 }
 
 function loadCategoriesExpenses() {
+	const accessToken = localStorage.getItem("accessToken");
+
 	const requestOptions = {
-		headers: jsonHeaders
+		headers: jsonAuthHeaders(accessToken)
 	};
 
 	const categoriesExpensesURL = `${window.location.origin}/home/expenses-by-categories`;

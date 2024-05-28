@@ -34,9 +34,11 @@ function createIncome () {
 
 	incomeAmount.value = incomeAmount.value.trim();
 
+	const accessToken = localStorage.getItem("accessToken");
+
 	const requestOptions = {
 		method: "POST",
-		headers: jsonHeaders,
+		headers: jsonAuthHeaders(accessToken),
 		body: JSON.stringify({
 			amount: incomeAmount.value,
 			source: incomeSource.value,

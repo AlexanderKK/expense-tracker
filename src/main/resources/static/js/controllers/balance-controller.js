@@ -15,8 +15,10 @@ window.addEventListener("load", loadBalance);
 tab1.addEventListener("click", loadBalance);
 
 function loadBalance() {
+	const accessToken = localStorage.getItem("accessToken");
+
 	const requestOptions = {
-		headers: jsonHeaders
+		headers: jsonAuthHeaders(accessToken)
 	};
 
 	const getBalanceURL = `${window.location.origin}/balance`;

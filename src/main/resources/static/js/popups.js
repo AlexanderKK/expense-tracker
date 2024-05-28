@@ -28,7 +28,7 @@ const loginSuccessOptions = {
 function toastify(toastOptions) {
 	const toast = {
 		text: toastOptions.message,
-		duration: 3000,
+		duration: 1750,
 		close: true,
 		gravity: "top",
 		position: "center",
