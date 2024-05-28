@@ -1,1 +1,1 @@
-# Web application managing daily expenses
+# Web application managing daily income and expenses
